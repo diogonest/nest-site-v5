@@ -1,0 +1,2259 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nest · Lançamentos imobiliários que vendem mais rápido</title>
+<meta name="description" content="A Nest acelera as vendas de lançamentos imobiliários com estratégia e tecnologia: posicionamento, narrativa, landing pages e o View, espelho de vendas 3D. Guarapari, Espírito Santo e todo o Brasil sob demanda.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@200..600&family=Geist+Mono:wght@300..500&display=swap">
+<style>
+/* Layout: coluna editorial alinhada à esquerda; faixas inteiras de cor com função fixa (branco conteúdo, papel método, marinho dado, abismo produto, areia CTA). O iPhone com o View é o único objeto "fotográfico" da página. */
+:root{
+  --branco:#FFFFFF; --papel:#F4F1EA; --areia:#C8B593; --areia-clara:#E9E0CF;
+  --marinho:#0E2238; --abismo:#07111F; --mare:#1E3956;
+  --ardosia:#8794A3; --fio:#D3D8DE; --texto:#0E2238; --texto2:#4F6177; --claro2:#C4CDD8;
+  --falta:#9A5B2E;
+  --sans:"Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:"Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --wrap:1180px;
+  --ease:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.4,0,1,1); --ease-io:cubic-bezier(.65,0,.35,1);
+  --t-press:90ms; --t-micro:180ms; --t-ui:320ms; --t-reveal:720ms; --rise:14px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:80px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:1ms!important;animation-delay:0ms!important;animation-iteration-count:1!important;transition-duration:1ms!important;transition-delay:0ms!important}}
+body{margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-size:17px;line-height:1.6;font-weight:350;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--branco)}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--mare);outline-offset:3px}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.band{padding-block:clamp(64px,10vw,136px)}
+.band--papel{background:var(--papel)}
+.band--marinho{background:var(--marinho);color:var(--branco)}
+.band--abismo{background:var(--abismo);color:var(--branco)}
+.band--areia{background:var(--areia);color:var(--marinho)}
+
+/* tipografia */
+h1,h2,h3{margin:0;font-weight:250;letter-spacing:-0.035em;line-height:1.04;text-wrap:balance}
+h1{font-size:clamp(44px,6.6vw,88px)}
+h2{font-size:clamp(32px,5vw,64px)}
+h3{font-size:22px;font-weight:450;letter-spacing:-0.015em;line-height:1.2}
+strong,b{font-weight:500}
+p{margin:0;max-width:62ch}
+.lead{font-size:clamp(17px,1.6vw,21px);line-height:1.55;color:var(--texto2)}
+.band--marinho .lead,.band--abismo .lead{color:var(--claro2)}
+.mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;font-weight:400}
+.aparte{font-family:var(--mono);font-size:13px;color:var(--texto2);text-transform:lowercase}
+.band--abismo .aparte{color:var(--ardosia)}
+.marca{background:linear-gradient(transparent 58%,var(--areia) 58%,var(--areia) 92%,transparent 92%) no-repeat 0 0/100% 100%;padding:0 .06em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.rotulos{display:flex;flex-wrap:wrap;gap:6px 28px;font-family:var(--mono);font-size:12.5px;color:var(--texto2)}
+.rotulos span:first-child{color:var(--texto);font-weight:500}
+.falta{font-family:var(--mono);font-size:13px;color:var(--falta);background:rgba(154,91,46,.08);border:1px dashed rgba(154,91,46,.5);padding:2px 8px;border-radius:3px;display:inline-block;line-height:1.5}
+
+/* botões */
+.pilula{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--marinho);color:var(--branco);text-decoration:none;font-weight:450;font-size:16px;line-height:1.25;padding:15px 26px;min-height:52px;border-radius:999px;border:1px solid var(--marinho);text-align:center}
+.pilula:hover{background:var(--mare);border-color:var(--mare)}
+.pilula svg{width:18px;height:18px;flex:none}
+.link{font-weight:450;text-decoration:none;padding-bottom:2px}
+
+/* cabeçalho */
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.82);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+.logo{display:block;color:var(--marinho)}
+.logo svg{height:24px;width:auto;display:block}
+.nav{display:flex;align-items:center;gap:30px;font-size:15px}
+.nav a.item{text-decoration:none;color:var(--texto2)}
+.nav a.item:hover{color:var(--texto)}
+.nav .pilula{padding:9px 18px;min-height:40px;font-size:14.5px}
+@media (max-width:860px){.nav a.item{display:none}}
+
+/* hero */
+.hero{padding-top:clamp(32px,5vw,60px);padding-bottom:clamp(56px,8vw,104px)}
+.hero .grade{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.05fr);gap:clamp(36px,5vw,72px);align-items:center}
+.hero h1{margin-top:0}
+.hero h1 .b{font-weight:500}
+.hero .lead{margin-top:24px;max-width:50ch}
+.hero .acoes{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px}
+.hero .lado{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
+.view-hero-header{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:390px;margin-bottom:clamp(20px,2.5vw,28px);will-change:transform,opacity}
+.view-hero-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--falta);font-weight:500;margin-bottom:6px}
+.view-hero-title{font-size:clamp(19px,1.9vw,23px);font-weight:450;letter-spacing:-.02em;line-height:1.22;color:var(--marinho);margin:0 0 8px 0}
+.view-hero-desc{font-size:13.5px;line-height:1.52;color:var(--texto2);margin:0 0 10px 0;max-width:36ch}
+.view-hero-link{font-family:var(--mono);font-size:11.5px;color:var(--marinho);text-decoration:none;font-weight:450;display:inline-flex;align-items:center;gap:4px;border-bottom:1px solid var(--marinho);width:fit-content;padding-bottom:1px;transition:color 0.2s,border-color 0.2s}
+.view-hero-link:hover{color:var(--mare);border-color:var(--mare)}
+@media (max-width:960px){
+  .hero .grade{grid-template-columns:1fr;gap:44px}
+  .hero .lado{margin-top:12px}
+}
+@media (max-width:600px){
+  .hero .acoes .pilula{width:100%}
+}
+
+/* iPhone */
+.etq{font-family:var(--mono);font-size:11.5px;color:var(--texto2)}
+
+/* iPhone: moldura de titânio fina, borda preta de 2,6%, ilha dinâmica e botões laterais */
+.iphone{position:relative;max-width:100%;flex:none;padding:1.15%;border-radius:15.5%/7.2%;
+  background:linear-gradient(140deg,#a7acb3 0%,#5b6068 14%,#30343a 32%,#6d727a 52%,#2f3339 72%,#8e939b 92%,#b9bdc3 100%);
+  box-shadow:inset 0 0 0 .6px rgba(255,255,255,.45),inset 0 0 0 1.4px rgba(0,0,0,.35),0 1px 1px rgba(7,17,31,.15),0 28px 50px -28px rgba(7,17,31,.55)}
+.vidro{position:relative;border-radius:14.4%/6.7%;padding:2.6%;background:#040506;overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.vidro img{display:block;width:100%;height:auto;border-radius:11.8%/5.45%;background:var(--papel)}
+.vidro::before{content:"";position:absolute;z-index:2;top:4.1%;left:50%;width:28.5%;height:3%;transform:translateX(-50%);background:#000;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
+.vidro::after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(118deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 22%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 78%,rgba(255,255,255,.05) 100%)}
+.bt{position:absolute;width:1.3%;border-radius:2px;background:linear-gradient(90deg,#3d4148,#9ca1a8 45%,#565b62)}
+.bt--acao{left:-.9%;top:16.5%;height:4.2%}
+.bt--mais{left:-.9%;top:23.5%;height:7.2%}
+.bt--menos{left:-.9%;top:32%;height:7.2%}
+.bt--lado{right:-.9%;top:26%;height:11%}
+.tela .iphone{box-shadow:inset 0 0 0 .6px rgba(255,255,255,.45),inset 0 0 0 1.4px rgba(0,0,0,.35),0 30px 60px -30px rgba(0,0,0,.8)}
+
+/* hero: 3D Container Scroll do iPhone (Aceternity UI style) */
+.view-hero-stage{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;perspective:1200px}
+.view-hero-card{position:relative;width:min(252px,64vw);transform-style:preserve-3d;transform-origin:50% 90%;will-change:transform}
+.view-hero-card .iphone{
+  transform:rotateY(var(--cursor-ry,0deg)) rotateX(var(--cursor-rx,0deg));
+  transform-origin:50% 50%;
+  transition:transform 200ms ease-out;
+  box-shadow:inset 0 0 0 .6px rgba(255,255,255,.5),inset 0 0 0 1.4px rgba(0,0,0,.35),
+    1px 0 0 #5c6168,2px 0 0 #50555c,3px 1px 0 #454950,4px 1px 0 #3b3f45,5px 1px 0 #32363b,6px 2px 0 #2b2e33,
+    0 10px 24px -6px rgba(7,17,31,.25),
+    0 24px 48px -12px rgba(7,17,31,.35),
+    0 48px 80px -20px rgba(7,17,31,.45);
+}
+.view-hero-shadow{
+  position:absolute;bottom:-18px;left:8%;right:8%;height:32px;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(7,17,31,.4) 0%,rgba(7,17,31,0) 72%);
+  filter:blur(8px);z-index:-1;pointer-events:none;transform-origin:center;will-change:transform,opacity;
+}
+@media (max-width:600px){
+  .view-hero-card{width:min(232px,72vw)}
+}
+
+/* ===== LOGO CLOUD (Marquee infinito com máscara gradual) ===== */
+@keyframes logo-cloud-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.clientes {
+  border-top: 1px solid var(--fio);
+  border-bottom: 1px solid var(--fio);
+  padding: clamp(28px, 3.5vw, 40px) 0;
+  overflow: hidden;
+  background: var(--branco);
+}
+.logo-cloud-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 2vw, 24px);
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo-cloud-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto2);
+  margin: 0;
+}
+.logo-cloud-mask {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.logo-cloud-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: logo-cloud-marquee 28s linear infinite;
+  will-change: transform;
+}
+.logo-cloud-mask:hover .logo-cloud-track {
+  animation-play-state: paused;
+}
+.logo-cloud-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(24px, 3vw, 40px);
+  flex-shrink: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.logo-cloud-item:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+.logo-cliente {
+  height: clamp(30px, 3vw, 38px);
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  display: block;
+}
+.logo-cliente--egecon {
+  height: clamp(38px, 3.8vw, 46px);
+}
+.logo-cloud-item--text span {
+  font-size: clamp(15px, 1.3vw, 17.5px);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--marinho);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-cloud-track {
+    animation: none;
+    overflow-x: auto;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .logo-cloud-mask {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* benefícios */
+.ganhos .cab{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px 64px;align-items:end}
+@media (max-width:900px){.ganhos .cab{grid-template-columns:1fr}}
+.riscos{margin-top:clamp(44px,6vw,80px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--marinho)}
+.risco{padding:28px 24px 32px 0;display:flex;flex-direction:column;gap:14px;min-width:0}
+.risco + .risco{border-left:1px solid var(--fio);padding-left:24px}
+.risco .dor{font-family:var(--mono);font-size:12.5px;color:var(--texto2)}
+.risco s{font-size:20px;line-height:1.3;color:var(--texto2);text-decoration:none}
+.risca{background:linear-gradient(var(--marinho),var(--marinho)) no-repeat 0 56%/100% 1.5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.correcao{align-self:flex-start;background:var(--areia);color:var(--marinho);font-size:14.5px;font-weight:500;padding:6px 12px;border-radius:3px;line-height:1.35}
+.risco p{font-size:15.5px;color:var(--texto2)}
+@media (max-width:1060px){
+  .riscos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .risco:nth-child(3){border-left:0;padding-left:0}
+  .risco:nth-child(n+3){border-top:1px solid var(--fio)}
+}
+@media (max-width:640px){
+  .riscos{grid-template-columns:1fr}
+  .risco + .risco{border-left:0;padding-left:0;border-top:1px solid var(--fio)}
+  .risco{padding-right:0}
+}
+
+/* dado */
+.dado .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px 72px;align-items:center}
+@media (max-width:900px){.dado .wrap{grid-template-columns:1fr;gap:28px}}
+.dado h2{font-size:clamp(32px,4.8vw,60px)}
+.dado h2 .num{font-weight:500;color:var(--areia)}
+.dado .resposta-dado{display:flex;flex-direction:column;gap:18px}
+.dado .pergunta{margin:0;font-size:clamp(26px,3.2vw,38px);font-weight:450;letter-spacing:-.025em;line-height:1.15;color:var(--branco)}
+.dado .pergunta em{font-style:normal;color:var(--areia);font-weight:500}
+.fonte{margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--ardosia)}
+
+/* ===== TIMELINE INTERATIVA HORIZONTAL (padrão Hyperiux Vault) ===== */
+.timeline-section {
+  position: relative;
+  width: 100%;
+  padding: 0 !important;
+  overflow: hidden;
+}
+.timeline-viewport {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.timeline-track {
+  display: flex;
+  align-items: center;
+  height: 84vh;
+  min-height: 580px;
+  max-height: 760px;
+  padding: 0 5vw;
+  gap: 3.5vw;
+  will-change: transform;
+}
+
+/* Card Introdutório Lateral */
+.timeline-lead-card {
+  flex: 0 0 clamp(280px, 22vw, 360px);
+  height: 100%;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--areia-clara);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(24px, 2.5vw, 36px);
+  box-shadow: 0 12px 36px rgba(13, 27, 42, 0.08);
+  border: 1px solid rgba(13, 27, 42, 0.08);
+}
+.timeline-lead-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.timeline-lead-card:hover img {
+  transform: scale(1.03);
+}
+.timeline-lead-card .lead-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13, 27, 42, 0.15) 0%, rgba(13, 27, 42, 0.45) 45%, rgba(13, 27, 42, 0.92) 100%);
+  pointer-events: none;
+}
+.timeline-lead-card .lead-content {
+  position: relative;
+  z-index: 2;
+  color: var(--branco);
+}
+
+/* Área da Linha e Marcos */
+.timeline-canvas {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: max-content;
+}
+
+/* Eixo Central */
+.timeline-axis {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: translateY(-50%);
+  z-index: 4;
+  background: rgba(13, 27, 42, 0.12);
+}
+.timeline-section--branco .timeline-axis {
+  background: rgba(13, 27, 42, 0.1);
+}
+.timeline-journey-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--marinho);
+  border-radius: 9999px;
+  will-change: width;
+}
+.timeline-cap-start, .timeline-cap-end {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--marinho);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+.timeline-cap-start { left: -4px; }
+.timeline-cap-end { right: -4px; }
+
+/* Metades Topo e Base */
+.timeline-half {
+  height: 50%;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  z-index: 3;
+}
+.timeline-half--top {
+  align-items: flex-end;
+  padding-bottom: 0;
+}
+.timeline-half--bottom {
+  align-items: flex-start;
+  padding-top: 0;
+}
+
+/* Colunas de Título e Subtítulo */
+.timeline-col-header {
+  width: clamp(240px, 20vw, 320px);
+  padding-right: clamp(20px, 2.5vw, 40px);
+  padding-bottom: 34px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.timeline-col-header h2 {
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-weight: 350;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--marinho);
+}
+.timeline-col-sub {
+  width: clamp(240px, 20vw, 320px);
+  padding-right: clamp(20px, 2.5vw, 40px);
+  padding-top: 34px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.timeline-col-sub p {
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.5;
+  color: var(--texto2);
+  margin: 0;
+}
+
+/* Fileiras de Itens */
+.timeline-items-row {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(50px, 6vw, 100px);
+  width: max-content;
+}
+.timeline-items-row--bottom {
+  margin-left: calc(clamp(260px, 21vw, 320px) / 2 + clamp(50px, 6vw, 100px) / 2);
+}
+
+/* Item Individual da Timeline */
+.timeline-item {
+  position: relative;
+  width: clamp(260px, 21vw, 320px);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+.timeline-item--top {
+  justify-content: flex-end;
+  padding-bottom: 34px;
+}
+.timeline-item--bottom {
+  justify-content: flex-start;
+  padding-top: 34px;
+}
+
+/* Hastes e Pontos */
+.timeline-stem {
+  position: absolute;
+  left: 36px;
+  width: 1px;
+  background: var(--marinho);
+  z-index: 5;
+  transform-origin: bottom;
+  will-change: transform;
+}
+.timeline-item--top .timeline-stem {
+  bottom: 0;
+  height: 34px;
+  transform-origin: bottom center;
+}
+.timeline-item--bottom .timeline-stem {
+  top: 0;
+  height: 34px;
+  transform-origin: top center;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 36px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--areia);
+  border: 2px solid var(--marinho);
+  box-shadow: 0 0 0 2px rgba(200, 157, 102, 0.25);
+  z-index: 6;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.timeline-section--branco .timeline-dot {
+  background: var(--areia);
+  border-color: var(--marinho);
+}
+.timeline-item--top .timeline-dot {
+  bottom: 0;
+  transform: translate(-50%, 50%);
+}
+.timeline-item--bottom .timeline-dot {
+  top: 0;
+  transform: translate(-50%, -50%);
+}
+
+/* Card de Conteúdo do Marco */
+.timeline-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--fio);
+  padding: clamp(18px, 1.8vw, 24px);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(13, 27, 42, 0.04);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform, opacity;
+}
+.timeline-section--branco .timeline-card {
+  background: var(--papel);
+  border-color: rgba(13, 27, 42, 0.08);
+}
+.timeline-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--areia);
+  box-shadow: 0 8px 24px rgba(13, 27, 42, 0.08);
+}
+
+.timeline-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.timeline-card-header .ic {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--ardosia);
+  display: grid;
+  place-items: center;
+  color: var(--marinho);
+  flex-shrink: 0;
+}
+.timeline-card-header .ic svg {
+  width: 17px;
+  height: 17px;
+}
+
+.timeline-step-num {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ardosia);
+  opacity: 0.6;
+}
+.timeline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--areia);
+}
+.timeline-item h4 {
+  font-size: clamp(16px, 1.3vw, 19px);
+  font-weight: 450;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin: 6px 0 8px;
+  color: var(--marinho);
+}
+.timeline-item p {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.45;
+  color: var(--texto2);
+  margin: 0;
+}
+.timeline-item p b, .timeline-item p .mono {
+  color: var(--marinho);
+}
+
+/* Card Final da Timeline */
+.timeline-outro-card {
+  flex: 0 0 clamp(280px, 22vw, 340px);
+  height: 100%;
+  border: 1px dashed var(--ardosia);
+  border-radius: 8px;
+  padding: clamp(24px, 2.5vw, 36px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.45);
+}
+.timeline-quote {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 350;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--marinho);
+  margin: 12px 0 0;
+}
+.timeline-quote b {
+  font-weight: 500;
+  color: var(--areia);
+}
+
+/* Mobile & Touch Fallback */
+@media (max-width: 900px) {
+  .timeline-section {
+    padding: clamp(48px, 8vw, 80px) 0 !important;
+  }
+  .timeline-viewport {
+    min-height: auto;
+    overflow: visible;
+  }
+  .timeline-track {
+    height: auto;
+    max-height: none;
+    min-height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+    padding: 0 max(20px, env(safe-area-inset-left, 0px));
+  }
+  .timeline-lead-card {
+    height: 320px;
+    flex: none;
+    width: 100%;
+  }
+  .timeline-canvas {
+    height: auto;
+    flex-direction: column;
+  }
+  .timeline-axis {
+    display: none;
+  }
+  .timeline-half {
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .timeline-col-header, .timeline-col-sub {
+    width: 100%;
+    padding: 0 0 20px 0;
+  }
+  .timeline-items-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .timeline-items-row--bottom {
+    margin-left: 0;
+  }
+  .timeline-item {
+    width: 100%;
+    padding: 0;
+  }
+  .timeline-stem, .timeline-dot {
+    display: none;
+  }
+  .timeline-outro-card {
+    height: auto;
+    flex: none;
+    width: 100%;
+    padding: 24px;
+  }
+}
+
+/* View */
+.view .cab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 80px;align-items:start}
+@media (max-width:940px){.view .cab{grid-template-columns:1fr}}
+.view .lead{margin-top:24px}
+.papeis{display:flex;flex-direction:column}
+.papel{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 24px;padding:18px 0;border-top:1px solid rgba(135,148,163,.35)}
+.papel:last-child{border-bottom:1px solid rgba(135,148,163,.35)}
+.papel .mono{color:var(--areia);padding-top:3px}
+.papel p{font-size:16px;color:var(--claro2)}
+@media (max-width:520px){.papel{grid-template-columns:1fr}}
+/* ===== CARD FAN CAROUSEL (3D Fan Arc) ===== */
+.card-fan-carousel {
+  margin-top: clamp(48px, 6vw, 84px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  user-select: none;
+}
+.card-fan-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 36vw, 490px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+.card-fan-deck {
+  position: relative;
+  width: clamp(210px, 18vw, 260px);
+  height: clamp(350px, 31vw, 440px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+}
+.card-fan-deck:active {
+  cursor: grabbing;
+}
+.fan-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+  background: var(--abismo);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transform-origin: 50% 120%;
+  transition: transform 0.52s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease,
+              opacity 0.4s ease;
+  will-change: transform, opacity;
+}
+.fan-card--active {
+  border-color: rgba(200, 157, 102, 0.85);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.85), 0 0 0 2px var(--areia);
+}
+.fan-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+}
+.fan-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+.fan-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 13, 21, 0.25) 0%, rgba(6, 13, 21, 0) 40%, rgba(6, 13, 21, 0.75) 100%);
+  pointer-events: none;
+}
+.fan-card-chip {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 4px 10px;
+  background: rgba(6, 13, 21, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--branco);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.04em;
+}
+.fan-card-chip span {
+  color: var(--areia);
+  font-weight: 500;
+}
+
+/* Legenda do Card Ativo */
+.fan-caption {
+  margin-top: 26px;
+  text-align: center;
+  max-width: 580px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.fan-caption-badge {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--areia);
+}
+.fan-caption-title {
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 450;
+  letter-spacing: -0.015em;
+  color: var(--branco);
+  margin: 6px 0 8px;
+}
+.fan-caption-desc {
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.45;
+  color: var(--claro2);
+  margin: 0;
+}
+
+/* Controles de Navegação (Botões & Dots) */
+.fan-controls {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.fan-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--branco);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.fan-btn:hover {
+  background: rgba(200, 157, 102, 0.2);
+  border-color: var(--areia);
+  transform: scale(1.06);
+}
+.fan-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.fan-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.fan-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, width 0.3s ease;
+}
+.fan-dot--active {
+  background: var(--areia);
+  width: 22px;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(200, 157, 102, 0.45);
+}
+
+@media (max-width: 600px) {
+  .card-fan-stage {
+    height: 380px;
+  }
+  .card-fan-deck {
+    width: 200px;
+    height: 330px;
+  }
+}
+
+/* case */
+.case .grade{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:44px 72px;align-items:start}
+@media (max-width:940px){.case .grade{grid-template-columns:1fr}}
+.case .logo-slot{width:180px;height:72px;display:flex;align-items:center;justify-content:flex-start;font-family:var(--mono);font-size:11.5px;color:var(--texto2)}
+.case .logo-slot img{max-width:100%;max-height:100%;object-fit:contain;object-position:left center;display:block}
+.case h2{margin-top:28px}
+.case .texto{margin-top:24px;display:flex;flex-direction:column;gap:16px}
+.fotos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.slot{position:relative;background:var(--areia-clara);aspect-ratio:4/3;max-width:100%;display:flex;align-items:flex-end;overflow:hidden;margin:0}
+.slot--alta{grid-row:span 2;aspect-ratio:auto;min-height:100%}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slot--alta img{object-position:40% center}
+.slot .tag{position:relative;margin:10px;font-family:var(--mono);font-size:11px;background:var(--branco);color:var(--marinho);padding:4px 8px;line-height:1.4;z-index:2}
+.slot .vazio{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--texto2);text-align:center;padding:16px}
+@media (max-width:560px){.fotos{grid-template-columns:1fr}.slot--alta{grid-row:auto;aspect-ratio:4/3}}
+
+/* fundador */
+.fundador .grade{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:44px 80px;align-items:center}
+@media (max-width:900px){.fundador .grade{grid-template-columns:1fr}.fundador .slot{max-width:420px}}
+.fundador .slot{aspect-ratio:4/5;background:var(--areia)}
+.fundador .slot img{object-position:center 15%}
+.fundador .slot .vazio{color:var(--marinho)}
+.citacao{font-size:clamp(25px,3.2vw,40px);font-weight:250;letter-spacing:-.025em;line-height:1.18;max-width:24ch;text-wrap:balance}
+.fundador .lead{margin-top:26px}
+.assin{margin-top:28px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.assin svg{width:40px;height:40px;color:var(--marinho)}
+.assin .nome{font-weight:500}
+.assin .mono{color:var(--texto2)}
+
+/* diagnóstico */
+.diag .grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px 80px;align-items:center}
+@media (max-width:940px){.diag .grade{grid-template-columns:1fr}}
+.diag .lead{color:var(--marinho);margin-top:24px}
+.simbolo-diag{color:var(--marinho);width:clamp(56px,7vw,88px);height:auto;margin-bottom:28px;display:block}
+.form{background:var(--branco);padding:clamp(22px,3.5vw,40px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.form h3{font-size:24px;font-weight:350;letter-spacing:-.02em}
+.campo{display:flex;flex-direction:column;gap:6px;min-width:0;position:relative}
+.campo label{font-family:var(--mono);font-size:12px;color:var(--texto2)}
+.campo input,.campo select{font:inherit;font-size:16px;color:var(--marinho);background:var(--branco);border:0;border-bottom:1px solid var(--ardosia);padding:10px 0;border-radius:0;outline:none;width:100%;min-height:44px;-webkit-appearance:none;appearance:none}
+.campo select{background-image:linear-gradient(45deg,transparent 50%,var(--marinho) 50%),linear-gradient(135deg,var(--marinho) 50%,transparent 50%);background-position:calc(100% - 10px) 52%,calc(100% - 5px) 52%;background-size:5px 5px;background-repeat:no-repeat;padding-right:24px}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:560px){.duas{grid-template-columns:1fr}}
+.form .pilula{margin-top:8px;width:100%}
+.form .aparte{text-align:center}
+
+/* perguntas frequentes */
+.faq .grade{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:36px 80px}
+@media (max-width:900px){.faq .grade{grid-template-columns:1fr}}
+.faq details{border-top:1px solid var(--fio)}
+.faq details:last-child{border-bottom:1px solid var(--fio)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 40px 22px 0;font-size:19px;font-weight:450;letter-spacing:-.01em;position:relative;line-height:1.35}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:28px;width:11px;height:11px;border-right:1px solid var(--marinho);border-bottom:1px solid var(--marinho);transform:rotate(45deg)}
+.faq details[open] summary::after{transform:rotate(225deg);top:34px}
+.faq details p{padding:0 0 24px;color:var(--texto2);font-size:16.5px}
+
+/* rodapé */
+.rodape{padding-block:clamp(64px,8vw,104px) 40px}
+.rodape .topo-r{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:44px 80px;align-items:end}
+@media (max-width:900px){.rodape .topo-r{grid-template-columns:1fr}}
+.rodape h2{font-size:clamp(34px,5.4vw,72px)}
+.contatos{display:flex;flex-direction:column}
+.contato{display:grid;grid-template-columns:92px minmax(0,1fr) auto;gap:12px;align-items:center;padding:16px 0;border-top:1px solid rgba(135,148,163,.35)}
+.contato .mono{color:var(--ardosia)}
+.contato .val{font-size:17px;overflow-wrap:anywhere;min-width:0}
+.contato .val a{text-decoration:none}
+.contato .val a:hover{text-decoration:underline}
+.copiar{font-family:var(--mono);font-size:11.5px;background:transparent;color:var(--areia);border:1px solid rgba(200,181,147,.5);padding:8px 12px;border-radius:999px;cursor:pointer;min-height:36px}
+.copiar:hover{background:rgba(200,181,147,.12)}
+@media (max-width:420px){.contato{grid-template-columns:1fr auto}.contato .mono{grid-column:1 / -1}}
+.base{margin-top:56px;padding-top:24px;border-top:1px solid rgba(135,148,163,.25);display:flex;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:12px;color:var(--ardosia)}
+.base .logo{color:var(--branco)}
+
+/* barra fixa no celular */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:25;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--fio);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));transform:translate3d(0,calc(100% + 8px),0)}
+.barra .pilula{width:100%;min-height:48px;padding:12px 20px}
+.barra.on{transform:none}
+@media (min-width:861px){.barra{display:none}}
+@media (max-width:860px){.rodape{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
+
+/* ============ MOTION ============
+   Um único vocabulário: ease-out exponencial (--ease) para tudo que entra ou responde;
+   ease-in curto só para o que sai. Só transform e opacity animam movimento;
+   cor muda em --t-micro. Estados ocultos existem apenas com a classe .m (JS ativo e
+   sem prefers-reduced-motion), então a página nunca depende de script para aparecer. */
+
+/* hero: uma sequência de abertura, nada mais na página toca sozinho */
+@keyframes sobe{from{opacity:0;transform:translate3d(0,var(--rise),0)}}
+@keyframes sobe-fone{from{opacity:0;transform:translate3d(0,24px,0) scale(.985)}}
+@keyframes marca{from{background-size:0% 100%}}
+.m .hero .grade > div:first-child > *{animation:sobe var(--t-reveal) var(--ease) both}
+.m .hero .grade > div:first-child > :nth-child(1){animation-delay:40ms}
+.m .hero .grade > div:first-child > :nth-child(2){animation-delay:110ms}
+.m .hero .grade > div:first-child > :nth-child(3){animation-delay:180ms}
+.m .hero .grade > div:first-child > :nth-child(4){animation-delay:250ms}
+.m .hero .grade > div:first-child > :nth-child(5){animation-delay:320ms}
+.m .hero .lado{animation:sobe-fone 1000ms var(--ease) 220ms both}
+.m .hero .marca{animation:marca 900ms var(--ease) 620ms both}
+
+/* reveals de seção: fade + 14px, stagger de 60ms definido pelo JS em --d */
+.m :is(.clientes .mono,.clientes li,.cab > :not(.papeis),.papel,.risco,.dado .wrap > div > *,.etapa,.frase-metodo,.grupo-cab,.servico,.tela,.jornada .aparte,.dica-arraste,.case .logo-slot,.case h2,.case .texto > *,.fotos > *,.fundador .slot,.citacao,.fundador .lead,.assin,.diag .grade > div > *,.form,.faq h2,.faq details,.rodape h2,.contato){
+  opacity:0;transform:translate3d(0,var(--rise),0)}
+.m .rv-in{opacity:1!important;transform:none!important;
+  transition:opacity var(--t-reveal) var(--ease) var(--d,0ms),transform var(--t-reveal) var(--ease) var(--d,0ms)}
+
+/* risco e correção: risca o hábito, depois mostra a resposta */
+.m .risco .risca{background-size:0% 1.5px}
+.m .risco.rv-in .risca{background-size:100% 1.5px;transition:background-size 560ms var(--ease) calc(var(--d,0ms) + 260ms)}
+.m .risco .correcao{opacity:0;transform:translate3d(0,6px,0) scale(.97);transform-origin:left center}
+.m .risco.rv-in .correcao{opacity:1;transform:none;transition:opacity 420ms var(--ease) calc(var(--d,0ms) + 620ms),transform 420ms var(--ease) calc(var(--d,0ms) + 620ms)}
+
+/* o corte do método se desenha da esquerda para a direita */
+.m .etapas::before{transform:scaleX(0);transform-origin:left}
+.m .etapas.desenha::before{transform:scaleX(1);transition:transform 1200ms var(--ease) 120ms}
+@media (max-width:900px){
+  .m .etapas::before{transform:scaleY(0);transform-origin:top}
+  .m .etapas.desenha::before{transform:scaleY(1)}
+}
+
+/* botões: resposta imediata, sem atraso no hover; press comprime 2% */
+.pilula{transition:background-color var(--t-micro) var(--ease),border-color var(--t-micro) var(--ease),transform var(--t-ui) var(--ease)}
+.pilula:active{transform:scale(.98);transition-duration:var(--t-press)}
+.pilula svg{transition:transform var(--t-ui) var(--ease)}
+@media (hover:hover){.pilula:hover svg{transform:rotate(-8deg) scale(1.06)}}
+
+/* links: sublinhado que corre da esquerda e volta pela direita */
+.link{position:relative;background:linear-gradient(var(--ardosia),var(--ardosia)) no-repeat 0 100%/100% 1px;transition:color var(--t-micro) var(--ease)}
+.link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--marinho);transform:scaleX(0);transform-origin:right center;transition:transform var(--t-ui) var(--ease)}
+@media (hover:hover){.link:hover::after{transform:scaleX(1);transform-origin:left center}}
+.link:focus-visible::after{transform:scaleX(1)}
+
+/* cabeçalho: borda e vidro aparecem só depois de rolar */
+.topo{transition:border-color var(--t-ui) var(--ease),background-color var(--t-ui) var(--ease)}
+.topo.rolado{border-bottom-color:var(--fio);background:rgba(255,255,255,.94)}
+.logo{transition:opacity var(--t-micro) var(--ease)}
+@media (hover:hover){.logo:hover{opacity:.7}}
+.nav a.item{position:relative;transition:color var(--t-micro) var(--ease)}
+.nav a.item::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--marinho);transform:scaleX(0);transition:transform var(--t-ui) var(--ease)}
+.nav a.item.ativo{color:var(--texto)}
+.nav a.item.ativo::after{transform:scaleX(1)}
+
+/* formulário: a linha do campo se completa no foco */
+.campo input,.campo select{transition:border-color var(--t-micro) var(--ease)}
+.campo label{transition:color var(--t-micro) var(--ease)}
+.campo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--marinho);transform:scaleX(0);transform-origin:left center;transition:transform var(--t-ui) var(--ease);pointer-events:none}
+.campo:focus-within::after{transform:scaleX(1)}
+.campo:focus-within label{color:var(--marinho)}
+@media (hover:hover){.campo input:hover,.campo select:hover{border-bottom-color:var(--texto2)}}
+
+/* perguntas: chevron gira, resposta entra com fade curto */
+@keyframes abre{from{opacity:0;transform:translate3d(0,-4px,0)}}
+.faq summary{transition:color var(--t-micro) var(--ease)}
+.faq summary::after{transition:transform var(--t-ui) var(--ease),top var(--t-ui) var(--ease)}
+@media (hover:hover){.faq summary:hover{color:var(--mare)}}
+.faq details[open] p{animation:abre var(--t-ui) var(--ease) both}
+
+/* copiar: confirmação por cor, sem mudar o tamanho */
+.copiar{transition:background-color var(--t-micro) var(--ease),color var(--t-micro) var(--ease),border-color var(--t-micro) var(--ease),transform var(--t-ui) var(--ease)}
+.copiar:active{transform:scale(.96);transition-duration:var(--t-press)}
+.copiar.ok{background:var(--areia);color:var(--abismo);border-color:var(--areia)}
+
+/* barra do celular: entra com ease-out, sai mais rápido com ease-in */
+.barra{transition:transform 240ms var(--ease-in)}
+.barra.on{transition:transform 460ms var(--ease)}
+
+/* imagens: nunca "pipocam", aparecem quando decodificadas */
+.iphone img{transition:opacity 500ms var(--ease)}
+.iphone img.carregando{opacity:0}
+@keyframes surge{from{opacity:0}}
+.slot img{animation:surge 600ms var(--ease) both}
+
+/* carrossel do View no celular: progresso e dica que some ao arrastar */
+.progresso{display:none}
+@media (max-width:900px){
+  .progresso{display:block;height:1px;background:rgba(135,148,163,.3);margin-top:20px;overflow:hidden}
+  .progresso i{display:block;height:100%;background:var(--areia);transform-origin:left center;transform:scaleX(.25)}
+  .dica-arraste{transition:opacity var(--t-ui) var(--ease)}
+  .dica-arraste.some{opacity:0}
+}
+
+/* ============ LAYOUT CENTRALIZADO (padrão de página de produto) ============
+   Hero, títulos de seção e CTAs no eixo central; leitura longa, listas e formulário
+   ficam alinhados à esquerda dentro de colunas centradas. Toques com 44 pt no mínimo. */
+.hero{text-align:center}
+.hero .grade{grid-template-columns:1fr;justify-items:center;gap:clamp(48px,6vw,72px)}
+.hero .grade > div:first-child{display:flex;flex-direction:column;align-items:center;max-width:900px}
+.hero h1{max-width:15ch}
+.hero .lead{margin-left:auto;margin-right:auto;max-width:54ch}
+.hero .acoes{justify-content:center}
+.hero .lado{align-items:center}
+.hero .fone3d{width:min(300px,70vw)}
+.rotulos{justify-content:center}
+.case .rotulos,.fundador .rotulos{justify-content:flex-start}
+
+/* cabeçalhos de seção */
+.ganhos .cab,.servicos .cab,.metodo .cab{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;max-width:860px;margin:0 auto}
+.cab .lead{margin-left:auto;margin-right:auto;max-width:58ch}
+.cab h2{max-width:20ch}
+
+
+/* dado */
+.dado .wrap{grid-template-columns:1fr;justify-items:center;text-align:center;max-width:900px;gap:28px}
+.dado .lead{margin:0 auto}
+
+/* método */
+.frase-metodo{text-align:center;margin-left:auto;margin-right:auto}
+
+/* View */
+.view .cab{display:flex;flex-direction:column;align-items:center;gap:clamp(40px,5vw,64px)}
+.view .cab > div:first-child{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:860px}
+.view .cab .lead{margin-left:auto;margin-right:auto;max-width:56ch}
+.papeis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 36px;width:100%}
+.papel{grid-template-columns:1fr;gap:8px;padding:20px 0}
+.papel:last-child{border-bottom:0}
+@media (max-width:820px){.papeis{grid-template-columns:1fr}.papel:last-child{border-bottom:1px solid rgba(135,148,163,.35)}}
+.jornada .aparte,.dica-arraste{text-align:center}
+@media (min-width:901px){.telas{max-width:1080px;margin:0 auto}}
+
+/* case */
+.case .grade{grid-template-columns:1fr;justify-items:center;gap:clamp(40px,5vw,64px)}
+.case .grade > div:first-child{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:760px}
+.case .texto{align-items:center}
+.case .texto p{margin:0 auto}
+.case .fotos{width:100%;max-width:1040px}
+
+/* fundador: duas colunas desde o tablet */
+@media (min-width:720px) and (max-width:900px){.fundador .grade{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
+@media (max-width:719px){.fundador .slot{margin:0 auto;width:100%;max-width:360px}}
+
+/* diagnóstico */
+.diag .grade{grid-template-columns:1fr;justify-items:center;gap:clamp(36px,5vw,56px)}
+.diag .grade > div:first-child{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:760px}
+.diag .lead{margin-left:auto;margin-right:auto}
+.form{width:100%;max-width:640px}
+
+/* perguntas */
+.faq .grade{grid-template-columns:1fr;justify-items:center;gap:clamp(32px,4vw,48px)}
+.faq h2{text-align:center}
+.faq .grade > div{width:100%;max-width:780px}
+
+/* rodapé */
+.rodape .topo-r{grid-template-columns:1fr;justify-items:center;text-align:center;gap:40px}
+.contatos{width:100%;max-width:560px;text-align:left}
+
+/* toques: 44 pt de área mesmo quando o desenho é menor */
+.nav .pilula{min-height:44px}
+.nav a.item{padding-block:10px}
+.nav a.item::after{bottom:4px}
+.logo{position:relative}
+.logo::before,.link::before,.contato .val a::before,.assin a::before,.copiar::before{content:"";position:absolute}
+.logo::before{inset:-11px -8px}
+.link::before{inset:-12px -4px}
+.contato .val a,.assin a{position:relative}
+.contato .val a::before,.assin a::before{inset:-15px -4px}
+.copiar{position:relative}
+.copiar::before{inset:-4px}
+
+/* texto nunca abaixo de 12 px */
+.etq,.slot .tag,.copiar,.case .logo-slot{font-size:12px}
+
+/* tamanhos do aparelho no hero por faixa */
+@media (max-width:900px){.hero .fone3d{width:min(270px,64vw)}}
+@media (max-width:520px){.hero .fone3d{width:min(236px,62vw)}.hero h1{max-width:12ch}}
+</style>
+<script>(function(d){var r=d.documentElement;if(!('IntersectionObserver' in window)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;r.classList.add('m');setTimeout(function(){if(!r.classList.contains('m-ok'))r.classList.remove('m');},3000);})(document);</script>
+<link rel="canonical" href="https://diogonest.com.br/">
+<meta name="theme-color" content="#0E2238">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Nest">
+<meta property="og:title" content="Nest · Aceleramos as vendas do seu lançamento">
+<meta property="og:description" content="Estratégia e tecnologia para lançamentos imobiliários. Peça o diagnóstico do próximo lançamento.">
+<meta property="og:url" content="https://diogonest.com.br/">
+<meta property="og:image" content="https://diogonest.com.br/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Nest", "alternateName": "Nest Pré-venda Imobiliária", "url": "https://diogonest.com.br/", "logo": "https://diogonest.com.br/favicon.svg", "slogan": "O valor chega antes da obra.", "description": "Aceleramos as vendas de lançamentos imobiliários com estratégia e tecnologia: diagnóstico, posicionamento, marketing estratégico, planejamento de campanhas, audiovisual, fotografia, landing pages, View (espelho de vendas 3D) e estudo de rentabilidade em curta temporada.", "telephone": "+55-27-99964-1146", "email": "diogonest@gmail.com", "areaServed": [{"@type": "City", "name": "Guarapari"}, {"@type": "State", "name": "Espírito Santo"}, {"@type": "Country", "name": "Brasil"}], "address": {"@type": "PostalAddress", "addressLocality": "Guarapari", "addressRegion": "ES", "addressCountry": "BR"}, "founder": {"@type": "Person", "name": "Diogo"}, "sameAs": ["https://instagram.com/diogonest"], "knowsAbout": ["lançamento imobiliário", "marketing imobiliário", "espelho de vendas 3D", "landing page imobiliária", "estudo de rentabilidade em curta temporada"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "A Nest é uma produtora de vídeo?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A Nest acelera vendas de lançamentos com estratégia e tecnologia. Audiovisual e fotografia entram como etapas desse plano, junto com posicionamento, landing page, View e números."}}, {"@type": "Question", "name": "Posso contratar só uma parte?", "acceptedAnswer": {"@type": "Answer", "text": "Pode. Você contrata o lançamento inteiro ou só as etapas de que precisa, como a landing page ou o View. O diagnóstico ajuda a escolher."}}, {"@type": "Question", "name": "Quanto custa?", "acceptedAnswer": {"@type": "Answer", "text": "Cada lançamento tem escopo próprio, então a proposta vem depois do diagnóstico."}}, {"@type": "Question", "name": "O estudo de rentabilidade garante retorno?", "acceptedAnswer": {"@type": "Answer", "text": "Não. É uma estimativa em três cenários, com fonte, período e as regras do lugar, para o investidor ver de onde vem cada número."}}, {"@type": "Question", "name": "Vocês atendem fora de Guarapari?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Atendemos construtoras e imobiliárias em todo o Espírito Santo e, sob demanda, em outros estados."}}]}</script>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Nest, início"><svg viewBox="0 0 368.868 100" aria-hidden="true"><path fill="currentColor" d="M100 100 L100 0 L69.500 0 L69.500 80.802 L33.500 28.802 L33.500 100 Z M0 0 L0 100 L30.500 100 L30.500 19.198 L66.500 71.198 L66.500 0 Z"/><path fill="currentColor" d="M146.21132075471698 34.0H153.68301886792452L154.0566037735849 51.30943396226415L153.06037735849057 50.5622641509434Q154.43018867924528 41.72075471698113 160.46981132075473 37.113207547169814Q166.50943396226415 32.505660377358495 174.97735849056605 32.505660377358495Q185.81132075471697 32.505660377358495 191.47735849056602 39.47924528301887Q197.1433962264151 46.45283018867924 197.1433962264151 57.53584905660377V100.0H188.9245283018868V60.52452830188679Q188.9245283018868 50.5622641509434 185.18867924528303 45.20754716981132Q181.45283018867923 39.85283018867924 173.23396226415093 39.85283018867924Q164.64150943396226 39.85283018867924 159.53584905660375 45.39433962264151Q154.43018867924528 50.93584905660377 154.43018867924528 60.52452830188679V100.0H146.21132075471698ZM206.23396226415096 67.0Q206.23396226415096 56.91320754716981 209.78301886792454 49.06792452830189Q213.33207547169812 41.22264150943396 219.9320754716981 36.864150943396226Q226.53207547169814 32.505660377358495 235.4981132075472 32.505660377358495Q244.21509433962265 32.505660377358495 250.69056603773583 36.739622641509435Q257.16603773584905 40.973584905660374 260.6528301886792 48.7566037735849Q264.13962264150945 56.53962264150943 264.13962264150945 66.75094339622642V69.36603773584906H214.82641509433964Q215.20000000000002 80.94716981132075 220.80377358490568 87.29811320754717Q226.40754716981132 93.64905660377359 235.99622641509436 93.64905660377359Q243.0943396226415 93.64905660377359 247.70188679245285 90.28679245283018Q252.30943396226417 86.9245283018868 254.17735849056604 80.94716981132075L263.0188679245283 81.56981132075472Q260.52830188679246 90.53584905660378 253.3056603773585 96.01509433962264Q246.08301886792452 101.4943396226415 235.99622641509436 101.4943396226415Q226.7811320754717 101.4943396226415 220.05660377358492 97.13584905660377Q213.33207547169812 92.77735849056604 209.78301886792454 84.99433962264152Q206.23396226415096 77.21132075471698 206.23396226415096 67.0ZM235.4981132075472 40.35094339622641Q226.7811320754717 40.35094339622641 221.36415094339623 46.01698113207547Q215.94716981132075 51.68301886792453 214.82641509433964 62.0188679245283H255.1735849056604Q254.55094339622642 51.55849056603773 249.38301886792453 45.95471698113207Q244.21509433962265 40.35094339622641 235.4981132075472 40.35094339622641ZM270.7396226415094 79.70188679245283 279.3320754716981 79.07924528301886Q280.07924528301885 85.80377358490566 284.99811320754714 89.72641509433961Q289.9169811320755 93.64905660377359 298.63396226415097 93.64905660377359Q306.60377358490564 93.64905660377359 310.9 90.97169811320754Q315.1962264150943 88.2943396226415 315.1962264150943 82.93962264150943Q315.1962264150943 79.70188679245283 313.8264150943396 77.77169811320755Q312.4566037735849 75.84150943396227 308.47169811320754 74.28490566037736Q304.4867924528302 72.72830188679245 296.64150943396226 71.35849056603774Q287.42641509433963 69.73962264150944 282.1339622641509 67.2490566037736Q276.84150943396224 64.75849056603774 274.7245283018868 61.14716981132075Q272.6075471698113 57.53584905660377 272.6075471698113 52.30566037735849Q272.6075471698113 43.46415094339623 279.0207547169811 37.984905660377365Q285.4339622641509 32.505660377358495 296.64150943396226 32.505660377358495Q307.7245283018868 32.505660377358495 314.2622641509434 38.29622641509434Q320.8 44.08679245283019 322.4188679245283 53.177358490566036L313.8264150943396 53.924528301886795Q312.70566037735847 47.822641509433964 308.2849056603774 44.08679245283019Q303.8641509433962 40.35094339622641 296.51698113207544 40.35094339622641Q289.1698113207547 40.35094339622641 285.18490566037735 43.46415094339622Q281.2 46.577358490566034 281.2 51.93207547169811Q281.2 55.5433962264151 282.81886792452826 57.847169811320754Q284.4377358490566 60.15094339622642 288.111320754717 61.58301886792453Q291.7849056603774 63.01509433962264 298.50943396226415 64.13584905660377Q308.3471698113208 65.75471698113208 313.8264150943396 68.12075471698114Q319.3056603773585 70.48679245283019 321.6094339622641 73.97358490566037Q323.9132075471698 77.46037735849056 323.9132075471698 82.81509433962265Q323.9132075471698 91.6566037735849 316.93962264150946 96.5754716981132Q309.96603773584906 101.4943396226415 298.63396226415097 101.4943396226415Q290.29056603773586 101.4943396226415 284.1264150943396 98.69245283018867Q277.9622641509434 95.89056603773585 274.6 90.97169811320755Q271.2377358490566 86.05283018867925 270.7396226415094 79.70188679245283ZM338.8566037735849 84.55849056603773V18.558490566037733H347.07547169811323V84.30943396226415Q347.07547169811323 88.91698113207548 349.0679245283019 90.78490566037736Q351.06037735849054 92.65283018867925 355.4188679245283 92.65283018867925H364.1358490566038V100.0H354.6716981132075Q346.57735849056604 100.0 342.7169811320755 96.20188679245283Q338.8566037735849 92.40377358490566 338.8566037735849 84.55849056603773ZM328.5207547169811 34.0H364.1358490566038V41.347169811320754H328.5207547169811Z"/></svg></a>
+    <nav class="nav" aria-label="Seções">
+      <a class="item" href="#metodo">Método</a>
+      <a class="item" href="#servicos">Serviços</a>
+      <a class="item" href="#view">View</a>
+      <a class="item" href="#case">Case</a>
+      <a class="pilula js-wa" href="#diagnostico" data-msg="curto">Pedir diagnóstico</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+<section class="hero" id="hero">
+  <div class="wrap grade">
+    <div>
+      <h1>Aceleramos as vendas <span class="b"><span class="marca">do seu lançamento.</span></span></h1>
+      <p class="lead">Estratégia e tecnologia trabalhando juntas. O comprador percebe o valor do empreendimento, a sua marca se fortalece a cada lançamento e o corretor vende com menos ruído, do primeiro anúncio à proposta enviada.</p>
+      <div class="acoes">
+        <a class="pilula js-wa" href="#diagnostico" data-msg="padrao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z"/></svg>
+          Pedir diagnóstico do próximo lançamento
+        </a>
+        <a class="link" href="#metodo">Ver como funciona</a>
+      </div>
+    </div>
+    <div class="lado view-hero-scroll" id="view-hero-scroll">
+      <!-- Descrição minimalista ACIMA da animação -->
+      <div class="view-hero-header" id="view-hero-header">
+        <span class="view-hero-kicker">View · Espelho 3D</span>
+        <h3 class="view-hero-title">O prédio todo no celular.</h3>
+        <p class="view-hero-desc">Não é render estático nem PDF. Gire a torre em 3D, veja a vista real de cada andar e simule a proposta antes da visita.</p>
+        <a class="view-hero-link" href="#view">conhecer o app <span aria-hidden="true">↓</span></a>
+      </div>
+
+      <!-- Container Scroll 3D do Mockup do iPhone (Aceternity style) -->
+      <div class="view-hero-stage" id="view-hero-stage">
+        <div class="view-hero-card" id="view-hero-card">
+          <div class="iphone" id="hero-iphone">
+            <span class="bt bt--acao"></span>
+            <span class="bt bt--mais"></span>
+            <span class="bt bt--menos"></span>
+            <span class="bt bt--lado"></span>
+            <div class="vidro">
+              <img src="img/view-01-predio.jpg" width="640" height="1385" alt="Tela inicial do View: o prédio em 3D com as unidades disponíveis" fetchpriority="high">
+            </div>
+          </div>
+        </div>
+        <div class="view-hero-shadow" id="view-hero-shadow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="clientes logo-cloud" aria-label="Empresas que confiam em nós">
+  <div class="wrap logo-cloud-container">
+    <p class="mono logo-cloud-title">Empresas que confiam em nós</p>
+
+    <div class="logo-cloud-mask">
+      <div class="logo-cloud-track">
+        <!-- Conjunto 1 -->
+        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-vargas.png" alt="Vargas Construtora" title="Vargas Construtora"></div>
+        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-solydus.png" alt="Solydus Empreendimentos" title="Solydus Empreendimentos"></div>
+        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-habitar.png" alt="Habitar Empreendimentos" title="Habitar Empreendimentos"></div>
+        <div class="logo-cloud-item"><img class="logo-cliente logo-cliente--egecon" src="img/logo-egecon.png" alt="Egecon Engenharia" title="Egecon Engenharia"></div>
+        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-roma.png" alt="Roma Imóveis" title="Roma Imóveis"></div>
+        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-myhome.png" alt="My Home Imobiliária" title="My Home Imobiliária"></div>
+        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-prime.png" alt="Prime Imóveis" title="Prime Imóveis"></div>
+
+        <!-- Conjunto 2 (duplicação para marquee infinito contínuo) -->
+        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-vargas.png" alt="Vargas Construtora"></div>
+        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-solydus.png" alt="Solydus Empreendimentos"></div>
+        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-habitar.png" alt="Habitar Empreendimentos"></div>
+        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente logo-cliente--egecon" src="img/logo-egecon.png" alt="Egecon Engenharia"></div>
+        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-roma.png" alt="Roma Imóveis"></div>
+        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-myhome.png" alt="My Home Imobiliária"></div>
+        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-prime.png" alt="Prime Imóveis"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band ganhos" id="ganhos">
+  <div class="wrap">
+    <div class="cab">
+      <h2>Vender rápido, <strong>com o valor percebido desde o primeiro anúncio.</strong></h2>
+      <p class="lead">O comprador forma a percepção do empreendimento nos primeiros segundos em que vê a campanha. Quando essa percepção é construída com estratégia e o processo de venda é simples, a decisão chega antes.</p>
+    </div>
+    <div class="riscos">
+      <div class="risco">
+        <span class="dor">velocidade de vendas</span>
+        <s><span class="risca">Lançar e esperar o estande vender.</span></s>
+        <span class="correcao">valor construído antes da visita</span>
+        <p>O comprador entende por que o empreendimento vale o que custa antes de falar com o corretor, e a conversa começa mais perto do fechamento.</p>
+      </div>
+      <div class="risco">
+        <span class="dor">construção de marca</span>
+        <s><span class="risca">Cada lançamento com uma cara diferente.</span></s>
+        <span class="correcao">uma marca que o comprador reconhece</span>
+        <p>Posicionamento, imagem e tecnologia contando a mesma história. Cada lançamento fortalece a construtora para o próximo.</p>
+      </div>
+      <div class="risco">
+        <span class="dor">corretor e cliente</span>
+        <s><span class="risca">“Qual unidade ainda tem?”</span></s>
+        <span class="correcao">estoque e proposta no celular</span>
+        <p>O corretor tem a disponibilidade na mão e o cliente vê a unidade, a vista e simula o pagamento sozinho, quando quiser.</p>
+      </div>
+      <div class="risco">
+        <span class="dor">ruído e agilidade</span>
+        <s><span class="risca">Tabela em PDF da semana passada.</span></s>
+        <span class="correcao">uma informação só, atualizada a cada reserva</span>
+        <p>Ninguém oferece unidade vendida, a proposta chega pronta pelo WhatsApp e a construtora acompanha tudo no painel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--marinho dado" aria-label="Contexto de mercado">
+  <div class="wrap">
+    <div>
+      <h2>Cerca de <span class="num">5 mil unidades</span> foram lançadas na Grande Vitória em 2024.</h2>
+      <p class="fonte">Fonte: Sinduscon-ES</p>
+    </div>
+    <div class="resposta-dado">
+      <h3 class="pergunta">Por que ele lembraria <em>do seu?</em></h3>
+      <p class="lead">Metragem, lazer e acabamento, quase todas têm. O comprador lembra do que só o seu empreendimento entrega: a vista daquele andar, o caminho até a praia, o sol da manhã na varanda.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--papel metodo timeline-section timeline-section--metodo" id="metodo">
+  <div class="timeline-viewport">
+    <div class="timeline-track">
+      <!-- Card Introdutório Lateral -->
+      <div class="timeline-lead-card">
+        <img src="img/metodo-preparo.jpg" alt="Preparação e planejamento de lançamento na Nest" loading="lazy" style="object-position:center 25%">
+        <div class="lead-overlay"></div>
+        <div class="lead-content">
+          <span class="timeline-badge" style="color:var(--areia)">Método · 4 etapas</span>
+          <h3 style="font-family:var(--serif);font-size:clamp(22px,2vw,30px);line-height:1.15;margin:8px 0 12px;font-weight:400;color:var(--branco)">A imagem é consequência do plano.</h3>
+          <p style="font-size:13.5px;color:rgba(255,255,255,0.88);margin:0;line-height:1.45">Antes de qualquer filme ou foto, o lançamento precisa saber o que vai defender e para quem.</p>
+        </div>
+      </div>
+
+      <!-- Canvas da Linha e Marcos -->
+      <div class="timeline-canvas">
+        <!-- Eixo Central com Linha e Caps -->
+        <div class="timeline-axis">
+          <div class="timeline-cap-start"></div>
+          <div class="timeline-journey-line"></div>
+          <div class="timeline-cap-end"></div>
+        </div>
+
+        <!-- Metade Superior (Top) -->
+        <div class="timeline-half timeline-half--top">
+          <div class="timeline-col-header">
+            <span class="timeline-badge">Método Nest</span>
+            <h2>Como a Nest prepara <b>um lançamento.</b></h2>
+          </div>
+
+          <div class="timeline-items-row">
+            <!-- Etapa 01 (Top) -->
+            <div class="timeline-item timeline-item--top" data-step="1">
+              <div class="timeline-card">
+                <span class="timeline-step-num">01</span>
+                <span class="timeline-badge">Etapa 01</span>
+                <h4>Diagnóstico</h4>
+                <p>Quem compra, contra quem você concorre e o que o comprador precisa entender para decidir.</p>
+              </div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-dot"></div>
+            </div>
+
+            <!-- Etapa 03 (Top) -->
+            <div class="timeline-item timeline-item--top" data-step="3">
+              <div class="timeline-card">
+                <span class="timeline-step-num">03</span>
+                <span class="timeline-badge">Etapa 03</span>
+                <h4>Narrativa</h4>
+                <p>Imagem, filme, landing page, espelho 3D e números executando a mesma ideia.</p>
+              </div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metade Inferior (Bottom) -->
+        <div class="timeline-half timeline-half--bottom">
+          <div class="timeline-col-sub">
+            <p>Quatro etapas que conectam a estratégia de produto à conversa final do corretor.</p>
+          </div>
+
+          <div class="timeline-items-row timeline-items-row--bottom">
+            <!-- Etapa 02 (Bottom) -->
+            <div class="timeline-item timeline-item--bottom" data-step="2">
+              <div class="timeline-dot"></div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-card">
+                <span class="timeline-step-num">02</span>
+                <span class="timeline-badge">Etapa 02</span>
+                <h4>Posicionamento</h4>
+                <p>O que só esse empreendimento tem, levado até o que muda na vida de quem compra.</p>
+              </div>
+            </div>
+
+            <!-- Etapa 04 (Bottom) -->
+            <div class="timeline-item timeline-item--bottom" data-step="4">
+              <div class="timeline-dot"></div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-card">
+                <span class="timeline-step-num">04</span>
+                <span class="timeline-badge">Etapa 04</span>
+                <h4>Lançamento</h4>
+                <p>Campanha no ar e corretor com as respostas e o estoque na mão antes de o estande abrir.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Final da Timeline -->
+      <div class="timeline-outro-card">
+        <span class="timeline-badge">Alinhamento</span>
+        <blockquote class="timeline-quote">“Tudo o que vai a público conta <b>a mesma história.</b>”</blockquote>
+        <p style="font-size:13.5px;color:var(--texto2);margin:14px 0 0;line-height:1.45">Sem dispersão de discurso entre a campanha, o digital e a mesa do corretor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band servicos timeline-section timeline-section--servicos timeline-section--branco" id="servicos">
+  <div class="timeline-viewport">
+    <div class="timeline-track">
+      <!-- Card Introdutório Lateral -->
+      <div class="timeline-lead-card">
+        <img src="img/acqua-02.jpg" alt="Acqua Duas Praias, vista do oceano" loading="lazy">
+        <div class="lead-overlay"></div>
+        <div class="lead-content">
+          <span class="timeline-badge" style="color:var(--areia)">Escopo integrado</span>
+          <h3 style="font-family:var(--serif);font-size:clamp(22px,2vw,30px);line-height:1.15;margin:8px 0 12px;font-weight:400;color:var(--branco)">Serviços na ordem do plano.</h3>
+          <p style="font-size:13.5px;color:rgba(255,255,255,0.88);margin:0;line-height:1.45">Você pode contratar o lançamento inteiro ou só as etapas de que o comercial precisa. Cada entrega parte do mesmo posicionamento.</p>
+        </div>
+      </div>
+
+      <!-- Canvas da Linha e Marcos -->
+      <div class="timeline-canvas">
+        <!-- Eixo Central com Linha e Caps -->
+        <div class="timeline-axis">
+          <div class="timeline-cap-start"></div>
+          <div class="timeline-journey-line"></div>
+          <div class="timeline-cap-end"></div>
+        </div>
+
+        <!-- Metade Superior (Top) -->
+        <div class="timeline-half timeline-half--top">
+          <div class="timeline-col-header">
+            <span class="timeline-badge">Ordem do Plano</span>
+            <h2>Serviços, <strong>na ordem em que entram no plano.</strong></h2>
+          </div>
+
+          <div class="timeline-items-row">
+            <!-- S1: Diagnóstico (Top) -->
+            <div class="timeline-item timeline-item--top" data-step="s1">
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/></svg></span>
+                  <span class="timeline-badge">Etapa 01 · Estratégia</span>
+                </div>
+                <h4>Diagnóstico do lançamento</h4>
+                <p>Público, concorrência na mesma praça e o que trava a decisão de compra. É o ponto de partida de tudo o que vem depois.</p>
+              </div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-dot"></div>
+            </div>
+
+            <!-- S3: Audiovisual (Top) -->
+            <div class="timeline-item timeline-item--top" data-step="s3">
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="7" width="12" height="10" rx="1"/><path d="M15 10.5L21 7.5V16.5L15 13.5"/></svg></span>
+                  <span class="timeline-badge">Etapa 03 · Narrativa</span>
+                </div>
+                <h4>Audiovisual</h4>
+                <p>Filmes do empreendimento, da obra e da vista, roteirizados a partir do posicionamento. A imagem prova o valor que o texto defende.</p>
+              </div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-dot"></div>
+            </div>
+
+            <!-- S5: Landing pages (Top) -->
+            <div class="timeline-item timeline-item--top" data-step="s5">
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 9H21M7 13H17M7 16H13"/></svg></span>
+                  <span class="timeline-badge">Etapa 03 · Narrativa</span>
+                </div>
+                <h4>Landing pages</h4>
+                <p>A página do empreendimento responde às dúvidas de quem compra antes do primeiro contato e leva o interessado direto ao corretor.</p>
+              </div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-dot"></div>
+            </div>
+
+            <!-- S7: Estudo de rentabilidade (Top) -->
+            <div class="timeline-item timeline-item--top" data-step="s7">
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M4 4V20H20"/><path d="M7 16L11 11L14 13.5L20 7"/></svg></span>
+                  <span class="timeline-badge">Etapa 03 · Narrativa</span>
+                </div>
+                <h4>Estudo de rentabilidade</h4>
+                <p>Para empreendimentos de temporada: três cenários, com fonte, período e regras locais. <span class="mono">(estimativa, nunca promessa)</span></p>
+              </div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metade Inferior (Bottom) -->
+        <div class="timeline-half timeline-half--bottom">
+          <div class="timeline-col-sub">
+            <p>Oito entregas sincronizadas que transformam metragem e acabamento em posicionamento de valor percebido.</p>
+          </div>
+
+          <div class="timeline-items-row timeline-items-row--bottom">
+            <!-- S2: Marketing estratégico (Bottom) -->
+            <div class="timeline-item timeline-item--bottom" data-step="s2">
+              <div class="timeline-dot"></div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span>
+                  <span class="timeline-badge">Etapa 02 · Estratégia</span>
+                </div>
+                <h4>Marketing estratégico</h4>
+                <p>Posicionamento e argumento de venda. Cada diferencial chega até o que muda na vida de quem compra, para o corretor vender o morar.</p>
+              </div>
+            </div>
+
+            <!-- S4: Fotografia (Bottom) -->
+            <div class="timeline-item timeline-item--bottom" data-step="s4">
+              <div class="timeline-dot"></div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="1"/><circle cx="12" cy="13" r="3.5"/><path d="M8.5 7L10 4.5H14L15.5 7"/></svg></span>
+                  <span class="timeline-badge">Etapa 03 · Narrativa</span>
+                </div>
+                <h4>Fotografia</h4>
+                <p>Obra, decorado e vista com drone, tratados na mesma linguagem editorial e luz do lançamento.</p>
+              </div>
+            </div>
+
+            <!-- S6: View 3D (Bottom) -->
+            <div class="timeline-item timeline-item--bottom" data-step="s6">
+              <div class="timeline-dot"></div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5Z"/><path d="M4 7.5L12 12L20 7.5M12 12V21"/></svg></span>
+                  <span class="timeline-badge">Etapa 03 · Tecnologia</span>
+                </div>
+                <h4>View, espelho de vendas 3D</h4>
+                <p>O prédio inteiro no celular, atualizado a cada reserva. <a class="link" href="#view">Ver as telas ↓</a></p>
+              </div>
+            </div>
+
+            <!-- S8: Planejamento de campanhas (Bottom) -->
+            <div class="timeline-item timeline-item--bottom" data-step="s8">
+              <div class="timeline-dot"></div>
+              <div class="timeline-stem"></div>
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1"/><path d="M4 9H20M8 3V7M16 3V7"/></svg></span>
+                  <span class="timeline-badge">Etapa 04 · Lançamento</span>
+                </div>
+                <h4>Planejamento de campanhas</h4>
+                <p>O que vai ao ar, em que ordem e para quem, do pré-lançamento à abertura do estande, com mídia paga e material do corretor alinhados.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Final da Timeline -->
+      <div class="timeline-outro-card">
+        <span class="timeline-badge">Continuidade</span>
+        <blockquote class="timeline-quote">“Da estratégia ao estande, <b>nenhuma etapa fica solta.</b>”</blockquote>
+        <p style="font-size:13.5px;color:var(--texto2);margin:14px 0 0;line-height:1.45">Contratação modular ou ciclo completo de pré-venda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--abismo view" id="view">
+  <div class="wrap">
+    <div class="cab">
+      <div>
+        <div class="rotulos" style="color:var(--ardosia)"><span style="color:var(--areia)">view</span><span>espelho de vendas 3D</span></div>
+        <h2 style="margin-top:28px">O prédio inteiro no celular, <b>atualizado a cada reserva.</b></h2>
+        <p class="lead">Cada empreendimento ganha a sua versão do View, personalizada para a planta, a tabela e o jeito de vender da construtora.</p>
+      </div>
+      <div class="papeis">
+        <div class="papel"><span class="mono">comprador</span><p>Vê a unidade no contexto do prédio: o andar, a posição, a vista e o que ainda está disponível.</p></div>
+        <div class="papel"><span class="mono">corretor</span><p>Tem o estoque real na mão e um link próprio. Nada de oferecer unidade que já foi vendida.</p></div>
+        <div class="papel"><span class="mono">construtora</span><p>Atualiza estoque e preços num painel e recebe as propostas organizadas, com o corretor identificado.</p></div>
+      </div>
+    </div>
+
+    <!-- Card Fan Carousel Showcase -->
+    <div class="card-fan-carousel" id="card-fan-carousel" aria-label="Telas do View em 3D">
+      <div class="card-fan-stage">
+        <div class="card-fan-deck" id="card-fan-deck">
+          <!-- Card 0: Prédio 3D -->
+          <article class="fan-card" data-index="0" data-badge="01 · PRÉDIO 3D" data-title="O prédio em 3D" data-desc="O empreendimento inteiro no celular, com a disponibilidade em tempo real de cada prumada.">
+            <div class="fan-card-inner">
+              <img src="img/view-01-predio.jpg" alt="View: prédio em 3D" loading="lazy">
+              <div class="fan-card-overlay"></div>
+              <div class="fan-card-chip"><span>01</span> Prédio 3D</div>
+            </div>
+          </article>
+
+          <!-- Card 1: Andar -->
+          <article class="fan-card" data-index="1" data-badge="02 · PLANTA DO ANDAR" data-title="A planta do andar" data-desc="A planta do pavimento com as unidades livres, ocupadas ou reservadas instantaneamente.">
+            <div class="fan-card-inner">
+              <img src="img/view-02-andar.jpg" alt="View: planta do andar" loading="lazy">
+              <div class="fan-card-overlay"></div>
+              <div class="fan-card-chip"><span>02</span> Pavimento</div>
+            </div>
+          </article>
+
+          <!-- Card 2: Unidade -->
+          <article class="fan-card" data-index="2" data-badge="03 · FICHA DA UNIDADE" data-title="A unidade detalhada" data-desc="Área privativa, sol da manhã, posição na torre e valor, com acesso direto à vista real.">
+            <div class="fan-card-inner">
+              <img src="img/view-03-unidade.jpg" alt="View: ficha da unidade" loading="lazy">
+              <div class="fan-card-overlay"></div>
+              <div class="fan-card-chip"><span>03</span> Unidade</div>
+            </div>
+          </article>
+
+          <!-- Card 3: Vista Real -->
+          <article class="fan-card" data-index="3" data-badge="04 · VISTA REAL POR ANDAR" data-title="A vista daquele andar" data-desc="Fotos reais em alta definição com drone da varanda exata do pavimento escolhido.">
+            <div class="fan-card-inner">
+              <img src="img/acqua-02.jpg" alt="Acqua Duas Praias: vista do mar" loading="lazy">
+              <div class="fan-card-overlay"></div>
+              <div class="fan-card-chip"><span>04</span> Vista Real</div>
+            </div>
+          </article>
+
+          <!-- Card 4: Lazer -->
+          <article class="fan-card" data-index="4" data-badge="05 · LAZER & EXPERIÊNCIA" data-title="Áreas comuns e lazer" data-desc="Piscina, academia e espaços decorados integrados na mesma experiência imersiva do app.">
+            <div class="fan-card-inner">
+              <img src="img/acqua-03.jpg" alt="Acqua Duas Praias: lazer e piscina aquecida" loading="lazy">
+              <div class="fan-card-overlay"></div>
+              <div class="fan-card-chip"><span>05</span> Lazer</div>
+            </div>
+          </article>
+
+          <!-- Card 5: Fachada -->
+          <article class="fan-card" data-index="5" data-badge="06 · FACHADA & LOCALIZAÇÃO" data-title="Fachada e insolação" data-desc="Posição em relação à praia, direção do vento nordeste e o sol da manhã provados visualmente.">
+            <div class="fan-card-inner">
+              <img src="img/acqua-01.jpg" alt="Acqua Duas Praias: fachada e entorno" loading="lazy">
+              <div class="fan-card-overlay"></div>
+              <div class="fan-card-chip"><span>06</span> Fachada</div>
+            </div>
+          </article>
+
+          <!-- Card 6: Proposta -->
+          <article class="fan-card" data-index="6" data-badge="07 · SIMULAÇÃO & PROPOSTA" data-title="A proposta comercial" data-desc="O cliente monta o próprio fluxo de entrada, mensais e reforços e envia pronto pelo WhatsApp.">
+            <div class="fan-card-inner">
+              <img src="img/view-04-proposta.jpg" alt="View: simulação da proposta" loading="lazy">
+              <div class="fan-card-overlay"></div>
+              <div class="fan-card-chip"><span>07</span> Proposta</div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Active Caption Detail -->
+      <div class="fan-caption" id="fan-caption" aria-live="polite">
+        <span class="fan-caption-badge" id="fan-caption-badge">01 · PRÉDIO 3D</span>
+        <h3 class="fan-caption-title" id="fan-caption-title">O prédio em 3D</h3>
+        <p class="fan-caption-desc" id="fan-caption-desc">O empreendimento inteiro no celular, com a disponibilidade em tempo real de cada prumada.</p>
+      </div>
+
+      <!-- Bottom Controls: Prev, Dots, Next -->
+      <div class="fan-controls">
+        <button class="fan-btn fan-btn--prev" id="fan-btn-prev" type="button" aria-label="Tela anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
+        <div class="fan-dots" id="fan-dots" role="tablist" aria-label="Selecionar tela"></div>
+
+        <button class="fan-btn fan-btn--next" id="fan-btn-next" type="button" aria-label="Próxima tela">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <span class="aparte" style="margin-top:22px">(passe o cursor ou clique nas cartas para navegar pelo app)</span>
+    </div>
+  </div>
+</section>
+
+<section class="band band--papel case" id="case">
+  <div class="wrap grade">
+    <div>
+      <div class="logo-slot" data-slot="logo-vargas"><img src="img/logo-vargas.png" alt="Vargas Construtora" width="180" height="72"></div>
+      <h2>Vargas Construtora, <b>Acqua Duas Praias.</b></h2>
+      <div class="texto">
+        <p class="lead">Case âncora da Nest.</p>
+        <p><span class="falta">[DETALHE NECESSÁRIO: o que a Nest fez no lançamento do Acqua Duas Praias, em 2 ou 3 frases]</span></p>
+        <p><span class="falta">[DETALHE NECESSÁRIO: um resultado com fonte, se houver]</span></p>
+      </div>
+    </div>
+    <div class="fotos">
+      <figure class="slot slot--alta" data-slot="acqua-01"><img src="img/acqua-01.jpg" alt="Acqua Duas Praias, localização e fachada" width="1024" height="576" loading="lazy"><span class="tag">Acqua Duas Praias · fachada</span></figure>
+      <figure class="slot" data-slot="acqua-02"><img src="img/acqua-02.jpg" alt="Acqua Duas Praias, vista do studio" width="1024" height="576" loading="lazy"><span class="tag">Acqua Duas Praias · vista</span></figure>
+      <figure class="slot" data-slot="acqua-03"><img src="img/acqua-03.jpg" alt="Acqua Duas Praias, piscina aquecida e lazer" width="1024" height="576" loading="lazy"><span class="tag">Acqua Duas Praias · lazer</span></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band fundador" id="fundador">
+  <div class="wrap grade">
+    <figure class="slot" data-slot="fundador"><img src="img/fundador.jpg" alt="Diogo, fundador da Nest" width="683" height="1024" loading="lazy"><span class="tag">Diogo · fundador</span></figure>
+    <div>
+      <p class="citacao">Construtora não precisa de mais um material bonito. <b>Precisa que o comprador entenda, sozinho e antes da visita, por que esse empreendimento vale o que custa.</b></p>
+      <p class="lead">Estratégia, imagem e tecnologia são etapas do mesmo plano. O que eu entrego é a coerência entre elas. Começamos por Guarapari e atendemos todo o Espírito Santo.</p>
+      <div class="assin">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M46.02 88.55 L48.03 88.39 L50.04 88.13 L52.03 87.76 L53.99 87.29 L55.93 86.71 L57.83 86.04 L59.70 85.26 L61.52 84.39 L63.30 83.43 L65.02 82.37 L66.69 81.23 L68.29 80.00 L69.83 78.69 L70.77 77.79 L67.14 74.07 L66.35 74.82 L65.02 75.96 L63.63 77.02 L62.19 78.01 L60.70 78.92 L59.16 79.76 L57.58 80.51 L55.97 81.18 L54.32 81.76 L52.64 82.26 L50.94 82.67 L49.22 82.99 L47.49 83.22 L45.75 83.35 L43.97 83.40 L18.60 83.40 L18.60 20.40 L84.14 87.81 L86.00 86.00 L88.60 86.00 L88.60 14.00 L83.40 14.00 L83.40 79.60 L22.15 16.60 L43.97 16.60 L45.75 16.65 L47.49 16.78 L49.22 17.01 L50.94 17.33 L52.64 17.74 L54.32 18.24 L55.97 18.82 L57.58 19.49 L59.16 20.24 L60.70 21.08 L62.19 21.99 L63.63 22.98 L65.02 24.04 L66.35 25.18 L67.62 26.38 L68.82 27.65 L69.96 28.98 L71.02 30.37 L72.01 31.81 L72.92 33.30 L73.76 34.84 L74.51 36.42 L75.18 38.03 L75.76 39.68 L76.26 41.36 L76.67 43.06 L76.99 44.78 L77.22 46.51 L77.35 48.25 L77.40 50.00 L77.35 51.75 L77.22 53.49 L76.99 55.22 L76.67 56.94 L76.26 58.64 L75.76 60.32 L75.18 61.97 L74.51 63.58 L73.48 65.67 L77.27 69.56 L78.39 67.52 L79.26 65.70 L80.04 63.83 L80.71 61.93 L81.29 59.99 L81.76 58.03 L82.13 56.04 L82.39 54.03 L82.55 52.02 L82.60 50.00 L82.55 47.98 L82.39 45.97 L82.13 43.96 L81.76 41.97 L81.29 40.01 L80.71 38.07 L80.04 36.17 L79.26 34.30 L78.39 32.48 L77.43 30.70 L76.37 28.98 L75.23 27.31 L74.00 25.71 L72.69 24.17 L71.29 22.71 L69.83 21.31 L68.29 20.00 L66.69 18.77 L65.02 17.63 L63.30 16.57 L61.52 15.61 L59.70 14.74 L57.83 13.96 L55.93 13.29 L53.99 12.71 L52.03 12.24 L50.04 11.87 L48.03 11.61 L46.02 11.45 L44.03 11.40 L16.00 11.40 L16.00 14.00 L13.40 14.00 L13.40 86.00 L16.00 86.00 L16.00 88.60 L44.03 88.60 Z"/></svg>
+        <div><div class="nome">Diogo, fundador da Nest</div><a class="mono" href="https://instagram.com/diogonest" target="_blank" rel="noopener">@diogonest</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--areia diag" id="diagnostico">
+  <div class="wrap grade">
+    <div>
+      <svg class="simbolo-diag" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M100 100 L100 0 L69.500 0 L69.500 80.802 L33.500 28.802 L33.500 100 Z M0 0 L0 100 L30.500 100 L30.500 19.198 L66.500 71.198 L66.500 0 Z"/></svg>
+      <h2>O diagnóstico do seu <b>próximo lançamento.</b></h2>
+      <p class="lead">Preencha os campos e a mensagem abre pronta no WhatsApp. A proposta vem depois do diagnóstico.</p>
+    </div>
+
+    <form class="form" id="form-diag" novalidate>
+      <h3>Conte em que ponto está o lançamento.</h3>
+      <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name"></div>
+      <div class="duas">
+        <div class="campo"><label for="f-empresa">Construtora ou imobiliária</label><input id="f-empresa" name="empresa" autocomplete="organization"></div>
+        <div class="campo"><label for="f-cargo">Cargo</label>
+          <select id="f-cargo" name="cargo">
+            <option value="">Selecione</option>
+            <option>Dono ou diretor</option>
+            <option>Gerente comercial</option>
+            <option>Marketing</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="duas">
+        <div class="campo"><label for="f-cidade">Cidade do empreendimento</label><input id="f-cidade" name="cidade" autocomplete="address-level2"></div>
+        <div class="campo"><label for="f-fase">Fase</label>
+          <select id="f-fase" name="fase">
+            <option value="">Selecione</option>
+            <option>Ainda em estudo</option>
+            <option>Pré-lançamento</option>
+            <option>Já lançado, com estoque</option>
+          </select>
+        </div>
+      </div>
+      <a class="pilula js-wa" href="#diagnostico" data-msg="form">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z"/></svg>
+        Enviar pelo WhatsApp
+      </a>
+      <span class="aparte">(você revisa a mensagem antes de enviar)</span>
+    </form>
+  </div>
+</section>
+
+<section class="band faq" id="perguntas">
+  <div class="wrap grade">
+    <h2>Perguntas de quem decide.</h2>
+    <div>
+      <details>
+        <summary>A Nest é uma produtora de vídeo?</summary>
+        <p>Não. A Nest acelera vendas de lançamentos com estratégia e tecnologia. Audiovisual e fotografia entram como etapas desse plano, junto com posicionamento, landing page, View e números.</p>
+      </details>
+      <details>
+        <summary>Posso contratar só uma parte?</summary>
+        <p>Pode. Você contrata o lançamento inteiro ou só as etapas de que precisa, como a landing page ou o View. O diagnóstico ajuda a escolher.</p>
+      </details>
+      <details>
+        <summary>Quanto custa?</summary>
+        <p>Cada lançamento tem escopo próprio, então a proposta vem depois do diagnóstico.</p>
+      </details>
+      <details>
+        <summary>O estudo de rentabilidade garante retorno?</summary>
+        <p>Não. É uma estimativa em três cenários, com fonte, período e as regras do lugar, para o investidor ver de onde vem cada número.</p>
+      </details>
+      <details>
+        <summary>Vocês atendem fora de Guarapari?</summary>
+        <p>Sim. Atendemos construtoras e imobiliárias em todo o Espírito Santo e, sob demanda, em outros estados.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="band--abismo rodape" id="contato">
+  <div class="wrap">
+    <div class="topo-r">
+      <h2>O valor chega <b>antes da obra.</b></h2>
+      <div class="contatos">
+        <div class="contato"><span class="mono">whatsapp</span><span class="val" id="c-wa"></span><button class="copiar" type="button" data-copy="whatsapp">copiar</button></div>
+        <div class="contato"><span class="mono">e-mail</span><span class="val" id="c-mail"></span><button class="copiar" type="button" data-copy="email">copiar</button></div>
+        <div class="contato"><span class="mono">instagram</span><span class="val"><a href="https://instagram.com/diogonest" target="_blank" rel="noopener">@diogonest</a></span><span></span></div>
+      </div>
+    </div>
+    <div class="base">
+      <a class="logo" href="#inicio" aria-label="Nest, voltar ao início"><svg viewBox="0 0 100 100" style="width:22px;height:22px" aria-hidden="true"><path fill="currentColor" d="M100 100 L100 0 L69.500 0 L69.500 80.802 L33.500 28.802 L33.500 100 Z M0 0 L0 100 L30.500 100 L30.500 19.198 L66.500 71.198 L66.500 0 Z"/></svg></a>
+      <span>Nest · pré-venda imobiliária · Guarapari, ES</span>
+      <span>diogonest.com.br</span>
+    </div>
+  </div>
+</footer>
+
+<div class="barra" id="barra" aria-hidden="true">
+  <a class="pilula js-wa" href="#diagnostico" data-msg="padrao" tabindex="-1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z"/></svg>
+    Pedir diagnóstico no WhatsApp
+  </a>
+</div>
+
+<script src="js/gsap.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script>
+var CONFIG = {
+  whatsapp: "5527999641146",
+  email: "diogonest@gmail.com"
+};
+
+(function(){
+  var MSG = {
+    curto: "Olá, Diogo. Quero entender o diagnóstico de lançamento da Nest.",
+    padrao: "Olá, Diogo. Vi o site da Nest e quero um diagnóstico do nosso próximo lançamento."
+  };
+  function waLink(text){
+    if(!CONFIG.whatsapp) return null;
+    return "https://wa.me/" + CONFIG.whatsapp.replace(/\D/g,"") + "?text=" + encodeURIComponent(text);
+  }
+  function val(id){var el=document.getElementById(id);return el?el.value.trim():"";}
+  function formText(){
+    var l=["Olá, Diogo. Quero o diagnóstico do nosso próximo lançamento."];
+    if(val("f-nome")) l.push("Nome: "+val("f-nome"));
+    if(val("f-empresa")) l.push("Empresa: "+val("f-empresa"));
+    if(val("f-cargo")) l.push("Cargo: "+val("f-cargo"));
+    if(val("f-cidade")) l.push("Cidade do empreendimento: "+val("f-cidade"));
+    if(val("f-fase")) l.push("Fase: "+val("f-fase"));
+    return l.join("\n");
+  }
+  function atualiza(){
+    document.querySelectorAll(".js-wa").forEach(function(a){
+      var t=a.getAttribute("data-msg");
+      var href=waLink(t==="form"?formText():(MSG[t]||MSG.padrao));
+      if(href){a.href=href;a.target="_blank";a.rel="noopener";}
+    });
+  }
+  atualiza();
+  var form=document.getElementById("form-diag");
+  if(form){
+    form.addEventListener("input",atualiza);
+    form.addEventListener("change",atualiza);
+    form.addEventListener("submit",function(e){e.preventDefault();});
+  }
+
+  /* contatos */
+  function fmtTel(n){n=n.replace(/\D/g,"");var m=n.match(/^55(\d{2})(\d{4,5})(\d{4})$/);return m?"+55 ("+m[1]+") "+m[2]+"-"+m[3]:n;}
+  var cwa=document.getElementById("c-wa"), cm=document.getElementById("c-mail");
+  if(cwa){var a=document.createElement("a");a.href=waLink(MSG.padrao);a.target="_blank";a.rel="noopener";a.textContent=fmtTel(CONFIG.whatsapp);cwa.appendChild(a);}
+  if(cm){var b=document.createElement("a");b.href="mailto:"+CONFIG.email;b.textContent=CONFIG.email;cm.appendChild(b);}
+  document.querySelectorAll(".copiar").forEach(function(btn){
+    var k=btn.getAttribute("data-copy"), v=k==="whatsapp"?fmtTel(CONFIG.whatsapp):CONFIG.email;
+    btn.addEventListener("click",function(){
+      var ok=function(){btn.textContent="copiado";btn.classList.add("ok");clearTimeout(btn._t);btn._t=setTimeout(function(){btn.textContent="copiar";btn.classList.remove("ok");},1600);};
+      try{navigator.clipboard.writeText(v).then(ok,function(){sel(btn);});}catch(e){sel(btn);}
+    });
+  });
+  function sel(btn){var el=btn.previousElementSibling;var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}
+
+  /* barra fixa no celular: aparece depois do hero e some na seção do diagnóstico */
+  var barra=document.getElementById("barra"), hero=document.getElementById("hero"), diag=document.getElementById("diagnostico");
+  if(barra&&hero&&"IntersectionObserver" in window){
+    var heroVisivel=true, diagVisivel=false;
+    function aplica(){var on=!heroVisivel&&!diagVisivel;barra.classList.toggle("on",on);barra.setAttribute("aria-hidden",on?"false":"true");barra.querySelector("a").tabIndex=on?0:-1;}
+    new IntersectionObserver(function(e){heroVisivel=e[0].isIntersecting;aplica();}).observe(hero);
+    if(diag) new IntersectionObserver(function(e){diagVisivel=e[0].isIntersecting;aplica();}).observe(diag);
+  }
+
+
+  /* ===== motion ===== */
+  var raiz=document.documentElement, M=raiz.classList.contains("m");
+  var REVEAL=".logo-cloud-title,.cab > :not(.papeis),.papel,.risco,.dado .wrap > div > *,.tela,.jornada .aparte,.dica-arraste,.case .logo-slot,.case h2,.case .texto > *,.fotos > *,.fundador .slot,.citacao,.fundador .lead,.assin,.diag .grade > div > *,.form,.faq h2,.faq details,.rodape h2,.contato";
+  if(M){
+    var limpa=function(e){if(e.target===this&&e.propertyName==="transform"){this.style.willChange="";this.removeEventListener("transitionend",limpa);}};
+    var io=new IntersectionObserver(function(entradas){
+      var vis=entradas.filter(function(e){return e.isIntersecting;}).map(function(e){return e.target;});
+      vis.forEach(function(el){if(el.matches(".tela")){el.parentNode.querySelectorAll(".tela").forEach(function(t){if(vis.indexOf(t)<0)vis.push(t);});}});
+      vis.sort(function(a,b){return a.compareDocumentPosition(b)&4?-1:1;});
+      vis.forEach(function(el,i){
+        el.style.setProperty("--d",Math.min(i,6)*60+"ms");
+        el.style.willChange="opacity, transform";
+        el.addEventListener("transitionend",limpa);
+        el.classList.add("rv-in");
+        io.unobserve(el);
+      });
+    },{rootMargin:"0px 0px -8% 0px",threshold:0.12});
+    document.querySelectorAll(REVEAL).forEach(function(el){if(!el.closest(".hero"))io.observe(el);});
+    raiz.classList.add("m-ok");
+  }
+
+  /* ===== timelines interativas (Método & Serviços - Hyperiux Vault) ===== */
+  function setupTimelines(){
+    if(typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    var reduzido = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    ScrollTrigger.matchMedia({
+      "(min-width: 901px)": function(){
+        ["metodo", "servicos"].forEach(function(id){
+          var sec = document.getElementById(id);
+          if(!sec) return;
+          var track = sec.querySelector(".timeline-track");
+          var line = sec.querySelector(".timeline-journey-line");
+          var items = sec.querySelectorAll(".timeline-item");
+          if(!track) return;
+
+          var dist = function(){ return Math.max(800, track.scrollWidth - window.innerWidth + 120); };
+
+          var tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sec,
+              start: "top top",
+              end: function(){ return "+=" + dist(); },
+              scrub: 1,
+              pin: true,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            }
+          });
+
+          tl.to(track, {
+            x: function(){ return -(track.scrollWidth - window.innerWidth + 80); },
+            ease: "none"
+          });
+
+          if(line){
+            if(reduzido){
+              line.style.width = "100%";
+            } else {
+              tl.to(line, { width: "100%", ease: "none" }, 0);
+            }
+          }
+
+          items.forEach(function(item){
+            var stem = item.querySelector(".timeline-stem");
+            var dot = item.querySelector(".timeline-dot");
+            var card = item.querySelector(".timeline-card");
+            var isTop = item.classList.contains("timeline-item--top");
+
+            if(reduzido){
+              if(stem) gsap.set(stem, { scaleY: 1 });
+              if(dot) gsap.set(dot, { scale: 1 });
+              if(card) gsap.set(card, { opacity: 1, y: 0 });
+              return;
+            }
+
+            if(stem){
+              gsap.fromTo(stem,
+                { scaleY: 0 },
+                {
+                  scaleY: 1,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: item,
+                    containerAnimation: tl,
+                    start: "left 90%",
+                    end: "left 60%",
+                    scrub: true
+                  }
+                }
+              );
+            }
+
+            if(dot){
+              gsap.fromTo(dot,
+                { scale: 0 },
+                {
+                  scale: 1,
+                  ease: "back.out(2)",
+                  scrollTrigger: {
+                    trigger: item,
+                    containerAnimation: tl,
+                    start: "left 90%",
+                    end: "left 60%",
+                    scrub: true
+                  }
+                }
+              );
+            }
+
+            if(card){
+              gsap.fromTo(card,
+                { opacity: 0.2, y: isTop ? -16 : 16 },
+                {
+                  opacity: 1,
+                  y: 0,
+                  ease: "power2.out",
+                  scrollTrigger: {
+                    trigger: item,
+                    containerAnimation: tl,
+                    start: "left 85%",
+                    end: "left 55%",
+                    scrub: true
+                  }
+                }
+              );
+            }
+          });
+        });
+      },
+
+      "(max-width: 900px)": function(){
+        gsap.utils.toArray(".timeline-track, .timeline-journey-line, .timeline-stem, .timeline-dot, .timeline-card").forEach(function(el){
+          gsap.set(el, { clearProps: "all" });
+        });
+      }
+    });
+  }
+  setupTimelines();
+
+  /* cabeçalho e menu ativo */
+  var topo=document.querySelector(".topo"), tick=false;
+  function rolagem(){topo.classList.toggle("rolado",window.scrollY>8);tick=false;}
+  window.addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(rolagem);}},{passive:true});
+  rolagem();
+  if("IntersectionObserver" in window){
+    var itens={};document.querySelectorAll(".nav a.item").forEach(function(a){itens[a.getAttribute("href").slice(1)]=a;});
+    var spy=new IntersectionObserver(function(es){es.forEach(function(e){var a=itens[e.target.id];if(a)a.classList.toggle("ativo",e.isIntersecting);});},{rootMargin:"-45% 0px -50% 0px"});
+    Object.keys(itens).forEach(function(id){var sec=document.getElementById(id);if(sec)spy.observe(sec);});
+  }
+
+
+  /* ===== Hero: 3D Container Scroll do iPhone (Aceternity UI style) ===== */
+  function initHeroContainerScroll(){
+    var hero = document.getElementById("hero");
+    var stage = document.getElementById("view-hero-stage");
+    var card = document.getElementById("view-hero-card");
+    var header = document.getElementById("view-hero-header");
+    var shadow = document.getElementById("view-hero-shadow");
+    var iphone = document.getElementById("hero-iphone");
+    if(!card || !hero) return;
+
+    if(typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined"){
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Configuração inicial (inclinado em 3D no topo da página)
+      gsap.set(card, {
+        transformPerspective: 1200,
+        transformOrigin: "50% 90%",
+        rotateX: 22,
+        scale: 0.91,
+        y: 16
+      });
+
+      if(shadow){
+        gsap.set(shadow, {
+          scaleX: 0.85,
+          scaleY: 0.7,
+          opacity: 0.55
+        });
+      }
+
+      // Linha do tempo de scroll scrub
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: hero,
+          start: "top top",
+          end: "+=520",
+          scrub: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      // Retificação do iPhone de 22deg para 0deg, escala 1.0 e elevação suave
+      tl.to(card, {
+        rotateX: 0,
+        scale: 1.0,
+        y: -18,
+        ease: "power1.out"
+      }, 0);
+
+      if(shadow){
+        tl.to(shadow, {
+          scaleX: 1.05,
+          scaleY: 1.0,
+          opacity: 0.85,
+          y: 6,
+          ease: "power1.out"
+        }, 0);
+      }
+
+      if(header){
+        tl.to(header, {
+          y: -28,
+          opacity: 0.82,
+          ease: "power1.out"
+        }, 0);
+      }
+    }
+
+    // Micro-inclinação interativa acompanhando o cursor do mouse (hover fino)
+    if(iphone && window.matchMedia && matchMedia("(hover:hover) and (pointer:fine)").matches){
+      var alvo = { x: 0, y: 0 }, pendente = false;
+      function aplicaTiltCursor(){
+        pendente = false;
+        iphone.style.setProperty("--cursor-ry", (alvo.x * 4).toFixed(2) + "deg");
+        iphone.style.setProperty("--cursor-rx", (-alvo.y * 3).toFixed(2) + "deg");
+      }
+      hero.addEventListener("pointermove", function(e){
+        var r = card.getBoundingClientRect();
+        alvo.x = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2.5)));
+        alvo.y = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2.5)));
+        if(!pendente){
+          pendente = true;
+          requestAnimationFrame(aplicaTiltCursor);
+        }
+      });
+      hero.addEventListener("pointerleave", function(){
+        alvo.x = 0; alvo.y = 0;
+        requestAnimationFrame(aplicaTiltCursor);
+      });
+    }
+  }
+  initHeroContainerScroll();
+
+  /* imagens dos iPhones: fade quando decodificadas */
+  document.querySelectorAll(".iphone img").forEach(function(img){
+    if(img.complete&&img.naturalWidth)return;
+    img.classList.add("carregando");
+    var f=function(){img.classList.remove("carregando");};
+    img.addEventListener("load",f,{once:true});img.addEventListener("error",f,{once:true});
+  });
+
+  /* ===== Card Fan Carousel (View 3D - Leque em Arco) ===== */
+  function initCardFanCarousel(){
+    var container = document.getElementById("card-fan-carousel");
+    if(!container) return;
+
+    var deck = document.getElementById("card-fan-deck");
+    var cards = Array.from(deck.querySelectorAll(".fan-card"));
+    var btnPrev = document.getElementById("fan-btn-prev");
+    var btnNext = document.getElementById("fan-btn-next");
+    var dotsContainer = document.getElementById("fan-dots");
+    var badgeEl = document.getElementById("fan-caption-badge");
+    var titleEl = document.getElementById("fan-caption-title");
+    var descEl = document.getElementById("fan-caption-desc");
+    var captionEl = document.getElementById("fan-caption");
+
+    var total = cards.length;
+    var activeIndex = 0;
+    var isHovered = false;
+
+    dotsContainer.innerHTML = "";
+    cards.forEach(function(_, idx){
+      var dot = document.createElement("button");
+      dot.className = "fan-dot" + (idx === 0 ? " fan-dot--active" : "");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Ir para tela " + (idx + 1));
+      dot.addEventListener("click", function(){ goTo(idx); });
+      dotsContainer.appendChild(dot);
+    });
+
+    var dots = Array.from(dotsContainer.querySelectorAll(".fan-dot"));
+
+    function update(){
+      var isMobile = window.innerWidth < 640;
+      var baseSpread = isMobile ? 55 : 95;
+      var hoverSpread = isMobile ? 75 : 155;
+      var spread = isHovered ? hoverSpread : baseSpread;
+      var maxVisible = 3;
+
+      cards.forEach(function(card, idx){
+        var diff = idx - activeIndex;
+        if(diff > total / 2) diff -= total;
+        if(diff < -total / 2) diff += total;
+
+        var absDiff = Math.abs(diff);
+
+        if(absDiff > maxVisible){
+          card.style.opacity = "0";
+          card.style.pointerEvents = "none";
+          card.style.transform = "translate3d(" + (diff > 0 ? 320 : -320) + "px, 120px, 0) scale(0.6) rotate(" + (diff > 0 ? 35 : -35) + "deg)";
+          card.classList.remove("fan-card--active");
+          return;
+        }
+
+        card.style.pointerEvents = "auto";
+        card.style.zIndex = 100 - absDiff * 10;
+
+        var tx = diff * spread;
+        var ty = Math.pow(absDiff, 1.45) * (isMobile ? 14 : 20);
+        var rot = diff * (isMobile ? 6.5 : 8.5);
+        var scale = diff === 0 ? 1.05 : Math.max(0.72, 1 - absDiff * 0.08);
+        var opacity = diff === 0 ? 1 : Math.max(0.35, 1 - absDiff * 0.22);
+
+        card.style.opacity = opacity;
+        card.style.transform = "translate3d(" + tx + "px, " + ty + "px, 0) scale(" + scale + ") rotate(" + rot + "deg)";
+
+        if(diff === 0){
+          card.classList.add("fan-card--active");
+        } else {
+          card.classList.remove("fan-card--active");
+        }
+      });
+
+      dots.forEach(function(dot, idx){
+        dot.classList.toggle("fan-dot--active", idx === activeIndex);
+      });
+
+      var activeCard = cards[activeIndex];
+      if(activeCard && captionEl){
+        captionEl.style.opacity = "0";
+        captionEl.style.transform = "translateY(6px)";
+        setTimeout(function(){
+          if(badgeEl) badgeEl.textContent = activeCard.getAttribute("data-badge") || "";
+          if(titleEl) titleEl.textContent = activeCard.getAttribute("data-title") || "";
+          if(descEl) descEl.textContent = activeCard.getAttribute("data-desc") || "";
+          captionEl.style.opacity = "1";
+          captionEl.style.transform = "translateY(0)";
+        }, 150);
+      }
+    }
+
+    function goTo(index){
+      activeIndex = (index + total) % total;
+      update();
+    }
+
+    function next(){ goTo(activeIndex + 1); }
+    function prev(){ goTo(activeIndex - 1); }
+
+    if(btnNext) btnNext.addEventListener("click", next);
+    if(btnPrev) btnPrev.addEventListener("click", prev);
+
+    cards.forEach(function(card, idx){
+      card.addEventListener("click", function(){
+        if(idx !== activeIndex) goTo(idx);
+      });
+    });
+
+    deck.addEventListener("mouseenter", function(){
+      isHovered = true;
+      update();
+    });
+    deck.addEventListener("mouseleave", function(){
+      isHovered = false;
+      update();
+    });
+
+    var touchStartX = 0;
+    deck.addEventListener("touchstart", function(e){
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    deck.addEventListener("touchend", function(e){
+      var touchEndX = e.changedTouches[0].clientX;
+      var diffX = touchEndX - touchStartX;
+      if(Math.abs(diffX) > 35){
+        if(diffX < 0) next();
+        else prev();
+      }
+    }, { passive: true });
+
+    window.addEventListener("resize", function(){
+      requestAnimationFrame(update);
+    });
+
+    update();
+  }
+  initCardFanCarousel();
+
+  /* fotos do case e do fundador: arquivos em img/ com o nome do slot */
+  var ALT={"acqua-01":"Acqua Duas Praias, fachada","acqua-02":"Acqua Duas Praias, vista","acqua-03":"Acqua Duas Praias, lazer","fundador":"Diogo, fundador da Nest","logo-vargas":"Vargas Construtora"};
+  document.querySelectorAll("[data-slot]").forEach(function(el){
+    if(el.querySelector("img")) return;
+    var nome=el.getAttribute("data-slot"), logo=nome.indexOf("logo")===0;
+    var img=new Image(); img.alt=ALT[nome]||""; img.loading="lazy";
+    img.onload=function(){
+      if(logo){el.textContent="";el.style.border="0";img.style.cssText="max-width:100%;max-height:100%;object-fit:contain";el.appendChild(img);}
+      else{var v=el.querySelector(".vazio");if(v)v.remove();el.insertBefore(img,el.firstChild);}
+    };
+    img.src="img/"+nome+"."+(logo?"png":"jpg");
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,6 +1,9 @@
 # Site da Nest · diogonest.com.br
 
-Suba o conteúdo desta pasta inteira na raiz do domínio (index.html, favicon.svg, robots.txt, sitemap.xml, llms.txt e a pasta img/).
+- **Produção (Vercel)**: https://nest-site-v5.vercel.app
+- **Repositório (GitHub)**: https://github.com/diogonest/nest-site-v5
+
+Suba o conteúdo desta pasta inteira na raiz do domínio (index.html, favicon.svg, robots.txt, sitemap.xml, llms.txt, vercel.json, js/ e img/). Todos os commits enviados para a branch `main` do GitHub disparam deploy automático na Vercel.
 
 WhatsApp (+55 27 99964-1146) e e-mail (diogonest@gmail.com) já estão configurados. Para trocar, procure "CONFIG" perto do fim do index.html.
 

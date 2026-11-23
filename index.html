@@ -3,2315 +3,892 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nest · Lançamentos imobiliários que vendem mais rápido</title>
-<meta name="description" content="A Nest acelera as vendas de lançamentos imobiliários com estratégia e tecnologia: posicionamento, narrativa, landing pages e o View, espelho de vendas 3D. Guarapari, Espírito Santo e todo o Brasil sob demanda.">
+<title>Nest · Seu lançamento vende antes da obra</title>
+<meta name="description" content="A Nest acelera as vendas de lançamentos imobiliários com estratégia e tecnologia: método em 4 etapas e o View, espelho de vendas 3D. Guarapari, Espírito Santo e outros estados sob demanda.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@200..600&family=Geist+Mono:wght@300..500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@200..600&family=Geist+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: coluna editorial alinhada à esquerda; faixas inteiras de cor com função fixa (branco conteúdo, papel método, marinho dado, abismo produto, areia CTA). O iPhone com o View é o único objeto "fotográfico" da página. */
+/* Layout: uma página contínua. Um palco fixo abre o site (hero), o iPhone sobe e vira a demonstração do View;
+   depois o fundo muda de tom com a rolagem (papel, branco, areia) sem linhas de divisão. Navegação numa doca flutuante. */
 :root{
   --branco:#FFFFFF; --papel:#F4F1EA; --areia:#C8B593; --areia-clara:#E9E0CF;
   --marinho:#0E2238; --abismo:#07111F; --mare:#1E3956;
-  --ardosia:#8794A3; --fio:#D3D8DE; --texto:#0E2238; --texto2:#4F6177; --claro2:#C4CDD8;
-  --falta:#9A5B2E;
-  --sans:"Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --mono:"Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --wrap:1180px;
-  --ease:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.4,0,1,1); --ease-io:cubic-bezier(.65,0,.35,1);
-  --t-press:90ms; --t-micro:180ms; --t-ui:320ms; --t-reveal:720ms; --rise:14px;
+  --ardosia:#8794A3; --fio:rgba(14,34,56,.12); --texto2:#4F6177; --claro2:#C4CDD8; --falta:#8A4F26;
+  --sans:"Geist", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono:"Geist Mono", ui-monospace, Menlo, monospace;
+  --ease:cubic-bezier(.16,1,.3,1); --ios:cubic-bezier(.32,.72,0,1);
+  --gut:max(20px, env(safe-area-inset-left, 0px)); --gutr:max(20px, env(safe-area-inset-right, 0px));
+  --vh:100vh; --th:clamp(260px, calc(var(--vh) - 420px), 560px); --peek:24vh;
   color-scheme:light;
 }
+@supports (height:100svh){:root{--vh:100svh; --peek:24svh}}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:80px;overflow-x:hidden;overflow-x:clip;width:100%;max-width:100%}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:1ms!important;animation-delay:0ms!important;animation-iteration-count:1!important;transition-duration:1ms!important;transition-delay:0ms!important}}
-body{margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-size:17px;line-height:1.6;font-weight:350;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;width:100%;max-width:100%;position:relative}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--branco)}
-main{width:100%;max-width:100%;overflow-x:hidden;overflow-x:clip;display:block}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papel);color:var(--marinho);font-family:var(--sans);font-size:17px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:transparent}
 a{color:inherit}
 img{max-width:100%;display:block}
-:focus-visible{outline:2px solid var(--mare);outline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+h1,h2,h3,p{margin:0}
+h1,h2{font-weight:250;letter-spacing:-0.04em;line-height:1.02;text-wrap:balance}
+h2{font-size:clamp(34px,5vw,60px)}
+b,strong{font-weight:500}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.aparte{font-family:var(--mono);font-size:13px;letter-spacing:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:var(--gut);padding-right:var(--gutr)}
 
-.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));box-sizing:border-box}
-.band{padding-block:clamp(64px,10vw,136px);width:100%;max-width:100%;overflow-x:hidden;overflow-x:clip;box-sizing:border-box}
-.band--papel{background:var(--papel)}
-.band--marinho{background:var(--marinho);color:var(--branco)}
-.band--abismo{background:var(--abismo);color:var(--branco)}
-.band--areia{background:var(--areia);color:var(--marinho)}
+/* fundo contínuo: três tons claros sobrepostos, misturados pela rolagem */
+.fundo{position:fixed;inset:0;z-index:-1;background:var(--papel)}
+.fundo i{position:absolute;inset:0;opacity:0;will-change:opacity}
+.f-branco{background:var(--branco)}
+.f-areia{background:var(--areia)}
 
-/* tipografia */
-h1,h2,h3{margin:0;font-weight:250;letter-spacing:-0.035em;line-height:1.04;text-wrap:balance}
-h1{font-size:clamp(44px,6.6vw,88px)}
-h2{font-size:clamp(32px,5vw,64px)}
-h3{font-size:22px;font-weight:450;letter-spacing:-0.015em;line-height:1.2}
-strong,b{font-weight:500}
-p{margin:0;max-width:62ch}
-.lead{font-size:clamp(17px,1.6vw,21px);line-height:1.55;color:var(--texto2)}
-.band--marinho .lead,.band--abismo .lead{color:var(--claro2)}
-.mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;font-weight:400}
-.aparte{font-family:var(--mono);font-size:13px;color:var(--texto2);text-transform:lowercase}
-.band--abismo .aparte{color:var(--ardosia)}
-.marca{background:linear-gradient(transparent 58%,var(--areia) 58%,var(--areia) 92%,transparent 92%) no-repeat 0 0/100% 100%;padding:0 .06em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.rotulos{display:flex;flex-wrap:wrap;gap:6px 28px;font-family:var(--mono);font-size:12.5px;color:var(--texto2)}
-.rotulos span:first-child{color:var(--texto);font-weight:500}
-.falta{font-family:var(--mono);font-size:13px;color:var(--falta);background:rgba(154,91,46,.08);border:1px dashed rgba(154,91,46,.5);padding:2px 8px;border-radius:3px;display:inline-block;line-height:1.5}
-
-/* botões */
-.pilula{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--marinho);color:var(--branco);text-decoration:none;font-weight:450;font-size:16px;line-height:1.25;padding:15px 26px;min-height:52px;border-radius:999px;border:1px solid var(--marinho);text-align:center}
-.pilula:hover{background:var(--mare);border-color:var(--mare)}
+/* botão principal */
+.pilula{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;border:0;background:var(--marinho);color:var(--branco);font-size:16px;font-weight:500;text-decoration:none;cursor:pointer;transition:transform .32s var(--ease),background-color .18s var(--ease)}
+.pilula:active{transform:scale(.97);transition-duration:.09s}
 .pilula svg{width:18px;height:18px;flex:none}
-.link{font-weight:450;text-decoration:none;padding-bottom:2px}
+@media (hover:hover){.pilula:hover{background:var(--mare)}}
 
-/* cabeçalho */
-.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;width:100%;background:rgba(255,255,255,.82);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent}
-.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px;width:100%}
-.logo{display:block;color:var(--marinho);flex-shrink:0}
-.logo svg{height:24px;width:auto;display:block}
-.nav{display:flex;align-items:center;gap:30px;font-size:15px}
-.nav a.item{text-decoration:none;color:var(--texto2)}
-.nav a.item:hover{color:var(--texto)}
-.nav .pilula{padding:9px 18px;min-height:40px;font-size:14.5px;white-space:nowrap}
-@media (max-width:860px){.nav a.item{display:none}}
+/* ===== palco: hero + View ===== */
+.cena{position:relative;height:calc(var(--vh) * 4.4)}
+.palco{position:sticky;top:0;height:var(--vh);overflow:hidden;overflow:clip;--r:0;--e:0;--c:0;background:var(--branco);display:grid;grid-template-rows:auto minmax(0,1fr);padding:calc(70px + env(safe-area-inset-top,0px)) 0 calc(84px + env(safe-area-inset-bottom,0px))}
+.palco.pos{background:var(--papel)}
+.noite{position:absolute;inset:0;background:var(--abismo);opacity:min(var(--r) * 1.3, 1);will-change:opacity;
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - var(--e) * 150%),transparent calc(150% - var(--e) * 150%));mask-image:linear-gradient(to bottom,#000 calc(100% - var(--e) * 150%),transparent calc(150% - var(--e) * 150%))}
+.marca{position:absolute;z-index:3;left:var(--gut);top:calc(14px + env(safe-area-inset-top,0px));display:flex;align-items:center;min-height:44px;color:var(--marinho);transition:color .4s var(--ease)}
+.marca svg{height:22px;width:auto;display:block}
+.palco.escuro .marca{color:var(--branco)}
 
-/* hero */
-.hero{padding-top:clamp(32px,5vw,60px);padding-bottom:clamp(56px,8vw,104px);width:100%;max-width:100%;overflow-x:hidden;overflow-x:clip;box-sizing:border-box;text-align:center}
-.hero .grade{display:grid;grid-template-columns:1fr;justify-items:center;align-items:center;gap:clamp(40px,5.5vw,68px);width:100%;max-width:100%;box-sizing:border-box}
-.hero .grade > div:first-child{width:100%;max-width:860px;display:flex;flex-direction:column;align-items:center;text-align:center;margin:0 auto;box-sizing:border-box}
-.hero h1{margin-top:0;width:100%;max-width:15ch;margin-left:auto;margin-right:auto;text-align:center}
-.hero h1 .b{font-weight:500}
-.hero .lead{margin-top:24px;width:100%;max-width:50ch;margin-left:auto;margin-right:auto;text-align:center}
-.hero .acoes{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px 28px;width:100%;max-width:480px;margin-left:auto;margin-right:auto}
-.hero .lado{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:100%;margin:0 auto;box-sizing:border-box}
-.view-hero-scroll{width:100%;max-width:100%;display:flex;flex-direction:column;align-items:center}
-.view-hero-header{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:390px;margin:0 auto clamp(20px,2.5vw,28px);will-change:transform,opacity;box-sizing:border-box}
-.view-hero-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--falta);font-weight:500;margin-bottom:6px}
-.view-hero-title{font-size:clamp(19px,1.9vw,23px);font-weight:450;letter-spacing:-.02em;line-height:1.22;color:var(--marinho);margin:0 0 8px 0}
-.view-hero-desc{font-size:13.5px;line-height:1.52;color:var(--texto2);margin:0 auto 10px;max-width:36ch}
-.view-hero-link{font-family:var(--mono);font-size:11.5px;color:var(--marinho);text-decoration:none;font-weight:450;display:inline-flex;align-items:center;gap:4px;border-bottom:1px solid var(--marinho);width:fit-content;padding-bottom:1px;transition:color 0.2s,border-color 0.2s}
-.view-hero-link:hover{color:var(--mare);border-color:var(--mare)}
-@media (max-width:960px){
-  .hero .grade{grid-template-columns:1fr;gap:44px}
-  .hero .lado{margin-top:12px}
-}
-@media (max-width:600px){
-  .hero{padding-top:20px;padding-bottom:44px}
-  .hero h1{font-size:clamp(32px,8.5vw,42px);max-width:14ch}
-  .hero .lead{font-size:15.5px;max-width:94%;margin-top:16px}
-  .hero .acoes{flex-direction:column;gap:14px;width:100%}
-  .hero .acoes .pilula{width:100%;max-width:380px;padding:14px 20px;font-size:15px}
-  .hero .acoes .link{padding:6px 12px}
-}
+.hero{position:absolute;z-index:2;left:var(--gut);right:var(--gutr);top:calc(76px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;align-items:flex-start;gap:14px;opacity:calc(1 - var(--r) * 2.4);transform:translate3d(0,calc(var(--r) * -56px),0)}
+.palco.longe .hero{pointer-events:none;visibility:hidden}
+.hero .mono{color:var(--texto2)}
+.hero h1{font-size:clamp(40px,11.4vw,50px)}
+.hero p{font-size:17px;color:var(--texto2);max-width:26em}
+.hero .pilula{margin-top:6px}
+.marca-texto{background:linear-gradient(transparent 58%,var(--areia) 58%,var(--areia) 92%,transparent 92%) no-repeat 0 0/100% 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .05em}
+@media (max-height:700px){.hero h1{font-size:36px}.hero p{display:none}}
 
-/* iPhone */
-.etq{font-family:var(--mono);font-size:11.5px;color:var(--texto2)}
+.guia{position:relative;z-index:2;margin:0 var(--gutr) 0 var(--gut);display:flex;flex-direction:column;color:var(--branco);opacity:var(--c);pointer-events:none}
+.passos{order:2;display:grid}
+.guia .mono{color:var(--areia)}
+.pips{order:1;display:flex;gap:6px;margin:12px 0 10px}
+.pips i{width:28px;height:2px;background:rgba(255,255,255,.28);transition:background-color .4s var(--ease)}
+.passo{grid-area:1 / 1;display:flex;flex-direction:column;gap:6px;opacity:0;transform:translate3d(0,14px,0);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.passo.antes{transform:translate3d(0,-14px,0)}
+.passo.ativo{opacity:1;transform:none}
+.passo .n{font-family:var(--mono);font-size:13px;color:var(--claro2)}
+.passo .t{font-size:clamp(26px,7vw,30px);line-height:1.08;font-weight:250;letter-spacing:-0.03em}
 
-/* iPhone: moldura de titânio fina, borda preta de 2,6%, ilha dinâmica e botões laterais */
-.iphone{position:relative;max-width:100%;flex:none;padding:1.15%;border-radius:15.5%/7.2%;
+.fone-wrap{position:relative;z-index:1;min-height:0;padding-top:16px;display:flex;justify-content:center;align-items:flex-start;pointer-events:none;container-type:size;
+  opacity:calc(1 - var(--e) * 1.15);
+  transform:translate3d(0,calc((1 - var(--r)) * var(--peek)),0) scale(calc(.94 + .06 * var(--r)));transform-origin:50% 0;will-change:transform,opacity}
+@keyframes sobe{from{transform:translate3d(0,72vh,0);opacity:.2}}
+@supports (height:1cqh){.fone-sobe{--th:min(calc(96cqh - 6px), 600px)}}
+.js .fone-sobe{animation:sobe 1.25s var(--ease) .25s both}
+
+/* iPhone: moldura fina de titânio, vidro preto, ilha */
+.iphone{position:relative;padding:calc(var(--th) * .0062);border-radius:calc(var(--th) * .068);
   background:linear-gradient(140deg,#a7acb3 0%,#5b6068 14%,#30343a 32%,#6d727a 52%,#2f3339 72%,#8e939b 92%,#b9bdc3 100%);
-  box-shadow:inset 0 0 0 .6px rgba(255,255,255,.45),inset 0 0 0 1.4px rgba(0,0,0,.35),0 1px 1px rgba(7,17,31,.15),0 28px 50px -28px rgba(7,17,31,.55)}
-.vidro{position:relative;border-radius:14.4%/6.7%;padding:2.6%;background:#040506;overflow:hidden;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
-.vidro img{display:block;width:100%;height:auto;border-radius:11.8%/5.45%;background:var(--papel)}
-.vidro::before{content:"";position:absolute;z-index:2;top:4.1%;left:50%;width:28.5%;height:3%;transform:translateX(-50%);background:#000;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
-.vidro::after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;
-  background:linear-gradient(118deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 22%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 78%,rgba(255,255,255,.05) 100%)}
-.bt{position:absolute;width:1.3%;border-radius:2px;background:linear-gradient(90deg,#3d4148,#9ca1a8 45%,#565b62)}
-.bt--acao{left:-.9%;top:16.5%;height:4.2%}
-.bt--mais{left:-.9%;top:23.5%;height:7.2%}
-.bt--menos{left:-.9%;top:32%;height:7.2%}
-.bt--lado{right:-.9%;top:26%;height:11%}
-.tela .iphone{box-shadow:inset 0 0 0 .6px rgba(255,255,255,.45),inset 0 0 0 1.4px rgba(0,0,0,.35),0 30px 60px -30px rgba(0,0,0,.8)}
+  box-shadow:inset 0 0 0 .6px rgba(255,255,255,.45),0 calc(var(--th) * .05) calc(var(--th) * .1) calc(var(--th) * -.05) rgba(7,17,31,.55)}
+.vidro{position:relative;padding:calc(var(--th) * .0125);border-radius:calc(var(--th) * .062);background:#040506}
+/* ilha: elemento real dentro da tela, em camada própria, para entrar junto com o aparelho */
+.ilha{position:absolute;z-index:7;top:1.35%;left:36%;width:28%;height:2.8%;background:#000;border-radius:999px;transform:translateZ(0);will-change:transform;pointer-events:none}
+.tela{position:relative;height:var(--th);aspect-ratio:520/1125;border-radius:calc(var(--th) * .05);overflow:hidden;background:#000;container-type:size;--rd:18px}
+@supports (width:1cqw){.tela{--rd:6.6cqw}}
+.tela img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .64s var(--ios),opacity .5s var(--ease);will-change:transform,opacity}
+.pilha{position:absolute;inset:0;transition:transform .64s var(--ios);transform-origin:50% 100%}
+.veu{position:absolute;inset:0;z-index:3;background:#000;opacity:0;transition:opacity .5s var(--ease);pointer-events:none}
 
-/* hero: 3D Container Scroll do iPhone (Aceternity UI style) */
-.view-hero-stage{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;perspective:1200px}
-.view-hero-card{position:relative;width:min(252px,64vw);transform-style:preserve-3d;transform-origin:50% 90%;will-change:transform}
-.view-hero-card .iphone{
-  transform:rotateY(var(--cursor-ry,0deg)) rotateX(var(--cursor-rx,0deg));
-  transform-origin:50% 50%;
-  transition:transform 200ms ease-out;
-  box-shadow:inset 0 0 0 .6px rgba(255,255,255,.5),inset 0 0 0 1.4px rgba(0,0,0,.35),
-    1px 0 0 #5c6168,2px 0 0 #50555c,3px 1px 0 #454950,4px 1px 0 #3b3f45,5px 1px 0 #32363b,6px 2px 0 #2b2e33,
-    0 10px 24px -6px rgba(7,17,31,.25),
-    0 24px 48px -12px rgba(7,17,31,.35),
-    0 48px 80px -20px rgba(7,17,31,.45);
-}
-.view-hero-shadow{
-  position:absolute;bottom:-18px;left:8%;right:8%;height:32px;border-radius:50%;
-  background:radial-gradient(ellipse at center,rgba(7,17,31,.4) 0%,rgba(7,17,31,0) 72%);
-  filter:blur(8px);z-index:-1;pointer-events:none;transform-origin:center;will-change:transform,opacity;
-}
-@media (max-width:600px){
-  .view-hero-card{width:min(232px,72vw)}
-}
+/* estados do aplicativo: 0 prédio · 1 andar (zoom + folha sobe) · 2 unidade (empurra na folha) · 3 proposta (modal sobe) */
+.t1{transform-origin:64% 40%}
+.a-topo,.u-topo{clip-path:inset(0 0 52% 0);opacity:0;transform:scale(1.1);transform-origin:50% 28%}
+.a-folha,.u-folha{clip-path:inset(44% 0 0 0 round var(--rd) var(--rd) 0 0)}
+.a-folha{transform:translate3d(0,58%,0)}
+.u-folha{transform:translate3d(103%,0,0)}
+.t4{z-index:4;transform:translate3d(0,103%,0)}
+.tela:not([data-s="0"]) .t1{transform:scale(1.5)}
+.tela[data-s="1"] .a-topo{opacity:1;transform:none}
+.tela[data-s="2"] .a-topo,.tela[data-s="3"] .a-topo{opacity:1;transform:scale(1.22)}
+.tela[data-s="1"] .a-folha{transform:none}
+.tela[data-s="2"] .a-folha,.tela[data-s="3"] .a-folha{transform:translate3d(-30%,0,0)}
+.tela[data-s="2"] .u-topo,.tela[data-s="3"] .u-topo{opacity:1;transform:none}
+.tela[data-s="2"] .u-folha,.tela[data-s="3"] .u-folha{transform:none}
+.tela[data-s="3"] .t4{transform:none}
+.tela[data-s="3"] .pilha{transform:scale(.93)}
+.tela[data-s="3"] .veu{opacity:.45}
 
-/* ===== LOGO CLOUD (Marquee infinito com máscara gradual) ===== */
-@keyframes logo-cloud-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
+/* indicador de toque */
+.toque{position:absolute;z-index:5;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(14,34,56,.22),0 4px 14px rgba(0,0,0,.28);opacity:0;pointer-events:none}
+@supports (width:1cqw){.toque{width:15cqw;height:15cqw;margin:-7.5cqw 0 0 -7.5cqw}}
+@keyframes tap{0%{opacity:0;transform:scale(1.3)}28%,62%{opacity:1;transform:scale(.88)}100%{opacity:0;transform:scale(1.08)}}
+@keyframes arrasta{0%{opacity:0;transform:translate3d(0,0,0) scale(1.2)}22%{opacity:1;transform:translate3d(0,0,0) scale(.9)}78%{opacity:1;transform:translate3d(0,-260%,0) scale(.9)}100%{opacity:0;transform:translate3d(0,-300%,0) scale(1)}}
+.toque.tap{animation:tap .56s var(--ease)}
+.toque.arrasta{animation:arrasta .62s var(--ios)}
 
-.clientes {
-  border-top: 1px solid var(--fio);
-  border-bottom: 1px solid var(--fio);
-  padding: clamp(28px, 3.5vw, 40px) 0;
-  overflow: hidden;
-  background: var(--branco);
-}
-.logo-cloud-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(16px, 2vw, 24px);
-  text-align: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.logo-cloud-title {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--texto2);
-  margin: 0;
-}
-.logo-cloud-mask {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-}
-.logo-cloud-track {
-  display: flex;
-  align-items: center;
-  width: max-content;
-  animation: logo-cloud-marquee 28s linear infinite;
-  will-change: transform;
-}
-.logo-cloud-mask:hover .logo-cloud-track {
-  animation-play-state: paused;
-}
-.logo-cloud-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 clamp(24px, 3vw, 40px);
-  flex-shrink: 0;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.logo-cloud-item:hover {
-  opacity: 0.8;
-  transform: translateY(-1px);
-}
-.logo-cliente {
-  height: clamp(30px, 3vw, 38px);
-  width: auto;
-  max-width: 150px;
-  object-fit: contain;
-  display: block;
-}
-.logo-cliente--egecon {
-  height: clamp(38px, 3.8vw, 46px);
-}
-.logo-cloud-item--text span {
-  font-size: clamp(15px, 1.3vw, 17.5px);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  color: var(--marinho);
-  white-space: nowrap;
-}
+/* ===== doca de navegação ===== */
+.doca{position:fixed;z-index:30;left:50%;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:min(372px,calc(100% - 32px));transform:translateX(-50%);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:4px;border-radius:999px;
+  background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:inset 0 0 0 1px rgba(14,34,56,.1),0 10px 30px -12px rgba(7,17,31,.35);transition:background-color .4s var(--ease),box-shadow .4s var(--ease)}
+.doca a{position:relative;z-index:1;display:grid;place-items:center;height:48px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:.005em;text-decoration:none;color:var(--marinho);transition:color .3s var(--ease),transform .32s var(--ease)}
+.doca a:active{transform:scale(.95);transition-duration:.09s}
+.doca a[aria-current="true"]{color:var(--branco)}
+.doca i{position:absolute;z-index:0;left:4px;top:4px;bottom:4px;width:calc((100% - 8px) / 4);border-radius:999px;background:var(--marinho);transform:translate3d(calc(var(--i,0) * 100%),0,0);transition:transform .5s var(--ios),background-color .4s var(--ease)}
+.doca.escura{background:rgba(22,34,50,.62);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 10px 30px -12px rgba(0,0,0,.6)}
+.doca.escura a{color:#E3E8EE}
+.doca.escura a[aria-current="true"]{color:var(--marinho)}
+.doca.escura i{background:var(--branco)}
+@media (prefers-reduced-transparency:reduce){.doca{background:var(--branco);-webkit-backdrop-filter:none;backdrop-filter:none}.doca.escura{background:#162232}}
+@media (prefers-contrast:more){.doca{background:var(--branco);box-shadow:inset 0 0 0 1.5px var(--marinho)}}
 
-@media (prefers-reduced-motion: reduce) {
-  .logo-cloud-track {
-    animation: none;
-    overflow-x: auto;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .logo-cloud-mask {
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-}
-
-/* benefícios */
-.ganhos .cab{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px 64px;align-items:end}
-@media (max-width:900px){.ganhos .cab{grid-template-columns:1fr}}
-.riscos{margin-top:clamp(44px,6vw,80px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--marinho)}
-.risco{padding:28px 24px 32px 0;display:flex;flex-direction:column;gap:14px;min-width:0}
-.risco + .risco{border-left:1px solid var(--fio);padding-left:24px}
-.risco .dor{font-family:var(--mono);font-size:12.5px;color:var(--texto2)}
-.risco s{font-size:20px;line-height:1.3;color:var(--texto2);text-decoration:none}
-.risca{background:linear-gradient(var(--marinho),var(--marinho)) no-repeat 0 56%/100% 1.5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.correcao{align-self:flex-start;background:var(--areia);color:var(--marinho);font-size:14.5px;font-weight:500;padding:6px 12px;border-radius:3px;line-height:1.35}
-.risco p{font-size:15.5px;color:var(--texto2)}
-@media (max-width:1060px){
-  .riscos{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .risco:nth-child(3){border-left:0;padding-left:0}
-  .risco:nth-child(n+3){border-top:1px solid var(--fio)}
-}
-@media (max-width:640px){
-  .riscos{grid-template-columns:1fr}
-  .risco + .risco{border-left:0;padding-left:0;border-top:1px solid var(--fio)}
-  .risco{padding-right:0}
-}
-
-/* dado */
-.dado .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px 72px;align-items:center}
-@media (max-width:900px){.dado .wrap{grid-template-columns:1fr;gap:28px}}
-.dado h2{font-size:clamp(32px,4.8vw,60px)}
-.dado h2 .num{font-weight:500;color:var(--areia)}
-.dado .resposta-dado{display:flex;flex-direction:column;gap:18px}
-.dado .pergunta{margin:0;font-size:clamp(26px,3.2vw,38px);font-weight:450;letter-spacing:-.025em;line-height:1.15;color:var(--branco)}
-.dado .pergunta em{font-style:normal;color:var(--areia);font-weight:500}
-.fonte{margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--ardosia)}
-
-/* ===== TIMELINE INTERATIVA HORIZONTAL (padrão Hyperiux Vault) ===== */
-.timeline-section {
-  position: relative;
-  width: 100%;
-  padding: 0 !important;
-  overflow: hidden;
-}
-.timeline-viewport {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-.timeline-track {
-  display: flex;
-  align-items: center;
-  height: 84vh;
-  min-height: 580px;
-  max-height: 760px;
-  padding: 0 5vw;
-  gap: 3.5vw;
-  will-change: transform;
-}
-
-/* Card Introdutório Lateral */
-.timeline-lead-card {
-  flex: 0 0 clamp(280px, 22vw, 360px);
-  height: 100%;
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--areia-clara);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(24px, 2.5vw, 36px);
-  box-shadow: 0 12px 36px rgba(13, 27, 42, 0.08);
-  border: 1px solid rgba(13, 27, 42, 0.08);
-}
-.timeline-lead-card img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.timeline-lead-card:hover img {
-  transform: scale(1.03);
-}
-.timeline-lead-card .lead-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(13, 27, 42, 0.15) 0%, rgba(13, 27, 42, 0.45) 45%, rgba(13, 27, 42, 0.92) 100%);
-  pointer-events: none;
-}
-.timeline-lead-card .lead-content {
-  position: relative;
-  z-index: 2;
-  color: var(--branco);
-}
-
-/* Área da Linha e Marcos */
-.timeline-canvas {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  width: max-content;
-}
-
-/* Eixo Central */
-.timeline-axis {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  transform: translateY(-50%);
-  z-index: 4;
-  background: rgba(13, 27, 42, 0.12);
-}
-.timeline-section--branco .timeline-axis {
-  background: rgba(13, 27, 42, 0.1);
-}
-.timeline-journey-line {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0%;
-  background: var(--marinho);
-  border-radius: 9999px;
-  will-change: width;
-}
-.timeline-cap-start, .timeline-cap-end {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--marinho);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-}
-.timeline-cap-start { left: -4px; }
-.timeline-cap-end { right: -4px; }
-
-/* Metades Topo e Base */
-.timeline-half {
-  height: 50%;
-  display: flex;
-  align-items: stretch;
-  position: relative;
-  z-index: 3;
-}
-.timeline-half--top {
-  align-items: flex-end;
-  padding-bottom: 0;
-}
-.timeline-half--bottom {
-  align-items: flex-start;
-  padding-top: 0;
-}
-
-/* Colunas de Título e Subtítulo */
-.timeline-col-header {
-  width: clamp(240px, 20vw, 320px);
-  padding-right: clamp(20px, 2.5vw, 40px);
-  padding-bottom: 34px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.timeline-col-header h2 {
-  font-size: clamp(22px, 2.2vw, 32px);
-  font-weight: 350;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin: 0;
-  color: var(--marinho);
-}
-.timeline-col-sub {
-  width: clamp(240px, 20vw, 320px);
-  padding-right: clamp(20px, 2.5vw, 40px);
-  padding-top: 34px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.timeline-col-sub p {
-  font-size: clamp(13px, 1vw, 15px);
-  line-height: 1.5;
-  color: var(--texto2);
-  margin: 0;
-}
-
-/* Fileiras de Itens */
-.timeline-items-row {
-  display: flex;
-  align-items: stretch;
-  gap: clamp(50px, 6vw, 100px);
-  width: max-content;
-}
-.timeline-items-row--bottom {
-  margin-left: calc(clamp(260px, 21vw, 320px) / 2 + clamp(50px, 6vw, 100px) / 2);
-}
-
-/* Item Individual da Timeline */
-.timeline-item {
-  position: relative;
-  width: clamp(260px, 21vw, 320px);
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-}
-.timeline-item--top {
-  justify-content: flex-end;
-  padding-bottom: 34px;
-}
-.timeline-item--bottom {
-  justify-content: flex-start;
-  padding-top: 34px;
-}
-
-/* Hastes e Pontos */
-.timeline-stem {
-  position: absolute;
-  left: 36px;
-  width: 1px;
-  background: var(--marinho);
-  z-index: 5;
-  transform-origin: bottom;
-  will-change: transform;
-}
-.timeline-item--top .timeline-stem {
-  bottom: 0;
-  height: 34px;
-  transform-origin: bottom center;
-}
-.timeline-item--bottom .timeline-stem {
-  top: 0;
-  height: 34px;
-  transform-origin: top center;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: 36px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--areia);
-  border: 2px solid var(--marinho);
-  box-shadow: 0 0 0 2px rgba(200, 157, 102, 0.25);
-  z-index: 6;
-  transform: translate(-50%, -50%);
-  will-change: transform;
-}
-.timeline-section--branco .timeline-dot {
-  background: var(--areia);
-  border-color: var(--marinho);
-}
-.timeline-item--top .timeline-dot {
-  bottom: 0;
-  transform: translate(-50%, 50%);
-}
-.timeline-item--bottom .timeline-dot {
-  top: 0;
-  transform: translate(-50%, -50%);
-}
-
-/* Card de Conteúdo do Marco */
-.timeline-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--fio);
-  padding: clamp(18px, 1.8vw, 24px);
-  border-radius: 6px;
-  box-shadow: 0 4px 16px rgba(13, 27, 42, 0.04);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  will-change: transform, opacity;
-}
-.timeline-section--branco .timeline-card {
-  background: var(--papel);
-  border-color: rgba(13, 27, 42, 0.08);
-}
-.timeline-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--areia);
-  box-shadow: 0 8px 24px rgba(13, 27, 42, 0.08);
-}
-
-.timeline-card-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.timeline-card-header .ic {
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--ardosia);
-  display: grid;
-  place-items: center;
-  color: var(--marinho);
-  flex-shrink: 0;
-}
-.timeline-card-header .ic svg {
-  width: 17px;
-  height: 17px;
-}
-
-.timeline-step-num {
-  position: absolute;
-  right: 18px;
-  top: 14px;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ardosia);
-  opacity: 0.6;
-}
-.timeline-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--areia);
-}
-.timeline-item h4 {
-  font-size: clamp(16px, 1.3vw, 19px);
-  font-weight: 450;
-  letter-spacing: -0.015em;
-  line-height: 1.25;
-  margin: 6px 0 8px;
-  color: var(--marinho);
-}
-.timeline-item p {
-  font-size: clamp(13px, 1vw, 14.5px);
-  line-height: 1.45;
-  color: var(--texto2);
-  margin: 0;
-}
-.timeline-item p b, .timeline-item p .mono {
-  color: var(--marinho);
-}
-
-/* Card Final da Timeline */
-.timeline-outro-card {
-  flex: 0 0 clamp(280px, 22vw, 340px);
-  height: 100%;
-  border: 1px dashed var(--ardosia);
-  border-radius: 8px;
-  padding: clamp(24px, 2.5vw, 36px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.45);
-}
-.timeline-quote {
-  font-family: var(--serif);
-  font-size: clamp(22px, 2vw, 28px);
-  font-weight: 350;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  color: var(--marinho);
-  margin: 12px 0 0;
-}
-.timeline-quote b {
-  font-weight: 500;
-  color: var(--areia);
-}
-
-/* Mobile & Touch Fallback */
-@media (max-width: 900px) {
-  .timeline-section {
-    padding: clamp(48px, 8vw, 80px) 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    overflow-x: clip !important;
-  }
-  .timeline-viewport {
-    min-height: auto;
-    overflow: hidden !important;
-    overflow-x: clip !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  .timeline-track {
-    height: auto;
-    max-height: none;
-    min-height: auto;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 32px;
-    padding: 0 max(20px, env(safe-area-inset-left, 0px)) !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    transform: none !important;
-  }
-  .timeline-lead-card {
-    height: 320px;
-    flex: none;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .timeline-canvas {
-    height: auto;
-    flex-direction: column;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .timeline-axis {
-    display: none !important;
-  }
-  .timeline-half {
-    height: auto;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .timeline-col-header, .timeline-col-sub {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 0 20px 0;
-    box-sizing: border-box !important;
-  }
-  .timeline-items-row {
-    flex-direction: column;
-    gap: 20px;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .timeline-items-row--bottom {
-    margin-left: 0 !important;
-  }
-  .timeline-item {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0;
-    box-sizing: border-box !important;
-  }
-  .timeline-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .timeline-stem, .timeline-dot {
-    display: none !important;
-  }
-  .timeline-outro-card {
-    height: auto;
-    flex: none;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 24px;
-    box-sizing: border-box !important;
-  }
-}
-
-/* View */
-.view .cab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 80px;align-items:start}
-@media (max-width:940px){.view .cab{grid-template-columns:1fr}}
-.view .lead{margin-top:24px}
-.papeis{display:flex;flex-direction:column}
-.papel{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 24px;padding:18px 0;border-top:1px solid rgba(135,148,163,.35)}
-.papel:last-child{border-bottom:1px solid rgba(135,148,163,.35)}
-.papel .mono{color:var(--areia);padding-top:3px}
-.papel p{font-size:16px;color:var(--claro2)}
-@media (max-width:520px){.papel{grid-template-columns:1fr}}
-/* ===== CARD FAN CAROUSEL (3D Fan Arc) ===== */
-.card-fan-carousel {
-  margin-top: clamp(48px, 6vw, 84px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  overflow-x: clip;
-  user-select: none;
-  box-sizing: border-box;
-}
-.card-fan-stage {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  height: clamp(380px, 36vw, 490px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1200px;
-  overflow: hidden;
-  overflow-x: clip;
-  box-sizing: border-box;
-}
-.card-fan-deck {
-  position: relative;
-  width: clamp(210px, 18vw, 260px);
-  height: clamp(350px, 31vw, 440px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: grab;
-}
-.card-fan-deck:active {
-  cursor: grabbing;
-}
-.fan-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 26px;
-  overflow: hidden;
-  background: var(--abismo);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
-  cursor: pointer;
-  transform-origin: 50% 120%;
-  transition: transform 0.52s cubic-bezier(0.25, 1, 0.5, 1),
-              box-shadow 0.4s ease,
-              border-color 0.4s ease,
-              opacity 0.4s ease;
-  will-change: transform, opacity;
-}
-.fan-card--active {
-  border-color: rgba(200, 157, 102, 0.85);
-  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.85), 0 0 0 2px var(--areia);
-}
-.fan-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  overflow: hidden;
-}
-.fan-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  pointer-events: none;
-}
-.fan-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(6, 13, 21, 0.25) 0%, rgba(6, 13, 21, 0) 40%, rgba(6, 13, 21, 0.75) 100%);
-  pointer-events: none;
-}
-.fan-card-chip {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  padding: 4px 10px;
-  background: rgba(6, 13, 21, 0.75);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 999px;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--branco);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  letter-spacing: 0.04em;
-}
-.fan-card-chip span {
-  color: var(--areia);
-  font-weight: 500;
-}
-
-/* Legenda do Card Ativo */
-.fan-caption {
-  margin-top: 26px;
-  text-align: center;
-  max-width: 580px;
-  min-height: 96px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.fan-caption-badge {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--areia);
-}
-.fan-caption-title {
-  font-size: clamp(22px, 2.2vw, 28px);
-  font-weight: 450;
-  letter-spacing: -0.015em;
-  color: var(--branco);
-  margin: 6px 0 8px;
-}
-.fan-caption-desc {
-  font-size: clamp(14px, 1.1vw, 16px);
-  line-height: 1.45;
-  color: var(--claro2);
-  margin: 0;
-}
-
-/* Controles de Navegação (Botões & Dots) */
-.fan-controls {
-  margin-top: 18px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.fan-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: var(--branco);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-.fan-btn:hover {
-  background: rgba(200, 157, 102, 0.2);
-  border-color: var(--areia);
-  transform: scale(1.06);
-}
-.fan-btn svg {
-  width: 18px;
-  height: 18px;
-}
-.fan-dots {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.fan-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease, width 0.3s ease;
-}
-.fan-dot--active {
-  background: var(--areia);
-  width: 22px;
-  border-radius: 999px;
-  box-shadow: 0 0 10px rgba(200, 157, 102, 0.45);
-}
-
-@media (max-width: 600px) {
-  .card-fan-stage {
-    height: 380px;
-  }
-  .card-fan-deck {
-    width: 200px;
-    height: 330px;
-  }
-}
-
-/* case */
-.case .grade{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:44px 72px;align-items:start}
-@media (max-width:940px){.case .grade{grid-template-columns:1fr}}
-.case .logo-slot{width:180px;height:72px;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:var(--mono);font-size:11.5px;color:var(--texto2)}
-.case .logo-slot img{max-width:100%;max-height:100%;object-fit:contain;object-position:center;margin:0 auto;display:block}
-.case h2{margin-top:28px}
-.case .texto{margin-top:24px;display:flex;flex-direction:column;gap:16px}
-.fotos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.slot{position:relative;background:var(--areia-clara);aspect-ratio:4/3;max-width:100%;display:flex;align-items:flex-end;overflow:hidden;margin:0}
-.slot--alta{grid-row:span 2;aspect-ratio:auto;min-height:100%}
-.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.slot--alta img{object-position:40% center}
-.slot .tag{position:relative;margin:10px;font-family:var(--mono);font-size:11px;background:var(--branco);color:var(--marinho);padding:4px 8px;line-height:1.4;z-index:2}
-.slot .vazio{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--texto2);text-align:center;padding:16px}
-@media (max-width:560px){.fotos{grid-template-columns:1fr}.slot--alta{grid-row:auto;aspect-ratio:4/3}}
-
-/* fundador */
-.fundador .grade{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:44px 80px;align-items:center}
-@media (max-width:900px){.fundador .grade{grid-template-columns:1fr}.fundador .slot{max-width:420px}}
-.fundador .slot{aspect-ratio:4/5;background:var(--areia)}
-.fundador .slot img{object-position:center 15%}
-.fundador .slot .vazio{color:var(--marinho)}
-.citacao{font-size:clamp(25px,3.2vw,40px);font-weight:250;letter-spacing:-.025em;line-height:1.18;max-width:24ch;text-wrap:balance}
-.fundador .lead{margin-top:26px}
-.assin{margin-top:28px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.assin svg{width:40px;height:40px;color:var(--marinho)}
-.assin .nome{font-weight:500}
-.assin .mono{color:var(--texto2)}
-
-/* diagnóstico */
-.diag .grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px 80px;align-items:center}
-@media (max-width:940px){.diag .grade{grid-template-columns:1fr}}
-.diag .lead{color:var(--marinho);margin-top:24px}
-.simbolo-diag{color:var(--marinho);width:clamp(56px,7vw,88px);height:auto;margin-bottom:28px;display:block}
-.form{background:var(--branco);padding:clamp(22px,3.5vw,40px);display:flex;flex-direction:column;gap:18px;min-width:0}
-.form h3{font-size:24px;font-weight:350;letter-spacing:-.02em}
-.campo{display:flex;flex-direction:column;gap:6px;min-width:0;position:relative}
-.campo label{font-family:var(--mono);font-size:12px;color:var(--texto2)}
-.campo input,.campo select{font:inherit;font-size:16px;color:var(--marinho);background:var(--branco);border:0;border-bottom:1px solid var(--ardosia);padding:10px 0;border-radius:0;outline:none;width:100%;min-height:44px;-webkit-appearance:none;appearance:none}
-.campo select{background-image:linear-gradient(45deg,transparent 50%,var(--marinho) 50%),linear-gradient(135deg,var(--marinho) 50%,transparent 50%);background-position:calc(100% - 10px) 52%,calc(100% - 5px) 52%;background-size:5px 5px;background-repeat:no-repeat;padding-right:24px}
-.duas{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media (max-width:560px){.duas{grid-template-columns:1fr}}
-.form .pilula{margin-top:8px;width:100%}
-.form .aparte{text-align:center}
-
-/* perguntas frequentes */
-.faq .grade{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:36px 80px}
-@media (max-width:900px){.faq .grade{grid-template-columns:1fr}}
-.faq details{border-top:1px solid var(--fio)}
-.faq details:last-child{border-bottom:1px solid var(--fio)}
-.faq summary{list-style:none;cursor:pointer;padding:22px 40px 22px 0;font-size:19px;font-weight:450;letter-spacing:-.01em;position:relative;line-height:1.35}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";position:absolute;right:6px;top:28px;width:11px;height:11px;border-right:1px solid var(--marinho);border-bottom:1px solid var(--marinho);transform:rotate(45deg)}
-.faq details[open] summary::after{transform:rotate(225deg);top:34px}
-.faq details p{padding:0 0 24px;color:var(--texto2);font-size:16.5px}
-
-/* rodapé */
-.rodape{padding-block:clamp(64px,8vw,104px) 40px}
-.rodape .topo-r{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:44px 80px;align-items:end}
-@media (max-width:900px){.rodape .topo-r{grid-template-columns:1fr}}
-.rodape h2{font-size:clamp(34px,5.4vw,72px)}
-.contatos{display:flex;flex-direction:column}
-.contato{display:grid;grid-template-columns:92px minmax(0,1fr) auto;gap:12px;align-items:center;padding:16px 0;border-top:1px solid rgba(135,148,163,.35)}
-.contato .mono{color:var(--ardosia)}
-.contato .val{font-size:17px;overflow-wrap:anywhere;min-width:0}
-.contato .val a{text-decoration:none}
-.contato .val a:hover{text-decoration:underline}
-.copiar{font-family:var(--mono);font-size:11.5px;background:transparent;color:var(--areia);border:1px solid rgba(200,181,147,.5);padding:8px 12px;border-radius:999px;cursor:pointer;min-height:36px}
-.copiar:hover{background:rgba(200,181,147,.12)}
-@media (max-width:420px){.contato{grid-template-columns:1fr auto}.contato .mono{grid-column:1 / -1}}
-.base{margin-top:56px;padding-top:24px;border-top:1px solid rgba(135,148,163,.25);display:flex;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:12px;color:var(--ardosia)}
-.base .logo{color:var(--branco)}
-
-/* barra fixa no celular */
-.barra{position:fixed;left:0;right:0;bottom:0;z-index:25;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--fio);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));transform:translate3d(0,calc(100% + 8px),0)}
-.barra .pilula{width:100%;min-height:48px;padding:12px 20px}
-.barra.on{transform:none}
-@media (min-width:861px){.barra{display:none}}
-@media (max-width:860px){.rodape{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
-
-/* ============ MOTION ============
-   Um único vocabulário: ease-out exponencial (--ease) para tudo que entra ou responde;
-   ease-in curto só para o que sai. Só transform e opacity animam movimento;
-   cor muda em --t-micro. Estados ocultos existem apenas com a classe .m (JS ativo e
-   sem prefers-reduced-motion), então a página nunca depende de script para aparecer. */
-
-/* hero: uma sequência de abertura, nada mais na página toca sozinho */
-@keyframes sobe{from{opacity:0;transform:translate3d(0,var(--rise),0)}}
-@keyframes sobe-fone{from{opacity:0;transform:translate3d(0,24px,0) scale(.985)}}
-@keyframes marca{from{background-size:0% 100%}}
-.m .hero .grade > div:first-child > *{animation:sobe var(--t-reveal) var(--ease) both}
-.m .hero .grade > div:first-child > :nth-child(1){animation-delay:40ms}
-.m .hero .grade > div:first-child > :nth-child(2){animation-delay:110ms}
-.m .hero .grade > div:first-child > :nth-child(3){animation-delay:180ms}
-.m .hero .grade > div:first-child > :nth-child(4){animation-delay:250ms}
-.m .hero .grade > div:first-child > :nth-child(5){animation-delay:320ms}
-.m .hero .lado{animation:sobe-fone 1000ms var(--ease) 220ms both}
-.m .hero .marca{animation:marca 900ms var(--ease) 620ms both}
-
-/* reveals de seção: fade + 14px, stagger de 60ms definido pelo JS em --d */
-.m :is(.clientes .mono,.clientes li,.cab > :not(.papeis),.papel,.risco,.dado .wrap > div > *,.etapa,.frase-metodo,.grupo-cab,.servico,.tela,.jornada .aparte,.dica-arraste,.case .logo-slot,.case h2,.case .texto > *,.fotos > *,.fundador .slot,.citacao,.fundador .lead,.assin,.diag .grade > div > *,.form,.faq h2,.faq details,.rodape h2,.contato){
-  opacity:0;transform:translate3d(0,var(--rise),0)}
-.m .rv-in{opacity:1!important;transform:none!important;
-  transition:opacity var(--t-reveal) var(--ease) var(--d,0ms),transform var(--t-reveal) var(--ease) var(--d,0ms)}
-
-/* risco e correção: risca o hábito, depois mostra a resposta */
-.m .risco .risca{background-size:0% 1.5px}
-.m .risco.rv-in .risca{background-size:100% 1.5px;transition:background-size 560ms var(--ease) calc(var(--d,0ms) + 260ms)}
-.m .risco .correcao{opacity:0;transform:translate3d(0,6px,0) scale(.97);transform-origin:left center}
-.m .risco.rv-in .correcao{opacity:1;transform:none;transition:opacity 420ms var(--ease) calc(var(--d,0ms) + 620ms),transform 420ms var(--ease) calc(var(--d,0ms) + 620ms)}
-
-/* o corte do método se desenha da esquerda para a direita */
-.m .etapas::before{transform:scaleX(0);transform-origin:left}
-.m .etapas.desenha::before{transform:scaleX(1);transition:transform 1200ms var(--ease) 120ms}
-@media (max-width:900px){
-  .m .etapas::before{transform:scaleY(0);transform-origin:top}
-  .m .etapas.desenha::before{transform:scaleY(1)}
-}
-
-/* botões: resposta imediata, sem atraso no hover; press comprime 2% */
-.pilula{transition:background-color var(--t-micro) var(--ease),border-color var(--t-micro) var(--ease),transform var(--t-ui) var(--ease)}
-.pilula:active{transform:scale(.98);transition-duration:var(--t-press)}
-.pilula svg{transition:transform var(--t-ui) var(--ease)}
-@media (hover:hover){.pilula:hover svg{transform:rotate(-8deg) scale(1.06)}}
-
-/* links: sublinhado que corre da esquerda e volta pela direita */
-.link{position:relative;background:linear-gradient(var(--ardosia),var(--ardosia)) no-repeat 0 100%/100% 1px;transition:color var(--t-micro) var(--ease)}
-.link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--marinho);transform:scaleX(0);transform-origin:right center;transition:transform var(--t-ui) var(--ease)}
-@media (hover:hover){.link:hover::after{transform:scaleX(1);transform-origin:left center}}
-.link:focus-visible::after{transform:scaleX(1)}
-
-/* cabeçalho: borda e vidro aparecem só depois de rolar */
-.topo{transition:border-color var(--t-ui) var(--ease),background-color var(--t-ui) var(--ease)}
-.topo.rolado{border-bottom-color:var(--fio);background:rgba(255,255,255,.94)}
-.logo{transition:opacity var(--t-micro) var(--ease)}
-@media (hover:hover){.logo:hover{opacity:.7}}
-.nav a.item{position:relative;transition:color var(--t-micro) var(--ease)}
-.nav a.item::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--marinho);transform:scaleX(0);transition:transform var(--t-ui) var(--ease)}
-.nav a.item.ativo{color:var(--texto)}
-.nav a.item.ativo::after{transform:scaleX(1)}
-
-/* formulário: a linha do campo se completa no foco */
-.campo input,.campo select{transition:border-color var(--t-micro) var(--ease)}
-.campo label{transition:color var(--t-micro) var(--ease)}
-.campo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--marinho);transform:scaleX(0);transform-origin:left center;transition:transform var(--t-ui) var(--ease);pointer-events:none}
-.campo:focus-within::after{transform:scaleX(1)}
-.campo:focus-within label{color:var(--marinho)}
-@media (hover:hover){.campo input:hover,.campo select:hover{border-bottom-color:var(--texto2)}}
-
-/* perguntas: chevron gira, resposta entra com fade curto */
-@keyframes abre{from{opacity:0;transform:translate3d(0,-4px,0)}}
-.faq summary{transition:color var(--t-micro) var(--ease)}
-.faq summary::after{transition:transform var(--t-ui) var(--ease),top var(--t-ui) var(--ease)}
-@media (hover:hover){.faq summary:hover{color:var(--mare)}}
-.faq details[open] p{animation:abre var(--t-ui) var(--ease) both}
-
-/* copiar: confirmação por cor, sem mudar o tamanho */
-.copiar{transition:background-color var(--t-micro) var(--ease),color var(--t-micro) var(--ease),border-color var(--t-micro) var(--ease),transform var(--t-ui) var(--ease)}
-.copiar:active{transform:scale(.96);transition-duration:var(--t-press)}
-.copiar.ok{background:var(--areia);color:var(--abismo);border-color:var(--areia)}
-
-/* barra do celular: entra com ease-out, sai mais rápido com ease-in */
-.barra{transition:transform 240ms var(--ease-in)}
-.barra.on{transition:transform 460ms var(--ease)}
-
-/* imagens: nunca "pipocam", aparecem quando decodificadas */
-.iphone img{transition:opacity 500ms var(--ease)}
-.iphone img.carregando{opacity:0}
-@keyframes surge{from{opacity:0}}
-.slot img{animation:surge 600ms var(--ease) both}
-
-/* carrossel do View no celular: progresso e dica que some ao arrastar */
-.progresso{display:none}
-@media (max-width:900px){
-  .progresso{display:block;height:1px;background:rgba(135,148,163,.3);margin-top:20px;overflow:hidden}
-  .progresso i{display:block;height:100%;background:var(--areia);transform-origin:left center;transform:scaleX(.25)}
-  .dica-arraste{transition:opacity var(--t-ui) var(--ease)}
-  .dica-arraste.some{opacity:0}
-}
-
-/* ============ LAYOUT CENTRALIZADO (padrão de página de produto) ============
-   Hero, títulos de seção e CTAs no eixo central; leitura longa, listas e formulário
-   ficam alinhados à esquerda dentro de colunas centradas. Toques com 44 pt no mínimo. */
-.hero{text-align:center}
-.hero .grade{grid-template-columns:1fr;justify-items:center;gap:clamp(48px,6vw,72px);width:100%}
-.hero .grade > div:first-child{display:flex;flex-direction:column;align-items:center;max-width:900px;width:100%}
-.hero h1{max-width:15ch;width:100%}
-.hero .lead{margin-left:auto;margin-right:auto;max-width:54ch;width:100%}
-.hero .acoes{justify-content:center;width:100%}
-.hero .lado{align-items:center;width:100%}
-.rotulos{justify-content:center}
-.case .rotulos,.fundador .rotulos{justify-content:flex-start}
-
-/* cabeçalhos de seção */
-.ganhos .cab,.servicos .cab,.metodo .cab{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;max-width:860px;margin:0 auto;width:100%}
-.cab .lead{margin-left:auto;margin-right:auto;max-width:58ch}
-.cab h2{max-width:20ch}
-
-/* dado */
-.dado .wrap{grid-template-columns:1fr;justify-items:center;text-align:center;max-width:900px;gap:28px;width:100%}
-.dado .lead{margin:0 auto}
+/* ===== seções em fluxo ===== */
+.secao{position:relative;padding-block:clamp(72px,13vh,140px)}
+.cab{display:flex;flex-direction:column;gap:16px;max-width:760px}
+.cab .mono{color:var(--texto2)}
 
 /* método */
-.frase-metodo{text-align:center;margin-left:auto;margin-right:auto}
+.metodo{padding-top:clamp(36px,6vh,80px)}
+.trilho{position:relative;margin-top:40px;display:grid;grid-template-columns:repeat(4,56px);justify-content:space-between;max-width:520px}
+.trilho::before,.trilho .cheio{content:"";position:absolute;left:28px;right:28px;top:27px;height:2px;background:var(--fio)}
+.trilho .cheio{background:var(--marinho);transform-origin:left center;transform:scaleX(calc(var(--i,0) / 3));transition:transform .6s var(--ios)}
+.etp{position:relative;z-index:1;width:56px;height:56px;border:1px solid var(--marinho);border-radius:0;background:var(--papel);font-family:var(--mono);font-size:14px;cursor:pointer;transition:background-color .3s var(--ease),color .3s var(--ease),transform .32s var(--ease);touch-action:manipulation}
+.etp:active{transform:scale(.94);transition-duration:.09s}
+.etp.feita{background:var(--areia)}
+.etp[aria-selected="true"]{background:var(--marinho);color:var(--branco)}
+.dica{margin-top:14px;color:var(--texto2)}
 
-/* View */
-.view .cab{display:flex;flex-direction:column;align-items:center;gap:clamp(40px,5vw,64px);width:100%}
-.view .cab > div:first-child{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:860px;width:100%}
-.view .cab .lead{margin-left:auto;margin-right:auto;max-width:56ch}
-.papeis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 36px;width:100%}
-.papel{grid-template-columns:1fr;gap:8px;padding:20px 0}
-.papel:last-child{border-bottom:0}
-@media (max-width:820px){.papeis{grid-template-columns:1fr}.papel:last-child{border-bottom:1px solid rgba(135,148,163,.35)}}
-.jornada .aparte,.dica-arraste{text-align:center}
-@media (min-width:901px){.telas{max-width:1080px;margin:0 auto}}
+.corpo-metodo{margin-top:28px;display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+.quadros{display:grid}
+.maquete{position:relative;margin:0;aspect-ratio:4/3;max-width:100%;background:var(--branco);overflow:hidden;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+.maquete.pega{cursor:grabbing}
+.maquete canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fotos-etapa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s var(--ease);pointer-events:none}
+.fotos-etapa img.on{opacity:1}
+.maquete .etq{position:absolute;left:0;bottom:0;transition:opacity .3s var(--ease)}
+.gira{position:absolute;right:12px;top:12px;color:var(--texto2);transition:opacity .5s var(--ease);pointer-events:none}
+.gira.some{opacity:0}
+.quadro{grid-area:1 / 1;display:grid;grid-template-columns:minmax(0,1fr);gap:22px;opacity:0;visibility:hidden;transform:translate3d(18px,0,0);transition:opacity .42s var(--ease),transform .5s var(--ease),visibility 0s linear .42s}
+.quadro.antes{transform:translate3d(-18px,0,0)}
+.quadro.ativo{opacity:1;visibility:visible;transform:none;transition:opacity .42s var(--ease) .06s,transform .5s var(--ease) .06s,visibility 0s}
+.ilustra{position:relative;margin:0;aspect-ratio:4/3;max-width:100%;background:var(--branco);overflow:hidden;display:flex;align-items:flex-end}
+.ilustra > svg{position:absolute;inset:0;width:100%;height:100%;color:var(--marinho)}
+.ilustra > svg [pathLength]{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s var(--ease) .15s}
+.quadro.ativo .ilustra > svg [pathLength]{stroke-dashoffset:0}
+.ilustra img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.etq{position:relative;z-index:1;margin:10px;padding:4px 8px;background:var(--papel);font-family:var(--mono);font-size:12px;line-height:1.4}
+.quadro .txt{display:flex;flex-direction:column;gap:12px}
+.quadro .mono{color:var(--texto2)}
+.quadro h3{font-size:clamp(30px,5vw,40px);font-weight:250;letter-spacing:-0.035em;line-height:1.05}
+.quadro p{font-size:18px;line-height:1.45;max-width:26em}
+.feito{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--fio)}
+.feito li{display:flex;align-items:center;gap:12px;min-height:48px;border-bottom:1px solid var(--fio);font-size:16px;font-weight:500}
+.feito li::before{content:"";width:8px;height:8px;flex:none;background:var(--areia);box-shadow:0 0 0 1px var(--marinho)}
+@media (min-width:860px){.corpo-metodo{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}}
 
-/* case */
-.case .grade{grid-template-columns:1fr;justify-items:center;gap:clamp(40px,5vw,64px);width:100%}
-.case .grade > div:first-child{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:760px;width:100%}
-.case .logo-slot{margin:0 auto;justify-content:center}
-.case .logo-slot img{margin:0 auto;object-position:center}
-.case .texto{align-items:center}
-.case .texto p{margin:0 auto}
-.case .fotos{width:100%;max-width:1040px}
-
-/* fundador: duas colunas desde o tablet */
-@media (min-width:720px) and (max-width:900px){.fundador .grade{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
-@media (max-width:719px){
-  .fundador .grade{grid-template-columns:1fr;justify-items:center;text-align:center}
-  .fundador .slot{margin:0 auto;width:100%;max-width:340px}
-  .fundador .citacao{margin:0 auto;text-align:center}
-  .fundador .lead{margin:20px auto 0;text-align:center}
-  .fundador .assin{justify-content:center;margin:24px auto 0}
+/* método como cena: o palco fica fixo e a rolagem percorre as 4 etapas */
+.secao.metodo{padding:0;height:calc(var(--vh) * 3.7)}
+.metodo-palco{position:sticky;top:0;height:var(--vh);display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:16px;padding-top:calc(20px + env(safe-area-inset-top,0px));padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+.metodo-palco .cab{gap:8px}
+.metodo-palco h2{font-size:clamp(28px,7.4vw,34px)}
+.metodo-palco .trilho{margin-top:2px}
+.metodo-palco .dica{display:none}
+.metodo-palco .corpo-metodo{margin-top:0;min-height:0;grid-template-rows:minmax(0,1fr) auto;gap:14px}
+.metodo-palco .maquete{aspect-ratio:auto;height:100%;min-height:110px}
+.metodo-palco .quadro .txt{gap:8px}
+.metodo-palco .quadro h3{font-size:28px}
+.metodo-palco .quadro p{font-size:16px;line-height:1.4}
+.metodo-palco .feito{margin-top:2px}
+.metodo-palco .feito li{min-height:38px;font-size:15px}
+@media (max-height:690px){.metodo-palco .cab .mono{display:none}.metodo-palco .feito li{min-height:32px}.metodo-palco .etp{height:48px}.metodo-palco .trilho::before,.metodo-palco .trilho .cheio{top:23px}}
+@media (min-width:860px){
+  .metodo-palco{gap:24px;padding-top:96px;padding-bottom:40px}
+  .metodo-palco h2{font-size:clamp(40px,4.4vw,60px)}
+  .metodo-palco .corpo-metodo{grid-template-rows:minmax(0,1fr);gap:56px}
+  .metodo-palco .maquete{max-height:560px;align-self:center}
+  .metodo-palco .quadro .txt{gap:12px}
+  .metodo-palco .quadro h3{font-size:clamp(30px,3.4vw,40px)}
+  .metodo-palco .quadro p{font-size:18px}
+  .metodo-palco .feito li{min-height:48px;font-size:16px}
 }
+
+/* clientes e case */
+.rolo{margin-top:32px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rolo div{display:flex;gap:44px;width:max-content;white-space:nowrap;font-size:clamp(22px,3.4vw,34px);font-weight:250;letter-spacing:-0.025em;animation:rola 34s linear infinite}
+@keyframes rola{to{transform:translate3d(-50%,0,0)}}
+.case{margin-top:clamp(48px,8vh,88px);display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+.slot{position:relative;margin:0;background:var(--areia-clara);overflow:hidden;display:flex;align-items:flex-end;max-width:100%}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slot .vazio{position:absolute;inset:0;display:grid;place-items:center;padding:16px;text-align:center;font-family:var(--mono);font-size:13px;color:var(--texto2)}
+.case .slot{aspect-ratio:16/10}
+.case .txt{display:flex;flex-direction:column;gap:10px}
+.case h3{font-size:clamp(26px,4vw,36px);font-weight:250;letter-spacing:-0.03em;line-height:1.08}
+.falta{font-family:var(--mono);font-size:13px;color:var(--falta)}
+.fundador{margin-top:8px;padding-top:20px;border-top:1px solid var(--fio);display:grid;grid-template-columns:72px minmax(0,1fr);gap:16px;align-items:center}
+#clientes{padding-bottom:clamp(28px,5vh,56px)}
+.fundador.so{margin-top:clamp(40px,7vh,72px);max-width:560px}
+.fundador .slot{width:72px;height:90px;background:var(--areia)}
+.fundador .slot .vazio{font-size:12px;color:var(--marinho);padding:4px}
+.fundador blockquote{margin:0;font-size:19px;line-height:1.3;font-weight:250;letter-spacing:-0.015em}
+.fundador cite{display:block;margin-top:6px;font-style:normal;font-family:var(--mono);font-size:12px;color:var(--texto2)}
+@media (min-width:860px){.case{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:56px;align-items:end}}
 
 /* diagnóstico */
-.diag .grade{grid-template-columns:1fr;justify-items:center;gap:clamp(36px,5vw,56px);width:100%}
-.diag .grade > div:first-child{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:760px;width:100%}
-.diag .lead{margin-left:auto;margin-right:auto}
-.form{width:100%;max-width:640px}
+.diag{padding-bottom:calc(132px + env(safe-area-inset-bottom,0px))}
+.diag .grade{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+.simbolo{width:64px;height:64px;color:var(--marinho);display:block;margin-bottom:8px}
+.diag .cab p{font-size:18px;max-width:24em}
+.form{background:var(--branco);padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:18px}
+.campo{position:relative;display:flex;flex-direction:column;gap:4px}
+.campo label,.fases legend{font-family:var(--mono);font-size:12px;color:var(--texto2);padding:0}
+.campo input{font:inherit;font-size:16px;color:var(--marinho);height:46px;border:0;border-bottom:1px solid var(--ardosia);border-radius:0;padding:0;background:transparent;outline:none;width:100%}
+.campo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--marinho);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.campo:focus-within::after{transform:scaleX(1)}
+.fases{border:0;margin:0;padding:0;min-width:0;display:flex;flex-direction:column;gap:10px}
+.fases div{display:flex;flex-wrap:wrap;gap:8px}
+.fases label{position:relative;cursor:pointer}
+.fases input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.fases span{display:flex;align-items:center;min-height:46px;padding:0 16px;border-radius:999px;border:1px solid var(--ardosia);font-size:15px;transition:background-color .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),transform .32s var(--ease)}
+.fases input:active + span{transform:scale(.96);transition-duration:.09s}
+.fases input:checked + span{background:var(--marinho);border-color:var(--marinho);color:var(--branco);font-weight:500}
+.fases input:focus-visible + span{outline:2px solid var(--marinho);outline-offset:3px}
+.previa{display:flex;flex-direction:column;gap:8px}
+.form .previa .aparte{color:var(--texto2);font-size:12px;text-align:left}
+.previa output{display:block;padding:12px 14px;background:var(--papel);border-radius:16px 16px 16px 4px;font-size:15px;line-height:1.45;white-space:pre-line;overflow-wrap:anywhere}
+.form .pilula{width:100%}
+.form .aparte{text-align:center;color:var(--texto2)}
+.contatos{display:flex;flex-direction:column;margin-top:8px}
+.contato{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;min-height:60px;border-top:1px solid rgba(14,34,56,.2)}
+.contato:last-child{border-bottom:1px solid rgba(14,34,56,.2)}
+.contato .val{font-size:17px;font-weight:500;overflow-wrap:anywhere}
+.contato .val a{text-decoration:none}
+.copiar{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--marinho);background:transparent;font-family:var(--mono);font-size:12px;cursor:pointer;transition:background-color .2s var(--ease),color .2s var(--ease),transform .32s var(--ease)}
+.copiar:active{transform:scale(.95);transition-duration:.09s}
+.copiar.ok{background:var(--marinho);color:var(--branco)}
+.assina{margin-top:40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
+@media (max-width:440px){.contato{grid-template-columns:minmax(0,1fr) auto}.contato .aparte{grid-column:1 / -1;padding-top:10px}.contato{padding-bottom:10px}}
+@media (min-width:860px){.diag .grade{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;align-items:start}}
 
-/* perguntas */
-.faq .grade{grid-template-columns:1fr;justify-items:center;gap:clamp(32px,4vw,48px);width:100%}
-.faq h2{text-align:center}
-.faq .grade > div{width:100%;max-width:780px}
+/* títulos: as palavras entram em sequência */
+.pal{display:inline-block}
+@keyframes pal{from{opacity:0;transform:translate3d(0,.45em,0)}}
+.js .hero h1 .pal{animation:pal .9s var(--ease) both;animation-delay:calc(.12s + var(--k) * 60ms)}
+.js .rv h2 .pal{opacity:0;transform:translate3d(0,.45em,0)}
+.js .rv.in h2 .pal{opacity:1;transform:none;transition:opacity .8s var(--ease) calc(var(--k) * 55ms),transform .8s var(--ease) calc(var(--k) * 55ms)}
 
-/* rodapé */
-.rodape .topo-r{grid-template-columns:1fr;justify-items:center;text-align:center;gap:40px;width:100%}
-.contatos{width:100%;max-width:560px;text-align:left}
+/* entradas suaves das seções em fluxo */
+.js .rv{opacity:0;transform:translate3d(0,16px,0)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .75s var(--ease) var(--d,0ms),transform .75s var(--ease) var(--d,0ms)}
 
-/* toques: 44 pt de área mesmo quando o desenho é menor */
-.nav .pilula{min-height:44px}
-.nav a.item{padding-block:10px}
-.nav a.item::after{bottom:4px}
-.logo{position:relative}
-.logo::before,.link::before,.contato .val a::before,.assin a::before,.copiar::before{content:"";position:absolute}
-.logo::before{inset:-11px -8px}
-.link::before{inset:-12px -4px}
-.contato .val a,.assin a{position:relative}
-.contato .val a::before,.assin a::before{inset:-15px -4px}
-.copiar{position:relative}
-.copiar::before{inset:-4px}
+/* ===== telas largas ===== */
+@media (min-width:900px){
+  :root{--peek:30vh}
+  .palco{display:block;padding:0}
+  .fone-sobe{--th:min(calc(var(--vh) * .72), 660px)}
+  .marca{left:max(40px, calc((100vw - 1120px) / 2 + 20px));top:22px}
+  .marca svg{height:26px}
+  .hero,.guia{left:max(40px, calc((100vw - 1120px) / 2 + 20px));right:auto;width:min(46vw,560px);top:50%}
+  .hero{gap:22px;transform:translate3d(0,calc(-50% + var(--r) * -64px),0)}
+  .hero h1{font-size:clamp(56px,6.2vw,88px)}
+  .hero p{font-size:20px}
+  .guia{position:absolute;margin:0;display:block;transform:translateY(-50%)}
+  .guia .passos{display:block;position:relative;height:150px}
+  .passo{position:absolute;left:0;right:0;top:28px}
+  .passo .t{font-size:clamp(34px,3.6vw,52px)}
+  .passo .n{font-size:14px}
+  .pips{margin:20px 0 0}
+  .pips i{width:44px}
+  .fone-wrap{position:absolute;container-type:normal;padding:0;top:50%;right:max(40px, calc((100vw - 1120px) / 2 + 60px));margin-top:calc(min(var(--vh) * .72, 660px) * -.52);transform-origin:50% 60%}
+  .iphone{transform:perspective(1500px) rotateY(var(--ty,0deg)) rotateX(var(--tx,0deg))}
+  .doca{bottom:auto;top:18px;width:420px}
+  .diag{padding-bottom:120px}
+}
+@supports (height:100svh){@media (min-width:900px){:root{--peek:30svh}}}
 
-/* texto nunca abaixo de 12 px */
-.etq,.slot .tag,.copiar,.case .logo-slot{font-size:12px}
-
-/* tamanhos do aparelho no hero por faixa */
-@media (max-width:520px){
-  .hero h1{max-width:14ch;font-size:clamp(32px,8.5vw,42px)}
-  .hero .acoes{width:100%;flex-direction:column;align-items:center}
-  .hero .acoes .pilula{width:100%;max-width:380px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:1ms!important;animation-delay:0ms!important;animation-iteration-count:1!important;transition-duration:1ms!important;transition-delay:0ms!important}
+  .rolo div{animation:none;flex-wrap:wrap;width:auto;white-space:normal;gap:8px 28px}
+  .rolo div [aria-hidden]{display:none}
+  .toque{display:none}
 }
 </style>
-<script>(function(d){var r=d.documentElement;if(!('IntersectionObserver' in window)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;r.classList.add('m');setTimeout(function(){if(!r.classList.contains('m-ok'))r.classList.remove('m');},3000);})(document);</script>
+<link rel="preload" as="image" href="img/view-01-predio.jpg" fetchpriority="high">
 <link rel="canonical" href="https://diogonest.com.br/">
-<meta name="theme-color" content="#0E2238">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:site_name" content="Nest">
-<meta property="og:title" content="Nest · Aceleramos as vendas do seu lançamento">
-<meta property="og:description" content="Estratégia e tecnologia para lançamentos imobiliários. Peça o diagnóstico do próximo lançamento.">
-<meta property="og:url" content="https://diogonest.com.br/">
-<meta property="og:image" content="https://diogonest.com.br/img/og.jpg">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="Nest">
+<meta property="og:title" content="Nest · Seu lançamento vende antes da obra">
+<meta property="og:description" content="Estratégia e tecnologia para a construtora vender mais rápido. Peça o diagnóstico do próximo lançamento.">
+<meta property="og:url" content="https://diogonest.com.br/"><meta property="og:image" content="https://diogonest.com.br/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Nest", "alternateName": "Nest Pré-venda Imobiliária", "url": "https://diogonest.com.br/", "logo": "https://diogonest.com.br/favicon.svg", "slogan": "O valor chega antes da obra.", "description": "Aceleramos as vendas de lançamentos imobiliários com estratégia e tecnologia: diagnóstico, posicionamento, marketing estratégico, planejamento de campanhas, audiovisual, fotografia, landing pages, View (espelho de vendas 3D) e estudo de rentabilidade em curta temporada.", "telephone": "+55-27-99964-1146", "email": "diogonest@gmail.com", "areaServed": [{"@type": "City", "name": "Guarapari"}, {"@type": "State", "name": "Espírito Santo"}, {"@type": "Country", "name": "Brasil"}], "address": {"@type": "PostalAddress", "addressLocality": "Guarapari", "addressRegion": "ES", "addressCountry": "BR"}, "founder": {"@type": "Person", "name": "Diogo"}, "sameAs": ["https://instagram.com/diogonest"], "knowsAbout": ["lançamento imobiliário", "marketing imobiliário", "espelho de vendas 3D", "landing page imobiliária", "estudo de rentabilidade em curta temporada"]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "A Nest é uma produtora de vídeo?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A Nest acelera vendas de lançamentos com estratégia e tecnologia. Audiovisual e fotografia entram como etapas desse plano, junto com posicionamento, landing page, View e números."}}, {"@type": "Question", "name": "Posso contratar só uma parte?", "acceptedAnswer": {"@type": "Answer", "text": "Pode. Você contrata o lançamento inteiro ou só as etapas de que precisa, como a landing page ou o View. O diagnóstico ajuda a escolher."}}, {"@type": "Question", "name": "Quanto custa?", "acceptedAnswer": {"@type": "Answer", "text": "Cada lançamento tem escopo próprio, então a proposta vem depois do diagnóstico."}}, {"@type": "Question", "name": "O estudo de rentabilidade garante retorno?", "acceptedAnswer": {"@type": "Answer", "text": "Não. É uma estimativa em três cenários, com fonte, período e as regras do lugar, para o investidor ver de onde vem cada número."}}, {"@type": "Question", "name": "Vocês atendem fora de Guarapari?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Atendemos construtoras e imobiliárias em todo o Espírito Santo e, sob demanda, em outros estados."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Nest", "url": "https://diogonest.com.br/", "logo": "https://diogonest.com.br/favicon.svg", "slogan": "O valor chega antes da obra.", "description": "Estratégia e tecnologia para lançamentos imobiliários: diagnóstico, posicionamento, narrativa (audiovisual, fotografia, landing pages, View, estudo de rentabilidade) e lançamento.", "telephone": "+55-27-99964-1146", "email": "diogonest@gmail.com", "areaServed": [{"@type": "City", "name": "Guarapari"}, {"@type": "State", "name": "Espírito Santo"}], "address": {"@type": "PostalAddress", "addressLocality": "Guarapari", "addressRegion": "ES", "addressCountry": "BR"}, "founder": {"@type": "Person", "name": "Diogo"}, "sameAs": ["https://instagram.com/diogonest"]}</script>
 </head>
 <body>
 
-<header class="topo">
-  <div class="wrap">
-    <a class="logo" href="#inicio" aria-label="Nest, início"><svg viewBox="0 0 368.868 100" aria-hidden="true"><path fill="currentColor" d="M100 100 L100 0 L69.500 0 L69.500 80.802 L33.500 28.802 L33.500 100 Z M0 0 L0 100 L30.500 100 L30.500 19.198 L66.500 71.198 L66.500 0 Z"/><path fill="currentColor" d="M146.21132075471698 34.0H153.68301886792452L154.0566037735849 51.30943396226415L153.06037735849057 50.5622641509434Q154.43018867924528 41.72075471698113 160.46981132075473 37.113207547169814Q166.50943396226415 32.505660377358495 174.97735849056605 32.505660377358495Q185.81132075471697 32.505660377358495 191.47735849056602 39.47924528301887Q197.1433962264151 46.45283018867924 197.1433962264151 57.53584905660377V100.0H188.9245283018868V60.52452830188679Q188.9245283018868 50.5622641509434 185.18867924528303 45.20754716981132Q181.45283018867923 39.85283018867924 173.23396226415093 39.85283018867924Q164.64150943396226 39.85283018867924 159.53584905660375 45.39433962264151Q154.43018867924528 50.93584905660377 154.43018867924528 60.52452830188679V100.0H146.21132075471698ZM206.23396226415096 67.0Q206.23396226415096 56.91320754716981 209.78301886792454 49.06792452830189Q213.33207547169812 41.22264150943396 219.9320754716981 36.864150943396226Q226.53207547169814 32.505660377358495 235.4981132075472 32.505660377358495Q244.21509433962265 32.505660377358495 250.69056603773583 36.739622641509435Q257.16603773584905 40.973584905660374 260.6528301886792 48.7566037735849Q264.13962264150945 56.53962264150943 264.13962264150945 66.75094339622642V69.36603773584906H214.82641509433964Q215.20000000000002 80.94716981132075 220.80377358490568 87.29811320754717Q226.40754716981132 93.64905660377359 235.99622641509436 93.64905660377359Q243.0943396226415 93.64905660377359 247.70188679245285 90.28679245283018Q252.30943396226417 86.9245283018868 254.17735849056604 80.94716981132075L263.0188679245283 81.56981132075472Q260.52830188679246 90.53584905660378 253.3056603773585 96.01509433962264Q246.08301886792452 101.4943396226415 235.99622641509436 101.4943396226415Q226.7811320754717 101.4943396226415 220.05660377358492 97.13584905660377Q213.33207547169812 92.77735849056604 209.78301886792454 84.99433962264152Q206.23396226415096 77.21132075471698 206.23396226415096 67.0ZM235.4981132075472 40.35094339622641Q226.7811320754717 40.35094339622641 221.36415094339623 46.01698113207547Q215.94716981132075 51.68301886792453 214.82641509433964 62.0188679245283H255.1735849056604Q254.55094339622642 51.55849056603773 249.38301886792453 45.95471698113207Q244.21509433962265 40.35094339622641 235.4981132075472 40.35094339622641ZM270.7396226415094 79.70188679245283 279.3320754716981 79.07924528301886Q280.07924528301885 85.80377358490566 284.99811320754714 89.72641509433961Q289.9169811320755 93.64905660377359 298.63396226415097 93.64905660377359Q306.60377358490564 93.64905660377359 310.9 90.97169811320754Q315.1962264150943 88.2943396226415 315.1962264150943 82.93962264150943Q315.1962264150943 79.70188679245283 313.8264150943396 77.77169811320755Q312.4566037735849 75.84150943396227 308.47169811320754 74.28490566037736Q304.4867924528302 72.72830188679245 296.64150943396226 71.35849056603774Q287.42641509433963 69.73962264150944 282.1339622641509 67.2490566037736Q276.84150943396224 64.75849056603774 274.7245283018868 61.14716981132075Q272.6075471698113 57.53584905660377 272.6075471698113 52.30566037735849Q272.6075471698113 43.46415094339623 279.0207547169811 37.984905660377365Q285.4339622641509 32.505660377358495 296.64150943396226 32.505660377358495Q307.7245283018868 32.505660377358495 314.2622641509434 38.29622641509434Q320.8 44.08679245283019 322.4188679245283 53.177358490566036L313.8264150943396 53.924528301886795Q312.70566037735847 47.822641509433964 308.2849056603774 44.08679245283019Q303.8641509433962 40.35094339622641 296.51698113207544 40.35094339622641Q289.1698113207547 40.35094339622641 285.18490566037735 43.46415094339622Q281.2 46.577358490566034 281.2 51.93207547169811Q281.2 55.5433962264151 282.81886792452826 57.847169811320754Q284.4377358490566 60.15094339622642 288.111320754717 61.58301886792453Q291.7849056603774 63.01509433962264 298.50943396226415 64.13584905660377Q308.3471698113208 65.75471698113208 313.8264150943396 68.12075471698114Q319.3056603773585 70.48679245283019 321.6094339622641 73.97358490566037Q323.9132075471698 77.46037735849056 323.9132075471698 82.81509433962265Q323.9132075471698 91.6566037735849 316.93962264150946 96.5754716981132Q309.96603773584906 101.4943396226415 298.63396226415097 101.4943396226415Q290.29056603773586 101.4943396226415 284.1264150943396 98.69245283018867Q277.9622641509434 95.89056603773585 274.6 90.97169811320755Q271.2377358490566 86.05283018867925 270.7396226415094 79.70188679245283ZM338.8566037735849 84.55849056603773V18.558490566037733H347.07547169811323V84.30943396226415Q347.07547169811323 88.91698113207548 349.0679245283019 90.78490566037736Q351.06037735849054 92.65283018867925 355.4188679245283 92.65283018867925H364.1358490566038V100.0H354.6716981132075Q346.57735849056604 100.0 342.7169811320755 96.20188679245283Q338.8566037735849 92.40377358490566 338.8566037735849 84.55849056603773ZM328.5207547169811 34.0H364.1358490566038V41.347169811320754H328.5207547169811Z"/></svg></a>
-    <nav class="nav" aria-label="Seções">
-      <a class="item" href="#metodo">Método</a>
-      <a class="item" href="#servicos">Serviços</a>
-      <a class="item" href="#view">View</a>
-      <a class="pilula js-wa" href="#diagnostico" data-msg="curto">Pedir diagnóstico</a>
-    </nav>
-  </div>
-</header>
+<div class="fundo" aria-hidden="true"><i class="f-branco" id="f-branco"></i><i class="f-areia" id="f-areia"></i></div>
 
-<main id="inicio">
+<nav class="doca" id="doca" aria-label="Seções">
+  <i aria-hidden="true"></i>
+  <a href="#inicio" data-alvo="inicio" aria-current="true">Início</a>
+  <a href="#view" data-alvo="view">View</a>
+  <a href="#metodo" data-alvo="metodo">Método</a>
+  <a href="#diagnostico" data-alvo="diagnostico">Diagnóstico</a>
+</nav>
 
-<section class="hero" id="hero">
-  <div class="wrap grade">
-    <div>
-      <h1>Aceleramos as vendas <span class="b"><span class="marca">do seu lançamento.</span></span></h1>
-      <p class="lead">Estratégia e tecnologia trabalhando juntas. O comprador percebe o valor do empreendimento, a sua marca se fortalece a cada lançamento e o corretor vende com menos ruído, do primeiro anúncio à proposta enviada.</p>
-      <div class="acoes">
-        <a class="pilula js-wa" href="#diagnostico" data-msg="padrao">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z"/></svg>
-          Pedir diagnóstico do próximo lançamento
-        </a>
-        <a class="link" href="#metodo">Ver como funciona</a>
-      </div>
-    </div>
-    <div class="lado view-hero-scroll" id="view-hero-scroll">
-      <!-- Descrição minimalista ACIMA da animação -->
-      <div class="view-hero-header" id="view-hero-header">
-        <span class="view-hero-kicker">View · Espelho 3D</span>
-        <h3 class="view-hero-title">O prédio todo no celular.</h3>
-        <p class="view-hero-desc">Não é render estático nem PDF. Gire a torre em 3D, veja a vista real de cada andar e simule a proposta antes da visita.</p>
-        <a class="view-hero-link" href="#view">conhecer o app <span aria-hidden="true">↓</span></a>
-      </div>
+<main>
+<section class="cena" id="inicio" aria-label="Nest e o View">
+  <span id="view" style="position:absolute;top:calc(var(--vh) * .82)"></span>
+  <div class="palco" id="palco">
+    <div class="noite" aria-hidden="true"></div>
+    <a class="marca" href="#inicio" aria-label="Nest, início"><svg viewBox="0 0 368.868 100" aria-hidden="true" xmlns:c2pa="http://c2pa.org/manifest"><path fill="currentColor" d="M100 100 L100 0 L69.500 0 L69.500 80.802 L33.500 28.802 L33.500 100 Z M0 0 L0 100 L30.500 100 L30.500 19.198 L66.500 71.198 L66.500 0 Z"/><path fill="currentColor" d="M146.21132075471698 34.0H153.68301886792452L154.0566037735849 51.30943396226415L153.06037735849057 50.5622641509434Q154.43018867924528 41.72075471698113 160.46981132075473 37.113207547169814Q166.50943396226415 32.505660377358495 174.97735849056605 32.505660377358495Q185.81132075471697 32.505660377358495 191.47735849056602 39.47924528301887Q197.1433962264151 46.45283018867924 197.1433962264151 57.53584905660377V100.0H188.9245283018868V60.52452830188679Q188.9245283018868 50.5622641509434 185.18867924528303 45.20754716981132Q181.45283018867923 39.85283018867924 173.23396226415093 39.85283018867924Q164.64150943396226 39.85283018867924 159.53584905660375 45.39433962264151Q154.43018867924528 50.93584905660377 154.43018867924528 60.52452830188679V100.0H146.21132075471698ZM206.23396226415096 67.0Q206.23396226415096 56.91320754716981 209.78301886792454 49.06792452830189Q213.33207547169812 41.22264150943396 219.9320754716981 36.864150943396226Q226.53207547169814 32.505660377358495 235.4981132075472 32.505660377358495Q244.21509433962265 32.505660377358495 250.69056603773583 36.739622641509435Q257.16603773584905 40.973584905660374 260.6528301886792 48.7566037735849Q264.13962264150945 56.53962264150943 264.13962264150945 66.75094339622642V69.36603773584906H214.82641509433964Q215.20000000000002 80.94716981132075 220.80377358490568 87.29811320754717Q226.40754716981132 93.64905660377359 235.99622641509436 93.64905660377359Q243.0943396226415 93.64905660377359 247.70188679245285 90.28679245283018Q252.30943396226417 86.9245283018868 254.17735849056604 80.94716981132075L263.0188679245283 81.56981132075472Q260.52830188679246 90.53584905660378 253.3056603773585 96.01509433962264Q246.08301886792452 101.4943396226415 235.99622641509436 101.4943396226415Q226.7811320754717 101.4943396226415 220.05660377358492 97.13584905660377Q213.33207547169812 92.77735849056604 209.78301886792454 84.99433962264152Q206.23396226415096 77.21132075471698 206.23396226415096 67.0ZM235.4981132075472 40.35094339622641Q226.7811320754717 40.35094339622641 221.36415094339623 46.01698113207547Q215.94716981132075 51.68301886792453 214.82641509433964 62.0188679245283H255.1735849056604Q254.55094339622642 51.55849056603773 249.38301886792453 45.95471698113207Q244.21509433962265 40.35094339622641 235.4981132075472 40.35094339622641ZM270.7396226415094 79.70188679245283 279.3320754716981 79.07924528301886Q280.07924528301885 85.80377358490566 284.99811320754714 89.72641509433961Q289.9169811320755 93.64905660377359 298.63396226415097 93.64905660377359Q306.60377358490564 93.64905660377359 310.9 90.97169811320754Q315.1962264150943 88.2943396226415 315.1962264150943 82.93962264150943Q315.1962264150943 79.70188679245283 313.8264150943396 77.77169811320755Q312.4566037735849 75.84150943396227 308.47169811320754 74.28490566037736Q304.4867924528302 72.72830188679245 296.64150943396226 71.35849056603774Q287.42641509433963 69.73962264150944 282.1339622641509 67.2490566037736Q276.84150943396224 64.75849056603774 274.7245283018868 61.14716981132075Q272.6075471698113 57.53584905660377 272.6075471698113 52.30566037735849Q272.6075471698113 43.46415094339623 279.0207547169811 37.984905660377365Q285.4339622641509 32.505660377358495 296.64150943396226 32.505660377358495Q307.7245283018868 32.505660377358495 314.2622641509434 38.29622641509434Q320.8 44.08679245283019 322.4188679245283 53.177358490566036L313.8264150943396 53.924528301886795Q312.70566037735847 47.822641509433964 308.2849056603774 44.08679245283019Q303.8641509433962 40.35094339622641 296.51698113207544 40.35094339622641Q289.1698113207547 40.35094339622641 285.18490566037735 43.46415094339622Q281.2 46.577358490566034 281.2 51.93207547169811Q281.2 55.5433962264151 282.81886792452826 57.847169811320754Q284.4377358490566 60.15094339622642 288.111320754717 61.58301886792453Q291.7849056603774 63.01509433962264 298.50943396226415 64.13584905660377Q308.3471698113208 65.75471698113208 313.8264150943396 68.12075471698114Q319.3056603773585 70.48679245283019 321.6094339622641 73.97358490566037Q323.9132075471698 77.46037735849056 323.9132075471698 82.81509433962265Q323.9132075471698 91.6566037735849 316.93962264150946 96.5754716981132Q309.96603773584906 101.4943396226415 298.63396226415097 101.4943396226415Q290.29056603773586 101.4943396226415 284.1264150943396 98.69245283018867Q277.9622641509434 95.89056603773585 274.6 90.97169811320755Q271.2377358490566 86.05283018867925 270.7396226415094 79.70188679245283ZM338.8566037735849 84.55849056603773V18.558490566037733H347.07547169811323V84.30943396226415Q347.07547169811323 88.91698113207548 349.0679245283019 90.78490566037736Q351.06037735849054 92.65283018867925 355.4188679245283 92.65283018867925H364.1358490566038V100.0H354.6716981132075Q346.57735849056604 100.0 342.7169811320755 96.20188679245283Q338.8566037735849 92.40377358490566 338.8566037735849 84.55849056603773ZM328.5207547169811 34.0H364.1358490566038V41.347169811320754H328.5207547169811Z"/><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTplNGNlNGQ5Ni04N2QwLTQzOTctOTg4YS0yMmRlNWVkNDA1NzEAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaKkFIwPRhNtqI/2eeQrmwL8AAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDozOGJkOWM5YS0zOGQ4LTRlNWQtYTc2Ny1kNjg2MzQzNDQyMGVscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoH2DoRv6J6A6dzdLYJmY1gQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg23goVe/81gkl2Log8KUrHgLhCkKnPHpT2l97JISsQfCkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaNmN0yPiAK5fFgZd4PHdjQsAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIIur7NGi3OW1cg1NfwIoGD/4GnjS5HW0a4ECvB3p26BRZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GRSZZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmU0Y2U0ZDk2LTg3ZDAtNDM5Ny05ODhhLTIyZGU1ZWQ0MDU3MS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjA3NGVlYjc2LTUyM2YtNDBhOC1iNTE5LWE3OTYxMmY4Nzc1NHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDbeChV7/zWCSXYuiDwpSseAuEKQqc8elPaX3skhKxB8KJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggHh6KiaZJMtsiz634udhGHQZP3xXJrIIA1mhMdkR5HFuiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg5agqkS9wYiLgfTGf4/Q+64wwgMwuvKgabuVHAKdwOBJ0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQAtmrYg2kqVKp8JG4bKTp/aQQqHJMi2yf51PVe/WwBY30er3zKJizjFAXqaholmVJYRZmIMRKEzJtjheeiXnqjY=</c2pa:manifest></metadata></svg></a>
 
-      <!-- Container Scroll 3D do Mockup do iPhone (Aceternity style) -->
-      <div class="view-hero-stage" id="view-hero-stage">
-        <div class="view-hero-card" id="view-hero-card">
-          <div class="iphone" id="hero-iphone">
-            <span class="bt bt--acao"></span>
-            <span class="bt bt--mais"></span>
-            <span class="bt bt--menos"></span>
-            <span class="bt bt--lado"></span>
-            <div class="vidro">
-              <img src="img/view-01-predio.jpg" width="640" height="1385" alt="Tela inicial do View: o prédio em 3D com as unidades disponíveis" fetchpriority="high">
-            </div>
-          </div>
-        </div>
-        <div class="view-hero-shadow" id="view-hero-shadow"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="clientes logo-cloud" aria-label="Empresas que confiam em nós">
-  <div class="wrap logo-cloud-container">
-    <p class="mono logo-cloud-title">Empresas que confiam em nós</p>
-
-    <div class="logo-cloud-mask">
-      <div class="logo-cloud-track">
-        <!-- Conjunto 1 -->
-        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-vargas.png" alt="Vargas Construtora" title="Vargas Construtora"></div>
-        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-solydus.png" alt="Solydus Empreendimentos" title="Solydus Empreendimentos"></div>
-        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-habitar.png" alt="Habitar Empreendimentos" title="Habitar Empreendimentos"></div>
-        <div class="logo-cloud-item"><img class="logo-cliente logo-cliente--egecon" src="img/logo-egecon.png" alt="Egecon Engenharia" title="Egecon Engenharia"></div>
-        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-roma.png" alt="Roma Imóveis" title="Roma Imóveis"></div>
-        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-myhome.png" alt="My Home Imobiliária" title="My Home Imobiliária"></div>
-        <div class="logo-cloud-item"><img class="logo-cliente" src="img/logo-prime.png" alt="Prime Imóveis" title="Prime Imóveis"></div>
-
-        <!-- Conjunto 2 (duplicação para marquee infinito contínuo) -->
-        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-vargas.png" alt="Vargas Construtora"></div>
-        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-solydus.png" alt="Solydus Empreendimentos"></div>
-        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-habitar.png" alt="Habitar Empreendimentos"></div>
-        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente logo-cliente--egecon" src="img/logo-egecon.png" alt="Egecon Engenharia"></div>
-        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-roma.png" alt="Roma Imóveis"></div>
-        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-myhome.png" alt="My Home Imobiliária"></div>
-        <div class="logo-cloud-item" aria-hidden="true"><img class="logo-cliente" src="img/logo-prime.png" alt="Prime Imóveis"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band ganhos" id="ganhos">
-  <div class="wrap">
-    <div class="cab">
-      <h2>Vender rápido, <strong>com o valor percebido desde o primeiro anúncio.</strong></h2>
-      <p class="lead">O comprador forma a percepção do empreendimento nos primeiros segundos em que vê a campanha. Quando essa percepção é construída com estratégia e o processo de venda é simples, a decisão chega antes.</p>
-    </div>
-    <div class="riscos">
-      <div class="risco">
-        <span class="dor">velocidade de vendas</span>
-        <s><span class="risca">Lançar e esperar o estande vender.</span></s>
-        <span class="correcao">valor construído antes da visita</span>
-        <p>O comprador entende por que o empreendimento vale o que custa antes de falar com o corretor, e a conversa começa mais perto do fechamento.</p>
-      </div>
-      <div class="risco">
-        <span class="dor">construção de marca</span>
-        <s><span class="risca">Cada lançamento com uma cara diferente.</span></s>
-        <span class="correcao">uma marca que o comprador reconhece</span>
-        <p>Posicionamento, imagem e tecnologia contando a mesma história. Cada lançamento fortalece a construtora para o próximo.</p>
-      </div>
-      <div class="risco">
-        <span class="dor">corretor e cliente</span>
-        <s><span class="risca">“Qual unidade ainda tem?”</span></s>
-        <span class="correcao">estoque e proposta no celular</span>
-        <p>O corretor tem a disponibilidade na mão e o cliente vê a unidade, a vista e simula o pagamento sozinho, quando quiser.</p>
-      </div>
-      <div class="risco">
-        <span class="dor">ruído e agilidade</span>
-        <s><span class="risca">Tabela em PDF da semana passada.</span></s>
-        <span class="correcao">uma informação só, atualizada a cada reserva</span>
-        <p>Ninguém oferece unidade vendida, a proposta chega pronta pelo WhatsApp e a construtora acompanha tudo no painel.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band band--marinho dado" aria-label="Contexto de mercado">
-  <div class="wrap">
-    <div>
-      <h2>Cerca de <span class="num">5 mil unidades</span> foram lançadas na Grande Vitória em 2024.</h2>
-      <p class="fonte">Fonte: Sinduscon-ES</p>
-    </div>
-    <div class="resposta-dado">
-      <h3 class="pergunta">Por que ele lembraria <em>do seu?</em></h3>
-      <p class="lead">Metragem, lazer e acabamento, quase todas têm. O comprador lembra do que só o seu empreendimento entrega: a vista daquele andar, o caminho até a praia, o sol da manhã na varanda.</p>
-    </div>
-  </div>
-</section>
-
-<section class="band band--papel metodo timeline-section timeline-section--metodo" id="metodo">
-  <div class="timeline-viewport">
-    <div class="timeline-track">
-      <!-- Card Introdutório Lateral -->
-      <div class="timeline-lead-card">
-        <img src="img/metodo-preparo.jpg" alt="Preparação e planejamento de lançamento na Nest" loading="lazy" style="object-position:center 25%">
-        <div class="lead-overlay"></div>
-        <div class="lead-content">
-          <span class="timeline-badge" style="color:var(--areia)">Método · 4 etapas</span>
-          <h3 style="font-family:var(--serif);font-size:clamp(22px,2vw,30px);line-height:1.15;margin:8px 0 12px;font-weight:400;color:var(--branco)">A imagem é consequência do plano.</h3>
-          <p style="font-size:13.5px;color:rgba(255,255,255,0.88);margin:0;line-height:1.45">Antes de qualquer filme ou foto, o lançamento precisa saber o que vai defender e para quem.</p>
-        </div>
-      </div>
-
-      <!-- Canvas da Linha e Marcos -->
-      <div class="timeline-canvas">
-        <!-- Eixo Central com Linha e Caps -->
-        <div class="timeline-axis">
-          <div class="timeline-cap-start"></div>
-          <div class="timeline-journey-line"></div>
-          <div class="timeline-cap-end"></div>
-        </div>
-
-        <!-- Metade Superior (Top) -->
-        <div class="timeline-half timeline-half--top">
-          <div class="timeline-col-header">
-            <span class="timeline-badge">Método Nest</span>
-            <h2>Como a Nest prepara <b>um lançamento.</b></h2>
-          </div>
-
-          <div class="timeline-items-row">
-            <!-- Etapa 01 (Top) -->
-            <div class="timeline-item timeline-item--top" data-step="1">
-              <div class="timeline-card">
-                <span class="timeline-step-num">01</span>
-                <span class="timeline-badge">Etapa 01</span>
-                <h4>Diagnóstico</h4>
-                <p>Quem compra, contra quem você concorre e o que o comprador precisa entender para decidir.</p>
-              </div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-dot"></div>
-            </div>
-
-            <!-- Etapa 03 (Top) -->
-            <div class="timeline-item timeline-item--top" data-step="3">
-              <div class="timeline-card">
-                <span class="timeline-step-num">03</span>
-                <span class="timeline-badge">Etapa 03</span>
-                <h4>Narrativa</h4>
-                <p>Imagem, filme, landing page, espelho 3D e números executando a mesma ideia.</p>
-              </div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-dot"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Metade Inferior (Bottom) -->
-        <div class="timeline-half timeline-half--bottom">
-          <div class="timeline-col-sub">
-            <p>Quatro etapas que conectam a estratégia de produto à conversa final do corretor.</p>
-          </div>
-
-          <div class="timeline-items-row timeline-items-row--bottom">
-            <!-- Etapa 02 (Bottom) -->
-            <div class="timeline-item timeline-item--bottom" data-step="2">
-              <div class="timeline-dot"></div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-card">
-                <span class="timeline-step-num">02</span>
-                <span class="timeline-badge">Etapa 02</span>
-                <h4>Posicionamento</h4>
-                <p>O que só esse empreendimento tem, levado até o que muda na vida de quem compra.</p>
-              </div>
-            </div>
-
-            <!-- Etapa 04 (Bottom) -->
-            <div class="timeline-item timeline-item--bottom" data-step="4">
-              <div class="timeline-dot"></div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-card">
-                <span class="timeline-step-num">04</span>
-                <span class="timeline-badge">Etapa 04</span>
-                <h4>Lançamento</h4>
-                <p>Campanha no ar e corretor com as respostas e o estoque na mão antes de o estande abrir.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card Final da Timeline -->
-      <div class="timeline-outro-card">
-        <span class="timeline-badge">Alinhamento</span>
-        <blockquote class="timeline-quote">“Tudo o que vai a público conta <b>a mesma história.</b>”</blockquote>
-        <p style="font-size:13.5px;color:var(--texto2);margin:14px 0 0;line-height:1.45">Sem dispersão de discurso entre a campanha, o digital e a mesa do corretor.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band servicos timeline-section timeline-section--servicos timeline-section--branco" id="servicos">
-  <div class="timeline-viewport">
-    <div class="timeline-track">
-      <!-- Card Introdutório Lateral -->
-      <div class="timeline-lead-card">
-        <img src="img/acqua-02.jpg" alt="Acqua Duas Praias, vista do oceano" loading="lazy">
-        <div class="lead-overlay"></div>
-        <div class="lead-content">
-          <span class="timeline-badge" style="color:var(--areia)">Escopo integrado</span>
-          <h3 style="font-family:var(--serif);font-size:clamp(22px,2vw,30px);line-height:1.15;margin:8px 0 12px;font-weight:400;color:var(--branco)">Serviços na ordem do plano.</h3>
-          <p style="font-size:13.5px;color:rgba(255,255,255,0.88);margin:0;line-height:1.45">Você pode contratar o lançamento inteiro ou só as etapas de que o comercial precisa. Cada entrega parte do mesmo posicionamento.</p>
-        </div>
-      </div>
-
-      <!-- Canvas da Linha e Marcos -->
-      <div class="timeline-canvas">
-        <!-- Eixo Central com Linha e Caps -->
-        <div class="timeline-axis">
-          <div class="timeline-cap-start"></div>
-          <div class="timeline-journey-line"></div>
-          <div class="timeline-cap-end"></div>
-        </div>
-
-        <!-- Metade Superior (Top) -->
-        <div class="timeline-half timeline-half--top">
-          <div class="timeline-col-header">
-            <span class="timeline-badge">Ordem do Plano</span>
-            <h2>Serviços, <strong>na ordem em que entram no plano.</strong></h2>
-          </div>
-
-          <div class="timeline-items-row">
-            <!-- S1: Diagnóstico (Top) -->
-            <div class="timeline-item timeline-item--top" data-step="s1">
-              <div class="timeline-card">
-                <div class="timeline-card-header">
-                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/></svg></span>
-                  <span class="timeline-badge">Etapa 01 · Estratégia</span>
-                </div>
-                <h4>Diagnóstico do lançamento</h4>
-                <p>Público, concorrência na mesma praça e o que trava a decisão de compra. É o ponto de partida de tudo o que vem depois.</p>
-              </div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-dot"></div>
-            </div>
-
-            <!-- S3: Audiovisual (Top) -->
-            <div class="timeline-item timeline-item--top" data-step="s3">
-              <div class="timeline-card">
-                <div class="timeline-card-header">
-                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="7" width="12" height="10" rx="1"/><path d="M15 10.5L21 7.5V16.5L15 13.5"/></svg></span>
-                  <span class="timeline-badge">Etapa 03 · Narrativa</span>
-                </div>
-                <h4>Audiovisual</h4>
-                <p>Filmes do empreendimento, da obra e da vista, roteirizados a partir do posicionamento. A imagem prova o valor que o texto defende.</p>
-              </div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-dot"></div>
-            </div>
-
-            <!-- S5: Landing pages (Top) -->
-            <div class="timeline-item timeline-item--top" data-step="s5">
-              <div class="timeline-card">
-                <div class="timeline-card-header">
-                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 9H21M7 13H17M7 16H13"/></svg></span>
-                  <span class="timeline-badge">Etapa 03 · Narrativa</span>
-                </div>
-                <h4>Landing pages</h4>
-                <p>A página do empreendimento responde às dúvidas de quem compra antes do primeiro contato e leva o interessado direto ao corretor.</p>
-              </div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-dot"></div>
-            </div>
-
-            <!-- S7: Estudo de rentabilidade (Top) -->
-            <div class="timeline-item timeline-item--top" data-step="s7">
-              <div class="timeline-card">
-                <div class="timeline-card-header">
-                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M4 4V20H20"/><path d="M7 16L11 11L14 13.5L20 7"/></svg></span>
-                  <span class="timeline-badge">Etapa 03 · Narrativa</span>
-                </div>
-                <h4>Estudo de rentabilidade</h4>
-                <p>Para empreendimentos de temporada: três cenários, com fonte, período e regras locais. <span class="mono">(estimativa, nunca promessa)</span></p>
-              </div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-dot"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Metade Inferior (Bottom) -->
-        <div class="timeline-half timeline-half--bottom">
-          <div class="timeline-col-sub">
-            <p>Oito entregas sincronizadas que transformam metragem e acabamento em posicionamento de valor percebido.</p>
-          </div>
-
-          <div class="timeline-items-row timeline-items-row--bottom">
-            <!-- S2: Marketing estratégico (Bottom) -->
-            <div class="timeline-item timeline-item--bottom" data-step="s2">
-              <div class="timeline-dot"></div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-card">
-                <div class="timeline-card-header">
-                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span>
-                  <span class="timeline-badge">Etapa 02 · Estratégia</span>
-                </div>
-                <h4>Marketing estratégico</h4>
-                <p>Posicionamento e argumento de venda. Cada diferencial chega até o que muda na vida de quem compra, para o corretor vender o morar.</p>
-              </div>
-            </div>
-
-            <!-- S4: Fotografia (Bottom) -->
-            <div class="timeline-item timeline-item--bottom" data-step="s4">
-              <div class="timeline-dot"></div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-card">
-                <div class="timeline-card-header">
-                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="1"/><circle cx="12" cy="13" r="3.5"/><path d="M8.5 7L10 4.5H14L15.5 7"/></svg></span>
-                  <span class="timeline-badge">Etapa 03 · Narrativa</span>
-                </div>
-                <h4>Fotografia</h4>
-                <p>Obra, decorado e vista com drone, tratados na mesma linguagem editorial e luz do lançamento.</p>
-              </div>
-            </div>
-
-            <!-- S6: View 3D (Bottom) -->
-            <div class="timeline-item timeline-item--bottom" data-step="s6">
-              <div class="timeline-dot"></div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-card">
-                <div class="timeline-card-header">
-                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5Z"/><path d="M4 7.5L12 12L20 7.5M12 12V21"/></svg></span>
-                  <span class="timeline-badge">Etapa 03 · Tecnologia</span>
-                </div>
-                <h4>View, espelho de vendas 3D</h4>
-                <p>O prédio inteiro no celular, atualizado a cada reserva. <a class="link" href="#view">Ver as telas ↓</a></p>
-              </div>
-            </div>
-
-            <!-- S8: Planejamento de campanhas (Bottom) -->
-            <div class="timeline-item timeline-item--bottom" data-step="s8">
-              <div class="timeline-dot"></div>
-              <div class="timeline-stem"></div>
-              <div class="timeline-card">
-                <div class="timeline-card-header">
-                  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1"/><path d="M4 9H20M8 3V7M16 3V7"/></svg></span>
-                  <span class="timeline-badge">Etapa 04 · Lançamento</span>
-                </div>
-                <h4>Planejamento de campanhas</h4>
-                <p>O que vai ao ar, em que ordem e para quem, do pré-lançamento à abertura do estande, com mídia paga e material do corretor alinhados.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card Final da Timeline -->
-      <div class="timeline-outro-card">
-        <span class="timeline-badge">Continuidade</span>
-        <blockquote class="timeline-quote">“Da estratégia ao estande, <b>nenhuma etapa fica solta.</b>”</blockquote>
-        <p style="font-size:13.5px;color:var(--texto2);margin:14px 0 0;line-height:1.45">Contratação modular ou ciclo completo de pré-venda.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band band--abismo view" id="view">
-  <div class="wrap">
-    <div class="cab">
-      <div>
-        <div class="rotulos" style="color:var(--ardosia)"><span style="color:var(--areia)">view</span><span>espelho de vendas 3D</span></div>
-        <h2 style="margin-top:28px">O prédio inteiro no celular, <b>atualizado a cada reserva.</b></h2>
-        <p class="lead">Cada empreendimento ganha a sua versão do View, personalizada para a planta, a tabela e o jeito de vender da construtora.</p>
-      </div>
-      <div class="papeis">
-        <div class="papel"><span class="mono">comprador</span><p>Vê a unidade no contexto do prédio: o andar, a posição, a vista e o que ainda está disponível.</p></div>
-        <div class="papel"><span class="mono">corretor</span><p>Tem o estoque real na mão e um link próprio. Nada de oferecer unidade que já foi vendida.</p></div>
-        <div class="papel"><span class="mono">construtora</span><p>Atualiza estoque e preços num painel e recebe as propostas organizadas, com o corretor identificado.</p></div>
-      </div>
-    </div>
-
-    <!-- Card Fan Carousel Showcase -->
-    <div class="card-fan-carousel" id="card-fan-carousel" aria-label="Telas do View em 3D">
-      <div class="card-fan-stage">
-        <div class="card-fan-deck" id="card-fan-deck">
-          <!-- Card 0: Prédio 3D -->
-          <article class="fan-card" data-index="0" data-badge="01 · PRÉDIO 3D" data-title="O prédio em 3D" data-desc="O empreendimento inteiro no celular, com a disponibilidade em tempo real de cada prumada.">
-            <div class="fan-card-inner">
-              <img src="img/view-01-predio.jpg" alt="View: prédio em 3D" loading="lazy">
-              <div class="fan-card-overlay"></div>
-              <div class="fan-card-chip"><span>01</span> Prédio 3D</div>
-            </div>
-          </article>
-
-          <!-- Card 1: Andar -->
-          <article class="fan-card" data-index="1" data-badge="02 · PLANTA DO ANDAR" data-title="A planta do andar" data-desc="A planta do pavimento com as unidades livres, ocupadas ou reservadas instantaneamente.">
-            <div class="fan-card-inner">
-              <img src="img/view-02-andar.jpg" alt="View: planta do andar" loading="lazy">
-              <div class="fan-card-overlay"></div>
-              <div class="fan-card-chip"><span>02</span> Pavimento</div>
-            </div>
-          </article>
-
-          <!-- Card 2: Unidade -->
-          <article class="fan-card" data-index="2" data-badge="03 · FICHA DA UNIDADE" data-title="A unidade detalhada" data-desc="Área privativa, sol da manhã, posição na torre e valor, com acesso direto à vista real.">
-            <div class="fan-card-inner">
-              <img src="img/view-03-unidade.jpg" alt="View: ficha da unidade" loading="lazy">
-              <div class="fan-card-overlay"></div>
-              <div class="fan-card-chip"><span>03</span> Unidade</div>
-            </div>
-          </article>
-
-          <!-- Card 3: Vista Real -->
-          <article class="fan-card" data-index="3" data-badge="04 · VISTA REAL POR ANDAR" data-title="A vista daquele andar" data-desc="Fotos reais em alta definição com drone da varanda exata do pavimento escolhido.">
-            <div class="fan-card-inner">
-              <img src="img/acqua-02.jpg" alt="Acqua Duas Praias: vista do mar" loading="lazy">
-              <div class="fan-card-overlay"></div>
-              <div class="fan-card-chip"><span>04</span> Vista Real</div>
-            </div>
-          </article>
-
-          <!-- Card 4: Lazer -->
-          <article class="fan-card" data-index="4" data-badge="05 · LAZER & EXPERIÊNCIA" data-title="Áreas comuns e lazer" data-desc="Piscina, academia e espaços decorados integrados na mesma experiência imersiva do app.">
-            <div class="fan-card-inner">
-              <img src="img/acqua-03.jpg" alt="Acqua Duas Praias: lazer e piscina aquecida" loading="lazy">
-              <div class="fan-card-overlay"></div>
-              <div class="fan-card-chip"><span>05</span> Lazer</div>
-            </div>
-          </article>
-
-          <!-- Card 5: Fachada -->
-          <article class="fan-card" data-index="5" data-badge="06 · FACHADA & LOCALIZAÇÃO" data-title="Fachada e insolação" data-desc="Posição em relação à praia, direção do vento nordeste e o sol da manhã provados visualmente.">
-            <div class="fan-card-inner">
-              <img src="img/acqua-01.jpg" alt="Acqua Duas Praias: fachada e entorno" loading="lazy">
-              <div class="fan-card-overlay"></div>
-              <div class="fan-card-chip"><span>06</span> Fachada</div>
-            </div>
-          </article>
-
-          <!-- Card 6: Proposta -->
-          <article class="fan-card" data-index="6" data-badge="07 · SIMULAÇÃO & PROPOSTA" data-title="A proposta comercial" data-desc="O cliente monta o próprio fluxo de entrada, mensais e reforços e envia pronto pelo WhatsApp.">
-            <div class="fan-card-inner">
-              <img src="img/view-04-proposta.jpg" alt="View: simulação da proposta" loading="lazy">
-              <div class="fan-card-overlay"></div>
-              <div class="fan-card-chip"><span>07</span> Proposta</div>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <!-- Active Caption Detail -->
-      <div class="fan-caption" id="fan-caption" aria-live="polite">
-        <span class="fan-caption-badge" id="fan-caption-badge">01 · PRÉDIO 3D</span>
-        <h3 class="fan-caption-title" id="fan-caption-title">O prédio em 3D</h3>
-        <p class="fan-caption-desc" id="fan-caption-desc">O empreendimento inteiro no celular, com a disponibilidade em tempo real de cada prumada.</p>
-      </div>
-
-      <!-- Bottom Controls: Prev, Dots, Next -->
-      <div class="fan-controls">
-        <button class="fan-btn fan-btn--prev" id="fan-btn-prev" type="button" aria-label="Tela anterior">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-
-        <div class="fan-dots" id="fan-dots" role="tablist" aria-label="Selecionar tela"></div>
-
-        <button class="fan-btn fan-btn--next" id="fan-btn-next" type="button" aria-label="Próxima tela">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
-      </div>
-
-      <span class="aparte" style="margin-top:22px">(passe o cursor ou clique nas cartas para navegar pelo app)</span>
-    </div>
-  </div>
-</section>
-
-<!-- Seção Case oculta temporariamente:
-<section class="band band--papel case" id="case">
-  <div class="wrap grade">
-    <div>
-      <div class="logo-slot" data-slot="logo-vargas"><img src="img/logo-vargas.png" alt="Vargas Construtora" width="180" height="72"></div>
-      <h2>Vargas Construtora, <b>Acqua Duas Praias.</b></h2>
-      <div class="texto">
-        <p class="lead">Case âncora da Nest.</p>
-        <p><span class="falta">[DETALHE NECESSÁRIO: o que a Nest fez no lançamento do Acqua Duas Praias, em 2 ou 3 frases]</span></p>
-        <p><span class="falta">[DETALHE NECESSÁRIO: um resultado com fonte, se houver]</span></p>
-      </div>
-    </div>
-    <div class="fotos">
-      <figure class="slot slot--alta" data-slot="acqua-01"><img src="img/acqua-01.jpg" alt="Acqua Duas Praias, localização e fachada" width="1024" height="576" loading="lazy"><span class="tag">Acqua Duas Praias · fachada</span></figure>
-      <figure class="slot" data-slot="acqua-02"><img src="img/acqua-02.jpg" alt="Acqua Duas Praias, vista do studio" width="1024" height="576" loading="lazy"><span class="tag">Acqua Duas Praias · vista</span></figure>
-      <figure class="slot" data-slot="acqua-03"><img src="img/acqua-03.jpg" alt="Acqua Duas Praias, piscina aquecida e lazer" width="1024" height="576" loading="lazy"><span class="tag">Acqua Duas Praias · lazer</span></figure>
-    </div>
-  </div>
-</section>
--->
-
-<section class="band fundador" id="fundador">
-  <div class="wrap grade">
-    <figure class="slot" data-slot="fundador"><img src="img/fundador.jpg" alt="Diogo, fundador da Nest" width="683" height="1024" loading="lazy"><span class="tag">Diogo · fundador</span></figure>
-    <div>
-      <p class="citacao">Construtora não precisa de mais um material bonito. <b>Precisa que o comprador entenda, sozinho e antes da visita, por que esse empreendimento vale o que custa.</b></p>
-      <p class="lead">Estratégia, imagem e tecnologia são etapas do mesmo plano. O que eu entrego é a coerência entre elas. Começamos por Guarapari e atendemos todo o Espírito Santo.</p>
-      <div class="assin">
-        <svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M46.02 88.55 L48.03 88.39 L50.04 88.13 L52.03 87.76 L53.99 87.29 L55.93 86.71 L57.83 86.04 L59.70 85.26 L61.52 84.39 L63.30 83.43 L65.02 82.37 L66.69 81.23 L68.29 80.00 L69.83 78.69 L70.77 77.79 L67.14 74.07 L66.35 74.82 L65.02 75.96 L63.63 77.02 L62.19 78.01 L60.70 78.92 L59.16 79.76 L57.58 80.51 L55.97 81.18 L54.32 81.76 L52.64 82.26 L50.94 82.67 L49.22 82.99 L47.49 83.22 L45.75 83.35 L43.97 83.40 L18.60 83.40 L18.60 20.40 L84.14 87.81 L86.00 86.00 L88.60 86.00 L88.60 14.00 L83.40 14.00 L83.40 79.60 L22.15 16.60 L43.97 16.60 L45.75 16.65 L47.49 16.78 L49.22 17.01 L50.94 17.33 L52.64 17.74 L54.32 18.24 L55.97 18.82 L57.58 19.49 L59.16 20.24 L60.70 21.08 L62.19 21.99 L63.63 22.98 L65.02 24.04 L66.35 25.18 L67.62 26.38 L68.82 27.65 L69.96 28.98 L71.02 30.37 L72.01 31.81 L72.92 33.30 L73.76 34.84 L74.51 36.42 L75.18 38.03 L75.76 39.68 L76.26 41.36 L76.67 43.06 L76.99 44.78 L77.22 46.51 L77.35 48.25 L77.40 50.00 L77.35 51.75 L77.22 53.49 L76.99 55.22 L76.67 56.94 L76.26 58.64 L75.76 60.32 L75.18 61.97 L74.51 63.58 L73.48 65.67 L77.27 69.56 L78.39 67.52 L79.26 65.70 L80.04 63.83 L80.71 61.93 L81.29 59.99 L81.76 58.03 L82.13 56.04 L82.39 54.03 L82.55 52.02 L82.60 50.00 L82.55 47.98 L82.39 45.97 L82.13 43.96 L81.76 41.97 L81.29 40.01 L80.71 38.07 L80.04 36.17 L79.26 34.30 L78.39 32.48 L77.43 30.70 L76.37 28.98 L75.23 27.31 L74.00 25.71 L72.69 24.17 L71.29 22.71 L69.83 21.31 L68.29 20.00 L66.69 18.77 L65.02 17.63 L63.30 16.57 L61.52 15.61 L59.70 14.74 L57.83 13.96 L55.93 13.29 L53.99 12.71 L52.03 12.24 L50.04 11.87 L48.03 11.61 L46.02 11.45 L44.03 11.40 L16.00 11.40 L16.00 14.00 L13.40 14.00 L13.40 86.00 L16.00 86.00 L16.00 88.60 L44.03 88.60 Z"/></svg>
-        <div><div class="nome">Diogo, fundador da Nest</div><a class="mono" href="https://instagram.com/diogonest" target="_blank" rel="noopener">@diogonest</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band band--areia diag" id="diagnostico">
-  <div class="wrap grade">
-    <div>
-      <svg class="simbolo-diag" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M100 100 L100 0 L69.500 0 L69.500 80.802 L33.500 28.802 L33.500 100 Z M0 0 L0 100 L30.500 100 L30.500 19.198 L66.500 71.198 L66.500 0 Z"/></svg>
-      <h2>O diagnóstico do seu <b>próximo lançamento.</b></h2>
-      <p class="lead">Preencha os campos e a mensagem abre pronta no WhatsApp. A proposta vem depois do diagnóstico.</p>
-    </div>
-
-    <form class="form" id="form-diag" novalidate>
-      <h3>Conte em que ponto está o lançamento.</h3>
-      <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name"></div>
-      <div class="duas">
-        <div class="campo"><label for="f-empresa">Construtora ou imobiliária</label><input id="f-empresa" name="empresa" autocomplete="organization"></div>
-        <div class="campo"><label for="f-cargo">Cargo</label>
-          <select id="f-cargo" name="cargo">
-            <option value="">Selecione</option>
-            <option>Dono ou diretor</option>
-            <option>Gerente comercial</option>
-            <option>Marketing</option>
-            <option>Outro</option>
-          </select>
-        </div>
-      </div>
-      <div class="duas">
-        <div class="campo"><label for="f-cidade">Cidade do empreendimento</label><input id="f-cidade" name="cidade" autocomplete="address-level2"></div>
-        <div class="campo"><label for="f-fase">Fase</label>
-          <select id="f-fase" name="fase">
-            <option value="">Selecione</option>
-            <option>Ainda em estudo</option>
-            <option>Pré-lançamento</option>
-            <option>Já lançado, com estoque</option>
-          </select>
-        </div>
-      </div>
-      <a class="pilula js-wa" href="#diagnostico" data-msg="form">
+    <div class="hero">
+      <span class="mono">Pré-venda imobiliária · ES</span>
+      <h1>Seu lançamento vende <b><span class="marca-texto">antes da obra.</span></b></h1>
+      <p>Estratégia e tecnologia para a construtora vender mais rápido.</p>
+      <a class="pilula js-wa" href="#diagnostico" data-msg="padrao">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z"/></svg>
-        Enviar pelo WhatsApp
+        Pedir diagnóstico do lançamento
       </a>
-      <span class="aparte">(você revisa a mensagem antes de enviar)</span>
-    </form>
-  </div>
-</section>
+    </div>
 
-<section class="band faq" id="perguntas">
-  <div class="wrap grade">
-    <h2>Perguntas de quem decide.</h2>
-    <div>
-      <details>
-        <summary>A Nest é uma produtora de vídeo?</summary>
-        <p>Não. A Nest acelera vendas de lançamentos com estratégia e tecnologia. Audiovisual e fotografia entram como etapas desse plano, junto com posicionamento, landing page, View e números.</p>
-      </details>
-      <details>
-        <summary>Posso contratar só uma parte?</summary>
-        <p>Pode. Você contrata o lançamento inteiro ou só as etapas de que precisa, como a landing page ou o View. O diagnóstico ajuda a escolher.</p>
-      </details>
-      <details>
-        <summary>Quanto custa?</summary>
-        <p>Cada lançamento tem escopo próprio, então a proposta vem depois do diagnóstico.</p>
-      </details>
-      <details>
-        <summary>O estudo de rentabilidade garante retorno?</summary>
-        <p>Não. É uma estimativa em três cenários, com fonte, período e as regras do lugar, para o investidor ver de onde vem cada número.</p>
-      </details>
-      <details>
-        <summary>Vocês atendem fora de Guarapari?</summary>
-        <p>Sim. Atendemos construtoras e imobiliárias em todo o Espírito Santo e, sob demanda, em outros estados.</p>
-      </details>
+    <div class="guia" id="guia">
+      <span class="mono">View · espelho de vendas 3D</span>
+      <div class="passos">
+        <div class="passo ativo"><span class="n">01 · prédio</span><span class="t">O prédio inteiro, <b>com o que está livre.</b></span></div>
+        <div class="passo"><span class="n">02 · andar</span><span class="t">Um toque no andar <b>e a planta aparece.</b></span></div>
+        <div class="passo"><span class="n">03 · unidade</span><span class="t">Área, posição e valor <b>de cada apartamento.</b></span></div>
+        <div class="passo"><span class="n">04 · proposta</span><span class="t">O cliente simula <b>e envia a proposta.</b></span></div>
+      </div>
+      <div class="pips" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <div class="fone-wrap">
+      <div class="fone-sobe">
+        <div class="iphone">
+          <div class="vidro">
+            <div class="tela" id="tela" data-s="0" role="img" aria-label="Demonstração do View: prédio em 3D, planta do andar, ficha da unidade e simulação de proposta">
+              <div class="pilha">
+                <img class="t1" src="img/view-01-predio.jpg" alt="" width="520" height="1125" fetchpriority="high">
+                <img class="a-topo" src="img/view-02-andar.jpg" alt="" width="520" height="1125">
+                <img class="u-topo" src="img/view-03-unidade.jpg" alt="" width="520" height="1125">
+                <img class="a-folha" src="img/view-02-andar.jpg" alt="" width="520" height="1125">
+                <img class="u-folha" src="img/view-03-unidade.jpg" alt="" width="520" height="1125">
+              </div>
+              <div class="veu"></div>
+              <img class="t4" src="img/view-04-proposta.jpg" alt="" width="520" height="1125">
+              <i class="toque" id="toque"></i>
+              <i class="ilha" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<section class="secao metodo" id="metodo">
+  <div class="wrap metodo-palco">
+    <div class="cab rv">
+      <span class="mono">Método</span>
+      <h2>Quatro etapas, <b>um plano só.</b></h2>
+    </div>
+
+    <div class="trilho rv" id="trilho" role="tablist" aria-label="Etapas do método">
+      <span class="cheio" aria-hidden="true"></span>
+      <button class="etp" role="tab" id="etp-1" aria-controls="q-1" aria-selected="true" aria-label="Etapa 1, diagnóstico">01</button>
+      <button class="etp" role="tab" id="etp-2" aria-controls="q-2" aria-selected="false" tabindex="-1" aria-label="Etapa 2, posicionamento">02</button>
+      <button class="etp" role="tab" id="etp-3" aria-controls="q-3" aria-selected="false" tabindex="-1" aria-label="Etapa 3, narrativa">03</button>
+      <button class="etp" role="tab" id="etp-4" aria-controls="q-4" aria-selected="false" tabindex="-1" aria-label="Etapa 4, lançamento">04</button>
+    </div>
+    <p class="aparte dica rv">(toque no número para ver a etapa)</p>
+
+    <div class="corpo-metodo rv">
+      <figure class="maquete" id="maquete">
+        <canvas id="maq" role="img" aria-label="Maquete do empreendimento, etapa 1: o terreno e a concorrência"></canvas>
+        <div class="fotos-etapa" id="fotos-etapa"></div>
+        <figcaption class="etq" id="maq-etq">maquete · 01 terreno e vizinhança</figcaption>
+        <span class="aparte gira" id="gira">(arraste para girar)</span>
+      </figure>
+
+      <div class="quadros">
+        <article class="quadro ativo" id="q-1" role="tabpanel" aria-labelledby="etp-1">
+          <div class="txt">
+            <span class="mono">Etapa 01</span>
+            <h3>Diagnóstico</h3>
+            <p>Entendemos quem compra, com quem você concorre e o que trava a decisão.</p>
+            <ul class="feito"><li>Perfil do comprador</li><li>Concorrência na mesma praça</li><li>Objeções que o comercial ouve</li></ul>
+          </div>
+        </article>
+        <article class="quadro" id="q-2" role="tabpanel" aria-labelledby="etp-2">
+          <div class="txt">
+            <span class="mono">Etapa 02</span>
+            <h3>Posicionamento</h3>
+            <p>Definimos o que só o seu empreendimento tem e como o corretor vai dizer isso.</p>
+            <ul class="feito"><li>Diferenciais levados até o valor</li><li>Argumento de venda</li><li>Marketing estratégico</li></ul>
+          </div>
+        </article>
+        <article class="quadro" id="q-3" role="tabpanel" aria-labelledby="etp-3">
+          <div class="txt">
+            <span class="mono">Etapa 03</span>
+            <h3>Narrativa</h3>
+            <p>Produzimos as peças do lançamento, todas contando a mesma história.</p>
+            <ul class="feito"><li>Audiovisual e fotografia</li><li>Landing page do empreendimento</li><li>View e estudo de rentabilidade</li></ul>
+          </div>
+        </article>
+        <article class="quadro" id="q-4" role="tabpanel" aria-labelledby="etp-4">
+          <div class="txt">
+            <span class="mono">Etapa 04</span>
+            <h3>Lançamento</h3>
+            <p>Colocamos a campanha no ar com o corretor preparado e o estoque na mão.</p>
+            <ul class="feito"><li>Planejamento de campanhas</li><li>Mídia paga e material do corretor</li><li>Estoque atualizado no celular</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="clientes">
+  <div class="wrap">
+    <div class="cab rv">
+      <span class="mono">Clientes</span>
+      <h2>Quem já trabalhou <b>com a Nest.</b></h2>
+    </div>
+  </div>
+  <div class="rolo rv" aria-label="Clientes">
+    <div>
+      <span>Vargas Construtora</span><span>Habitar Empreendimentos</span><span>Solydus Empreendimentos</span><span>Egecon Engenharia</span><span>Roma Imóveis</span><span>My Home Imobiliária</span><span>Prime Imóveis</span>
+      <span aria-hidden="true">Vargas Construtora</span><span aria-hidden="true">Habitar Empreendimentos</span><span aria-hidden="true">Solydus Empreendimentos</span><span aria-hidden="true">Egecon Engenharia</span><span aria-hidden="true">Roma Imóveis</span><span aria-hidden="true">My Home Imobiliária</span><span aria-hidden="true">Prime Imóveis</span>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="fundador so rv">
+      <figure class="slot" data-slot="fundador"><span class="vazio">[foto]</span></figure>
+      <blockquote>O comprador precisa entender o valor <b>antes da visita.</b><cite>Diogo, fundador da Nest</cite></blockquote>
+    </div>
+    <!-- Case Vargas / Acqua Duas Praias oculto temporariamente (igual à versão anterior do site). Para reativar, troque o bloco acima por este:
+    <div class="case">
+      <figure class="slot rv" data-slot="acqua-01"><span class="vazio">[foto do Acqua Duas Praias]</span><figcaption class="etq">IMG_05 · Acqua Duas Praias</figcaption></figure>
+      <div class="txt rv">
+        <span class="mono" style="color:var(--texto2)">Case</span>
+        <h3>Vargas Construtora, <b>Acqua Duas Praias.</b></h3>
+        <p class="falta">[o que a Nest fez no lançamento, em 1 ou 2 frases]</p>
+        <div class="fundador">
+          <figure class="slot" data-slot="fundador"><span class="vazio">[foto]</span></figure>
+          <blockquote>O comprador precisa entender o valor <b>antes da visita.</b><cite>Diogo, fundador da Nest</cite></blockquote>
+        </div>
+      </div>
+    </div>
+    -->
+  </div>
+</section>
+
+<section class="secao diag" id="diagnostico">
+  <div class="wrap grade">
+    <div class="cab rv">
+      <svg class="simbolo" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M100 100 L100 0 L69.5 0 L69.5 80.802 L33.5 28.802 L33.5 100 Z M0 0 L0 100 L30.5 100 L30.5 19.198 L66.5 71.198 L66.5 0 Z"/></svg>
+      <h2>O diagnóstico do seu <b>próximo lançamento.</b></h2>
+      <p>Três campos. A conversa segue no WhatsApp e a proposta vem depois do diagnóstico.</p>
+    </div>
+
+    <div class="rv">
+      <form class="form" id="form-diag" novalidate>
+        <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name"></div>
+        <div class="campo"><label for="f-empresa">Construtora ou imobiliária</label><input id="f-empresa" name="empresa" autocomplete="organization"></div>
+        <fieldset class="fases">
+          <legend>Fase do lançamento</legend>
+          <div>
+            <label><input type="radio" name="fase" id="f-fase-1" value="Em estudo"><span>Em estudo</span></label>
+            <label><input type="radio" name="fase" id="f-fase-2" value="Pré-lançamento"><span>Pré-lançamento</span></label>
+            <label><input type="radio" name="fase" id="f-fase-3" value="Já lançado, com estoque"><span>Já lançado</span></label>
+          </div>
+        </fieldset>
+        <div class="previa"><span class="aparte">mensagem que vai para o WhatsApp</span><output id="previa" for="f-nome f-empresa"></output></div>
+        <a class="pilula js-wa" href="#diagnostico" data-msg="form">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z"/></svg>
+          Enviar pelo WhatsApp
+        </a>
+        <span class="aparte">(você revisa a mensagem antes de enviar)</span>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="contatos rv" style="margin-top:clamp(48px,8vh,88px)">
+      <div class="contato"><span class="aparte">whatsapp</span><span class="val" id="c-wa"></span><button class="copiar" type="button" data-copy="whatsapp">copiar</button></div>
+      <div class="contato"><span class="aparte">e-mail</span><span class="val" id="c-mail"></span><button class="copiar" type="button" data-copy="email">copiar</button></div>
+      <div class="contato"><span class="aparte">instagram</span><span class="val"><a href="https://instagram.com/diogonest" target="_blank" rel="noopener">@diogonest</a></span><span></span></div>
+    </div>
+    <div class="assina aparte">
+      <span>Nest · O valor chega antes da obra.</span>
+      <span>Guarapari, ES · atendemos todo o estado</span>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer class="band--abismo rodape" id="contato">
-  <div class="wrap">
-    <div class="topo-r">
-      <h2>O valor chega <b>antes da obra.</b></h2>
-      <div class="contatos">
-        <div class="contato"><span class="mono">whatsapp</span><span class="val" id="c-wa"></span><button class="copiar" type="button" data-copy="whatsapp">copiar</button></div>
-        <div class="contato"><span class="mono">e-mail</span><span class="val" id="c-mail"></span><button class="copiar" type="button" data-copy="email">copiar</button></div>
-        <div class="contato"><span class="mono">instagram</span><span class="val"><a href="https://instagram.com/diogonest" target="_blank" rel="noopener">@diogonest</a></span><span></span></div>
-      </div>
-    </div>
-    <div class="base">
-      <a class="logo" href="#inicio" aria-label="Nest, voltar ao início"><svg viewBox="0 0 100 100" style="width:22px;height:22px" aria-hidden="true"><path fill="currentColor" d="M100 100 L100 0 L69.500 0 L69.500 80.802 L33.500 28.802 L33.500 100 Z M0 0 L0 100 L30.500 100 L30.500 19.198 L66.500 71.198 L66.500 0 Z"/></svg></a>
-      <span>Nest · pré-venda imobiliária · Guarapari, ES</span>
-      <span>diogonest.com.br</span>
-    </div>
-  </div>
-</footer>
-
-<div class="barra" id="barra" aria-hidden="true">
-  <a class="pilula js-wa" href="#diagnostico" data-msg="padrao" tabindex="-1">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z"/></svg>
-    Pedir diagnóstico no WhatsApp
-  </a>
-</div>
-
-<script src="js/gsap.min.js"></script>
-<script src="js/ScrollTrigger.min.js"></script>
 <script>
-var CONFIG = {
-  whatsapp: "5527999641146",
-  email: "diogonest@gmail.com"
-};
+var CONFIG = { whatsapp: "5527999641146", email: "diogonest@gmail.com" };
 
 (function(){
-  var MSG = {
-    curto: "Olá, Diogo. Quero entender o diagnóstico de lançamento da Nest.",
-    padrao: "Olá, Diogo. Vi o site da Nest e quero um diagnóstico do nosso próximo lançamento."
-  };
-  function waLink(text){
-    if(!CONFIG.whatsapp) return null;
-    return "https://wa.me/" + CONFIG.whatsapp.replace(/\D/g,"") + "?text=" + encodeURIComponent(text);
+  var doc = document.documentElement;
+  doc.classList.add("js");
+  var REDUZ = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function clamp(v, a, b){ return v < a ? a : v > b ? b : v; }
+  function $(id){ return document.getElementById(id); }
+
+  /* ---------- WhatsApp e contatos ---------- */
+  var MSG = { padrao: "Olá, Diogo. Vi o site da Nest e quero um diagnóstico do nosso próximo lançamento." };
+  function wa(t){ return "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(t); }
+  function v(id){ var e = $(id); return e ? e.value.trim() : ""; }
+  var FASES = { "f-fase-1": "lançamento, que ainda está em estudo", "f-fase-2": "empreendimento, que está em pré-lançamento", "f-fase-3": "empreendimento, que já foi lançado e tem unidades à venda" };
+  function textoForm(){
+    var nome = v("f-nome"), emp = v("f-empresa"), f = document.querySelector('input[name="fase"]:checked');
+    var t = nome ? "Olá, me chamo " + nome + "." : "Olá.";
+    t += emp ? " Trabalho na empresa " + emp + " e estou buscando" : " Estou buscando";
+    t += f ? " um diagnóstico para o nosso " + FASES[f.id] + "." : " um diagnóstico para o nosso próximo lançamento.";
+    return t;
   }
-  function val(id){var el=document.getElementById(id);return el?el.value.trim():"";}
-  function formText(){
-    var l=["Olá, Diogo. Quero o diagnóstico do nosso próximo lançamento."];
-    if(val("f-nome")) l.push("Nome: "+val("f-nome"));
-    if(val("f-empresa")) l.push("Empresa: "+val("f-empresa"));
-    if(val("f-cargo")) l.push("Cargo: "+val("f-cargo"));
-    if(val("f-cidade")) l.push("Cidade do empreendimento: "+val("f-cidade"));
-    if(val("f-fase")) l.push("Fase: "+val("f-fase"));
-    return l.join("\n");
-  }
-  function atualiza(){
+  var previa = $("previa");
+  function atualizaWa(){
+    if (previa) previa.textContent = textoForm();
     document.querySelectorAll(".js-wa").forEach(function(a){
-      var t=a.getAttribute("data-msg");
-      var href=waLink(t==="form"?formText():(MSG[t]||MSG.padrao));
-      if(href){a.href=href;a.target="_blank";a.rel="noopener";}
+      a.href = wa(a.getAttribute("data-msg") === "form" ? textoForm() : MSG.padrao);
+      a.target = "_blank"; a.rel = "noopener";
     });
   }
-  atualiza();
-  var form=document.getElementById("form-diag");
-  if(form){
-    form.addEventListener("input",atualiza);
-    form.addEventListener("change",atualiza);
-    form.addEventListener("submit",function(e){e.preventDefault();});
-  }
+  atualizaWa();
+  var form = $("form-diag");
+  form.addEventListener("input", atualizaWa);
+  form.addEventListener("change", atualizaWa);
+  form.addEventListener("submit", function(e){ e.preventDefault(); });
 
-  /* contatos */
-  function fmtTel(n){n=n.replace(/\D/g,"");var m=n.match(/^55(\d{2})(\d{4,5})(\d{4})$/);return m?"+55 ("+m[1]+") "+m[2]+"-"+m[3]:n;}
-  var cwa=document.getElementById("c-wa"), cm=document.getElementById("c-mail");
-  if(cwa){var a=document.createElement("a");a.href=waLink(MSG.padrao);a.target="_blank";a.rel="noopener";a.textContent=fmtTel(CONFIG.whatsapp);cwa.appendChild(a);}
-  if(cm){var b=document.createElement("a");b.href="mailto:"+CONFIG.email;b.textContent=CONFIG.email;cm.appendChild(b);}
-  document.querySelectorAll(".copiar").forEach(function(btn){
-    var k=btn.getAttribute("data-copy"), v=k==="whatsapp"?fmtTel(CONFIG.whatsapp):CONFIG.email;
-    btn.addEventListener("click",function(){
-      var ok=function(){btn.textContent="copiado";btn.classList.add("ok");clearTimeout(btn._t);btn._t=setTimeout(function(){btn.textContent="copiar";btn.classList.remove("ok");},1600);};
-      try{navigator.clipboard.writeText(v).then(ok,function(){sel(btn);});}catch(e){sel(btn);}
+  function tel(n){ var m = n.match(/^55(\d{2})(\d{5})(\d{4})$/); return m ? "+55 (" + m[1] + ") " + m[2] + "-" + m[3] : n; }
+  var a1 = document.createElement("a"); a1.href = wa(MSG.padrao); a1.target = "_blank"; a1.rel = "noopener"; a1.textContent = tel(CONFIG.whatsapp); $("c-wa").appendChild(a1);
+  var a2 = document.createElement("a"); a2.href = "mailto:" + CONFIG.email; a2.textContent = CONFIG.email; $("c-mail").appendChild(a2);
+  document.querySelectorAll(".copiar").forEach(function(b){
+    var val = b.getAttribute("data-copy") === "whatsapp" ? tel(CONFIG.whatsapp) : CONFIG.email;
+    b.addEventListener("click", function(){
+      var ok = function(){ b.textContent = "copiado"; b.classList.add("ok"); clearTimeout(b._t); b._t = setTimeout(function(){ b.textContent = "copiar"; b.classList.remove("ok"); }, 1600); };
+      var sel = function(){ var r = document.createRange(); r.selectNodeContents(b.previousElementSibling); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try { navigator.clipboard.writeText(val).then(ok, sel); } catch (e) { sel(); }
     });
   });
-  function sel(btn){var el=btn.previousElementSibling;var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}
 
-  /* barra fixa no celular: aparece depois do hero e some na seção do diagnóstico */
-  var barra=document.getElementById("barra"), hero=document.getElementById("hero"), diag=document.getElementById("diagnostico");
-  if(barra&&hero&&"IntersectionObserver" in window){
-    var heroVisivel=true, diagVisivel=false;
-    function aplica(){var on=!heroVisivel&&!diagVisivel;barra.classList.toggle("on",on);barra.setAttribute("aria-hidden",on?"false":"true");barra.querySelector("a").tabIndex=on?0:-1;}
-    new IntersectionObserver(function(e){heroVisivel=e[0].isIntersecting;aplica();}).observe(hero);
-    if(diag) new IntersectionObserver(function(e){diagVisivel=e[0].isIntersecting;aplica();}).observe(diag);
+  /* ---------- palco: hero + View ---------- */
+  var cena = $("inicio"), palco = $("palco"), tela = $("tela"), toque = $("toque");
+  var passos = [].slice.call(document.querySelectorAll(".passo")), pips = [].slice.call(document.querySelectorAll(".pips i"));
+  var doca = $("doca"), links = [].slice.call(doca.querySelectorAll("a"));
+  var fBranco = $("f-branco"), fAreia = $("f-areia");
+  var secClientes = $("clientes"), secDiag = $("diagnostico"), secMetodo = $("metodo");
+  var SUBIDA = 0.8, PASSO = 0.65, SAIDA = 0.75;       /* em alturas de tela; subida + 4 passos = 3.4 = altura da cena - 1; a saída corre enquanto o palco sobe */
+  var TOQUES = [ { x: 92, y: 42.5, tipo: "tap", espera: 230 }, { x: 63, y: 86, tipo: "tap", espera: 230 }, { x: 50, y: 86, tipo: "arrasta", espera: 190 } ];
+  var alvo = 0, timer = 0, ultimo = {};
+
+  function mostraToque(k){
+    var t = TOQUES[k];
+    toque.className = "toque"; toque.style.left = t.x + "%"; toque.style.top = t.y + "%";
+    void toque.offsetWidth; toque.classList.add(t.tipo);
+    return t.espera;
+  }
+  function vaiPara(n){
+    if (n === alvo) return;
+    var ant = alvo; alvo = n; clearTimeout(timer);
+    passos.forEach(function(p, i){ p.classList.toggle("ativo", i === n); p.classList.toggle("antes", i < n); });
+    pips.forEach(function(p, i){ p.style.backgroundColor = i <= n ? "#C8B593" : ""; });
+    if (n === ant + 1 && !REDUZ) { timer = setTimeout(function(){ tela.setAttribute("data-s", n); }, mostraToque(ant)); }
+    else { toque.className = "toque"; tela.setAttribute("data-s", n); }
+  }
+  pips[0].style.backgroundColor = "#C8B593";
+
+  function poe(el, nome, val){ var k = nome + (el.id || ""); if (ultimo[k] !== val) { ultimo[k] = val; el.style.setProperty(nome, val); } }
+  function mistura(sec, H){ var t = sec.getBoundingClientRect().top; return clamp((H * 0.92 - t) / (H * 0.5), 0, 1); }
+
+  var hero = document.querySelector(".hero"), fwrap = document.querySelector(".fone-wrap");
+  function medePeek(){
+    if (window.innerWidth >= 900) { palco.style.removeProperty("--peek"); return; }
+    var fim = hero.offsetTop + hero.offsetHeight, topo = fwrap.offsetTop;
+    palco.style.setProperty("--peek", Math.max(fim + 28 - topo, 0) + "px");
+  }
+  medePeek();
+  window.addEventListener("resize", medePeek);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(medePeek);
+
+  var marcado = false, metodoPronto = false, PM = 0.75;   /* PM: altura de tela rolada por etapa do método */
+  function quadro(){
+    marcado = false;
+    var H = palco.offsetHeight || window.innerHeight;
+    var p = -cena.getBoundingClientRect().top;
+    var r = clamp(p / (SUBIDA * H), 0, 1);
+    var fimPassos = (SUBIDA + PASSO * 4) * H;
+    var e = clamp((p - fimPassos) / (SAIDA * H), 0, 1);
+    var c = clamp((r - 0.78) * 5, 0, 1) * clamp(1 - e * 2.5, 0, 1);
+    poe(palco, "--r", r.toFixed(4)); poe(palco, "--e", e.toFixed(4)); poe(palco, "--c", c.toFixed(3));
+    var escuro = r > 0.5 && e < 0.45;
+    palco.classList.toggle("escuro", escuro);
+    palco.classList.toggle("longe", r > 0.42);
+    palco.classList.toggle("pos", r >= 1);
+    vaiPara(p < SUBIDA * H ? 0 : clamp(Math.floor((p - SUBIDA * H) / (PASSO * H)), 0, 3));
+
+    /* método: a rolagem percorre as etapas */
+    if (metodoPronto) {
+      var pm = -secMetodo.getBoundingClientRect().top, ne = clamp(Math.floor(pm / (PM * H) + 0.3), 0, 3);
+      if (ultimo.etapa !== ne) { ultimo.etapa = ne; etapa(ne); }
+    }
+
+    /* fundo contínuo das seções em fluxo */
+    var wb = mistura(secClientes, H), wa2 = mistura(secDiag, H);
+    if (ultimo.wb !== wb) { ultimo.wb = wb; fBranco.style.opacity = wb.toFixed(3); }
+    if (ultimo.wa !== wa2) { ultimo.wa = wa2; fAreia.style.opacity = wa2.toFixed(3); }
+
+    /* doca: seção ativa e tom */
+    var meio = H * 0.5, ativa = "inicio";
+    if (secDiag.getBoundingClientRect().top < meio) ativa = "diagnostico";
+    else if (secMetodo.getBoundingClientRect().top < meio) ativa = "metodo";
+    else if (r >= 0.6) ativa = "view";
+    if (ultimo.ativa !== ativa) {
+      ultimo.ativa = ativa;
+      links.forEach(function(a, i){ var on = a.getAttribute("data-alvo") === ativa; a.setAttribute("aria-current", on ? "true" : "false"); if (on) doca.style.setProperty("--i", i); });
+    }
+    var dentro = cena.getBoundingClientRect().bottom > H * 0.5;
+    doca.classList.toggle("escura", escuro && dentro);
+  }
+  function pede(){ if (!marcado) { marcado = true; requestAnimationFrame(quadro); } }
+  window.addEventListener("scroll", pede, { passive: true });
+  window.addEventListener("resize", pede);
+  quadro();
+
+  /* doca: rolagem até cada parte */
+  function topoDe(nome){
+    var H = palco.offsetHeight || window.innerHeight, y = window.scrollY;
+    if (nome === "inicio") return 0;
+    if (nome === "view") return cena.getBoundingClientRect().top + y + SUBIDA * H + 2;
+    var el = $(nome); return el.getBoundingClientRect().top + y + (nome === "metodo" ? 0 : 0);
+  }
+  function rola(nome){ window.scrollTo({ top: topoDe(nome), behavior: REDUZ ? "auto" : "smooth" }); }
+  links.forEach(function(a){ a.addEventListener("click", function(ev){ ev.preventDefault(); rola(a.getAttribute("data-alvo")); }); });
+  document.querySelector(".marca").addEventListener("click", function(ev){ ev.preventDefault(); rola("inicio"); });
+
+  /* ---------- método: etapas ---------- */
+  var maqVai = null;
+  var trilho = $("trilho"), etps = [].slice.call(trilho.querySelectorAll(".etp")), quadros = [].slice.call(document.querySelectorAll(".quadro"));
+  function etapa(n, foco){
+    etps.forEach(function(b, i){ var on = i === n; b.setAttribute("aria-selected", on ? "true" : "false"); b.tabIndex = on ? 0 : -1; b.classList.toggle("feita", i < n); if (on && foco) b.focus(); });
+    quadros.forEach(function(q, i){ q.classList.toggle("ativo", i === n); q.classList.toggle("antes", i < n); });
+    trilho.style.setProperty("--i", n);
+    if (maqVai) maqVai(n);
+  }
+  function vaiEtapa(n, foco){
+    var H = palco.offsetHeight || window.innerHeight;
+    window.scrollTo({ top: secMetodo.getBoundingClientRect().top + window.scrollY + (n + 0.15) * PM * H, behavior: REDUZ ? "auto" : "smooth" });
+    if (foco) etps[n].focus({ preventScroll: true });
+  }
+  etps.forEach(function(b, i){
+    b.addEventListener("click", function(){ vaiEtapa(i); });         /* o número leva a rolagem até a etapa */
+    b.addEventListener("keydown", function(ev){
+      if (ev.key === "ArrowRight" || ev.key === "ArrowLeft") { ev.preventDefault(); vaiEtapa(clamp(i + (ev.key === "ArrowRight" ? 1 : -1), 0, 3), true); }
+    });
+  });
+
+
+  /* ---------- mola criticamente amortecida, usada na maquete e na inclinação do aparelho ---------- */
+  function mola(est, alvo, vel, chaves, dt, k, c){
+    var parado = true;
+    for (var i = 0; i < chaves.length; i++) {
+      var q = chaves[i], x = est[q], a = -k * (x - alvo[q]) - c * vel[q];
+      vel[q] += a * dt; est[q] = x + vel[q] * dt;
+      if (Math.abs(vel[q]) > 0.0008 || Math.abs(est[q] - alvo[q]) > 0.0008) parado = false; else { est[q] = alvo[q]; vel[q] = 0; }
+    }
+    return parado;
   }
 
+  /* ---------- maquete 3D do método: desenhada em canvas, gira com o dedo e se constrói a cada etapa ---------- */
+  (function(){
+    var cv = $("maq"), fig = $("maquete"), etq = $("maq-etq"), gira = $("gira"), fotos = $("fotos-etapa");
+    if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext("2d"), W = 0, H = 0, dpr = 1;
+    var N = 12, UX = 4, UZ = 2, FH = 0.46, BW = 4, BD = 2.2, PHI = 0.44, CP = Math.cos(PHI), SP = Math.sin(PHI);
+    var CH = ["obra", "cheio", "vend", "viz", "dest"];
+    var ALVOS = [
+      { obra: 0, cheio: 0, vend: 0,    viz: 1,    dest: 0 },
+      { obra: 1, cheio: 0, vend: 0,    viz: 0.4,  dest: 1 },
+      { obra: 1, cheio: 1, vend: 0,    viz: 0.22, dest: 1 },
+      { obra: 1, cheio: 1, vend: 0.62, viz: 0.22, dest: 0 }
+    ];
+    var ROT = ["maquete · 01 terreno e vizinhança", "maquete · 02 volume e diferencial", "maquete · 03 imagem do empreendimento", "maquete · 04 estoque em tempo real"];
+    var ARIA = ["etapa 1: o terreno e a concorrência", "etapa 2: o volume do prédio com a unidade de destaque", "etapa 3: o prédio com fachada definida", "etapa 4: o prédio com unidades reservadas"];
+    var est = { obra: 0, cheio: 0, vend: 0, viz: 1, dest: 0 }, alvo = ALVOS[0], vel = { obra: 0, cheio: 0, vend: 0, viz: 0, dest: 0 };
+    var yaw = -0.62, omega = 0, pegando = false, rodando = false, antes = 0, etapaAtual = 0, temFoto = {};
+    var VIZ = [ { x: -5.4, z: -4.2, w: 1.7, d: 1.6, h: 2.3 }, { x: 3.7, z: -4.4, w: 1.5, d: 1.9, h: 3.3 }, { x: -5.5, z: 2.9, w: 1.9, d: 1.5, h: 1.5 }, { x: 4.0, z: 3.0, w: 1.4, d: 1.4, h: 2.0 } ];
+    var cs = 1, sn = 0, S = 1, CX = 0, CY = 0;
 
-  /* ===== motion ===== */
-  var raiz=document.documentElement, M=raiz.classList.contains("m");
-  var REVEAL=".logo-cloud-title,.cab > :not(.papeis),.papel,.risco,.dado .wrap > div > *,.tela,.jornada .aparte,.dica-arraste,.case .logo-slot,.case h2,.case .texto > *,.fotos > *,.fundador .slot,.citacao,.fundador .lead,.assin,.diag .grade > div > *,.form,.faq h2,.faq details,.rodape h2,.contato";
-  if(M){
-    var limpa=function(e){if(e.target===this&&e.propertyName==="transform"){this.style.willChange="";this.removeEventListener("transitionend",limpa);}};
-    var io=new IntersectionObserver(function(entradas){
-      var vis=entradas.filter(function(e){return e.isIntersecting;}).map(function(e){return e.target;});
-      vis.forEach(function(el){if(el.matches(".tela")){el.parentNode.querySelectorAll(".tela").forEach(function(t){if(vis.indexOf(t)<0)vis.push(t);});}});
-      vis.sort(function(a,b){return a.compareDocumentPosition(b)&4?-1:1;});
-      vis.forEach(function(el,i){
-        el.style.setProperty("--d",Math.min(i,6)*60+"ms");
-        el.style.willChange="opacity, transform";
-        el.addEventListener("transitionend",limpa);
-        el.classList.add("rv-in");
-        io.unobserve(el);
-      });
-    },{rootMargin:"0px 0px -8% 0px",threshold:0.12});
-    document.querySelectorAll(REVEAL).forEach(function(el){if(!el.closest(".hero"))io.observe(el);});
-    raiz.classList.add("m-ok");
-  }
+    function P(x, y, z){ var xr = x * cs - z * sn, zr = x * sn + z * cs; return [CX + S * xr, CY - S * (y * CP + zr * SP)]; }
+    function quad(a, b, c, d, fill, stroke, lw, dash){
+      ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.lineTo(c[0], c[1]); ctx.lineTo(d[0], d[1]); ctx.closePath();
+      if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+      if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw || 1; ctx.setLineDash(dash || []); ctx.stroke(); }
+    }
+    function rgba(r, g, b, a){ return "rgba(" + r + "," + g + "," + b + "," + a.toFixed(3) + ")"; }
+    /* faces verticais visíveis de uma caixa alinhada aos eixos: normal voltada para a câmera */
+    function faces(){ var f = []; if (sn < 0) f.push("+x"); else f.push("-x"); if (cs < 0) f.push("+z"); else f.push("-z"); return f; }
+    function face(nome, x0, z0, w, d, y0, y1){
+      if (nome === "+x") return [P(x0 + w, y0, z0), P(x0 + w, y0, z0 + d), P(x0 + w, y1, z0 + d), P(x0 + w, y1, z0)];
+      if (nome === "-x") return [P(x0, y0, z0 + d), P(x0, y0, z0), P(x0, y1, z0), P(x0, y1, z0 + d)];
+      if (nome === "+z") return [P(x0 + w, y0, z0 + d), P(x0, y0, z0 + d), P(x0, y1, z0 + d), P(x0 + w, y1, z0 + d)];
+      return [P(x0, y0, z0), P(x0 + w, y0, z0), P(x0 + w, y1, z0), P(x0, y1, z0)];
+    }
+    function mix(a, b, t){ return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]; }
+    function caixa(x0, z0, w, d, y0, h, fill, stroke, lw, dash){
+      var fs = faces(), y1 = y0 + h;
+      for (var i = 0; i < fs.length; i++) { var q = face(fs[i], x0, z0, w, d, y0, y1); quad(q[0], q[1], q[2], q[3], fill, stroke, lw, dash); }
+      quad(P(x0, y1, z0), P(x0 + w, y1, z0), P(x0 + w, y1, z0 + d), P(x0, y1, z0 + d), fill, stroke, lw, dash);
+    }
+    function vendida(f, andar, k){ return ((andar * 7 + k * 13 + f * 5) % 17) / 17 < est.vend; }
 
-  /* ===== timelines interativas (Método & Serviços - Hyperiux Vault) ===== */
-  function setupTimelines(){
-    if(typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-    gsap.registerPlugin(ScrollTrigger);
-
-    var reduzido = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    ScrollTrigger.matchMedia({
-      "(min-width: 901px)": function(){
-        ["metodo", "servicos"].forEach(function(id){
-          var sec = document.getElementById(id);
-          if(!sec) return;
-          var track = sec.querySelector(".timeline-track");
-          var line = sec.querySelector(".timeline-journey-line");
-          var items = sec.querySelectorAll(".timeline-item");
-          if(!track) return;
-
-          var dist = function(){ return Math.max(800, track.scrollWidth - window.innerWidth + 120); };
-
-          var tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sec,
-              start: "top top",
-              end: function(){ return "+=" + dist(); },
-              scrub: 1,
-              pin: true,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            }
-          });
-
-          tl.to(track, {
-            x: function(){ return -(track.scrollWidth - window.innerWidth + 80); },
-            ease: "none"
-          });
-
-          if(line){
-            if(reduzido){
-              line.style.width = "100%";
-            } else {
-              tl.to(line, { width: "100%", ease: "none" }, 0);
-            }
+    function torre(){
+      var x0 = -BW / 2, z0 = -BD / 2, fs = faces();
+      for (var i = 0; i < N; i++) {
+        var fi = clamp(est.obra * (N + 3) - i, 0, 1); if (fi <= 0) break;
+        var e = 1 - Math.pow(1 - fi, 3), y0 = i * FH + (1 - e) * 1.4, y1 = y0 + FH;
+        var linha = rgba(14, 34, 56, e), corpo = rgba(255, 255, 255, est.cheio * e);
+        for (var j = 0; j < fs.length; j++) {
+          var nome = fs[j], q = face(nome, x0, z0, BW, BD, y0, y1);
+          quad(q[0], q[1], q[2], q[3], corpo, linha, 1.25);
+          var un = (nome === "+z" || nome === "-z") ? UX : UZ, cod = nome === "-z" ? 0 : nome === "+x" ? 1 : nome === "+z" ? 2 : 3;
+          for (var k = 0; k < un; k++) {
+            var a0 = (k + 0.14) / un, a1 = (k + 0.86) / un;
+            var b0 = mix(q[0], q[1], a0), b1 = mix(q[0], q[1], a1), t0 = mix(q[3], q[2], a0), t1 = mix(q[3], q[2], a1);
+            var p0 = mix(b0, t0, 0.2), p1 = mix(b1, t1, 0.2), p2 = mix(b1, t1, 0.84), p3 = mix(b0, t0, 0.84);
+            var destaque = est.dest > 0.01 && i === 9 && ((cod === 0 && k === UX - 1) || (cod === 1 && k === 0));
+            var cor = null;
+            if (vendida(cod, i, k)) cor = rgba(200, 181, 147, e);
+            if (destaque) cor = rgba(200, 181, 147, Math.max(est.dest, vendida(cod, i, k) ? 1 : 0) * e);
+            if (cor || est.cheio > 0.03) quad(p0, p1, p2, p3, cor, rgba(14, 34, 56, (cor ? 0.9 : 0.42 * est.cheio) * e), cor ? 1.1 : 0.8);
           }
-
-          items.forEach(function(item){
-            var stem = item.querySelector(".timeline-stem");
-            var dot = item.querySelector(".timeline-dot");
-            var card = item.querySelector(".timeline-card");
-            var isTop = item.classList.contains("timeline-item--top");
-
-            if(reduzido){
-              if(stem) gsap.set(stem, { scaleY: 1 });
-              if(dot) gsap.set(dot, { scale: 1 });
-              if(card) gsap.set(card, { opacity: 1, y: 0 });
-              return;
-            }
-
-            if(stem){
-              gsap.fromTo(stem,
-                { scaleY: 0 },
-                {
-                  scaleY: 1,
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: item,
-                    containerAnimation: tl,
-                    start: "left 90%",
-                    end: "left 60%",
-                    scrub: true
-                  }
-                }
-              );
-            }
-
-            if(dot){
-              gsap.fromTo(dot,
-                { scale: 0 },
-                {
-                  scale: 1,
-                  ease: "back.out(2)",
-                  scrollTrigger: {
-                    trigger: item,
-                    containerAnimation: tl,
-                    start: "left 90%",
-                    end: "left 60%",
-                    scrub: true
-                  }
-                }
-              );
-            }
-
-            if(card){
-              gsap.fromTo(card,
-                { opacity: 0.2, y: isTop ? -16 : 16 },
-                {
-                  opacity: 1,
-                  y: 0,
-                  ease: "power2.out",
-                  scrollTrigger: {
-                    trigger: item,
-                    containerAnimation: tl,
-                    start: "left 85%",
-                    end: "left 55%",
-                    scrub: true
-                  }
-                }
-              );
-            }
-          });
-        });
-      },
-
-      "(max-width: 900px)": function(){
-        gsap.utils.toArray(".timeline-track, .timeline-journey-line, .timeline-stem, .timeline-dot, .timeline-card").forEach(function(el){
-          gsap.set(el, { clearProps: "all" });
-        });
+        }
+        quad(P(x0, y1, z0), P(x0 + BW, y1, z0), P(x0 + BW, y1, z0 + BD), P(x0, y1, z0 + BD), rgba(244, 241, 234, Math.max(est.cheio, 0.0) * e), linha, 1.25);
       }
+    }
+    function desenha(){
+      cs = Math.cos(yaw); sn = Math.sin(yaw);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H); ctx.lineJoin = "round";
+      S = Math.min(W / 13, H / 9.4); CX = W / 2; CY = H * 0.74;
+      /* terreno: malha e lote */
+      ctx.setLineDash([]); ctx.lineWidth = 1; ctx.strokeStyle = "rgba(135,148,163,.32)"; ctx.beginPath();
+      for (var g = -7; g <= 7; g++) { var a = P(g, 0, -7), b = P(g, 0, 7), c = P(-7, 0, g), d = P(7, 0, g); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.moveTo(c[0], c[1]); ctx.lineTo(d[0], d[1]); }
+      ctx.stroke();
+      var lx = BW / 2 + 0.7, lz = BD / 2 + 0.7;
+      quad(P(-lx, 0, -lz), P(lx, 0, -lz), P(lx, 0, lz), P(-lx, 0, lz), rgba(200, 181, 147, 0.22 + 0.18 * (1 - est.obra)), "rgba(14,34,56,.9)", 1.25, [5, 4]);
+      /* vizinhos e torre, do mais distante para o mais próximo */
+      var objs = VIZ.map(function(v){ return { v: v, z: (v.x + v.w / 2) * sn + (v.z + v.d / 2) * cs }; });
+      objs.push({ t: true, z: 0 });
+      objs.sort(function(a, b){ return b.z - a.z; });
+      objs.forEach(function(o){
+        if (o.t) torre();
+        else caixa(o.v.x, o.v.z, o.v.w, o.v.d, 0, o.v.h, rgba(244, 241, 234, 0.9 * est.viz), rgba(79, 97, 119, 0.25 + 0.75 * est.viz), 1, [4, 4]);
+      });
+      ctx.setLineDash([]);
+    }
+    function passo(agora){
+      var dt = Math.min((agora - antes) / 1000, 0.034); antes = agora;
+      var quieto = REDUZ ? (CH.forEach(function(q){ est[q] = alvo[q]; vel[q] = 0; }), true) : mola(est, alvo, vel, CH, dt, 46, 13.6);
+      if (!pegando && omega) { yaw += omega * dt; omega *= Math.exp(-dt * 3.2); if (Math.abs(omega) < 0.01) omega = 0; }
+      desenha();
+      if (!quieto || omega || pegando) requestAnimationFrame(passo); else rodando = false;
+    }
+    function acorda(){ if (!rodando) { rodando = true; antes = performance.now(); requestAnimationFrame(passo); } }
+    function mede(){
+      var r = fig.getBoundingClientRect(); if (!r.width) return;
+      dpr = Math.min(window.devicePixelRatio || 1, 2); W = r.width; H = r.height;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); desenha();
+    }
+    if ("ResizeObserver" in window) new ResizeObserver(mede).observe(fig); else window.addEventListener("resize", mede);
+    mede();
+
+    /* girar: o prédio acompanha o dedo 1:1 e continua com a velocidade da soltura */
+    var ux = 0, ut = 0, vx = 0;
+    fig.addEventListener("pointerdown", function(ev){
+      if (ev.pointerType === "mouse" && ev.button !== 0) return;
+      pegando = true; omega = 0; ux = ev.clientX; ut = ev.timeStamp; vx = 0; fig.classList.add("pega");
+      try { fig.setPointerCapture(ev.pointerId); } catch (e) {}
+      acorda();
     });
-  }
-  setupTimelines();
-
-  /* cabeçalho e menu ativo */
-  var topo=document.querySelector(".topo"), tick=false;
-  function rolagem(){topo.classList.toggle("rolado",window.scrollY>8);tick=false;}
-  window.addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(rolagem);}},{passive:true});
-  rolagem();
-  if("IntersectionObserver" in window){
-    var itens={};document.querySelectorAll(".nav a.item").forEach(function(a){itens[a.getAttribute("href").slice(1)]=a;});
-    var spy=new IntersectionObserver(function(es){es.forEach(function(e){var a=itens[e.target.id];if(a)a.classList.toggle("ativo",e.isIntersecting);});},{rootMargin:"-45% 0px -50% 0px"});
-    Object.keys(itens).forEach(function(id){var sec=document.getElementById(id);if(sec)spy.observe(sec);});
-  }
-
-
-  /* ===== Hero: 3D Container Scroll do iPhone (Aceternity UI style) ===== */
-  function initHeroContainerScroll(){
-    var hero = document.getElementById("hero");
-    var stage = document.getElementById("view-hero-stage");
-    var card = document.getElementById("view-hero-card");
-    var header = document.getElementById("view-hero-header");
-    var shadow = document.getElementById("view-hero-shadow");
-    var iphone = document.getElementById("hero-iphone");
-    if(!card || !hero) return;
-
-    if(typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined"){
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Configuração inicial (inclinado em 3D no topo da página)
-      gsap.set(card, {
-        transformPerspective: 1200,
-        transformOrigin: "50% 90%",
-        rotateX: 22,
-        scale: 0.91,
-        y: 16
-      });
-
-      if(shadow){
-        gsap.set(shadow, {
-          scaleX: 0.85,
-          scaleY: 0.7,
-          opacity: 0.55
-        });
-      }
-
-      // Linha do tempo de scroll scrub
-      var tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: hero,
-          start: "top top",
-          end: "+=520",
-          scrub: 1,
-          invalidateOnRefresh: true
-        }
-      });
-
-      // Retificação do iPhone de 22deg para 0deg, escala 1.0 e elevação suave
-      tl.to(card, {
-        rotateX: 0,
-        scale: 1.0,
-        y: -18,
-        ease: "power1.out"
-      }, 0);
-
-      if(shadow){
-        tl.to(shadow, {
-          scaleX: 1.05,
-          scaleY: 1.0,
-          opacity: 0.85,
-          y: 6,
-          ease: "power1.out"
-        }, 0);
-      }
-
-      if(header){
-        tl.to(header, {
-          y: -28,
-          opacity: 0.82,
-          ease: "power1.out"
-        }, 0);
-      }
+    fig.addEventListener("pointermove", function(ev){
+      if (!pegando) return;
+      var dx = ev.clientX - ux, dtm = Math.max(ev.timeStamp - ut, 1);
+      yaw += dx * 0.009; vx = vx * 0.6 + (dx / dtm) * 0.4; ux = ev.clientX; ut = ev.timeStamp;
+      if (Math.abs(dx) > 1) gira.classList.add("some");
+    });
+    function solta(ev){
+      if (!pegando) return; pegando = false; fig.classList.remove("pega");
+      omega = REDUZ ? 0 : clamp(vx * 9, -7, 7);
+      if (ev.timeStamp - ut > 90) omega = 0;
+      acorda();
     }
+    fig.addEventListener("pointerup", solta); fig.addEventListener("pointercancel", solta);
 
-    // Micro-inclinação interativa acompanhando o cursor do mouse (hover fino)
-    if(iphone && window.matchMedia && matchMedia("(hover:hover) and (pointer:fine)").matches){
-      var alvo = { x: 0, y: 0 }, pendente = false;
-      function aplicaTiltCursor(){
-        pendente = false;
-        iphone.style.setProperty("--cursor-ry", (alvo.x * 4).toFixed(2) + "deg");
-        iphone.style.setProperty("--cursor-rx", (-alvo.y * 3).toFixed(2) + "deg");
-      }
-      hero.addEventListener("pointermove", function(e){
-        var r = card.getBoundingClientRect();
-        alvo.x = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2.5)));
-        alvo.y = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2.5)));
-        if(!pendente){
-          pendente = true;
-          requestAnimationFrame(aplicaTiltCursor);
-        }
-      });
-      hero.addEventListener("pointerleave", function(){
-        alvo.x = 0; alvo.y = 0;
-        requestAnimationFrame(aplicaTiltCursor);
-      });
-    }
-  }
-  initHeroContainerScroll();
+    maqVai = function(n){
+      etapaAtual = n; alvo = ALVOS[n]; etq.textContent = ROT[n];
+      cv.setAttribute("aria-label", "Maquete do empreendimento, " + ARIA[n]);
+      [].forEach.call(fotos.children, function(im){ im.classList.toggle("on", +im.getAttribute("data-n") === n); });
+      gira.style.visibility = etq.style.visibility = temFoto[n] ? "hidden" : "";
+      acorda();
+    };
+    /* foto por etapa: img/etapa-01.jpg a etapa-04.jpg substituem a maquete naquela etapa */
+    [0, 1, 2, 3].forEach(function(n){
+      var im = new Image(); im.alt = "Etapa " + (n + 1) + " do método"; im.setAttribute("data-n", n); im.decoding = "async";
+      im.onload = function(){ temFoto[n] = true; fotos.appendChild(im); if (etapaAtual === n) maqVai(n); };
+      im.src = "img/etapa-0" + (n + 1) + ".jpg";
+    });
+  })();
 
-  /* imagens dos iPhones: fade quando decodificadas */
-  document.querySelectorAll(".iphone img").forEach(function(img){
-    if(img.complete&&img.naturalWidth)return;
-    img.classList.add("carregando");
-    var f=function(){img.classList.remove("carregando");};
-    img.addEventListener("load",f,{once:true});img.addEventListener("error",f,{once:true});
+  /* ---------- desktop: o aparelho inclina de leve seguindo o cursor ---------- */
+  (function(){
+    if (REDUZ || !window.matchMedia || !matchMedia("(hover:hover) and (pointer:fine) and (min-width:900px)").matches) return;
+    var fone = document.querySelector(".iphone"), e = { x: 0, y: 0 }, a = { x: 0, y: 0 }, v = { x: 0, y: 0 }, on = false, t0 = 0;
+    function laco(t){ var dt = Math.min((t - t0) / 1000, 0.034); t0 = t; var q = mola(e, a, v, ["x", "y"], dt, 60, 15.5);
+      fone.style.setProperty("--ty", (e.x * 7).toFixed(2) + "deg"); fone.style.setProperty("--tx", (-e.y * 5).toFixed(2) + "deg");
+      if (!q) requestAnimationFrame(laco); else on = false; }
+    function vai(){ if (!on) { on = true; t0 = performance.now(); requestAnimationFrame(laco); } }
+    palco.addEventListener("pointermove", function(ev){ var r = fone.getBoundingClientRect(); a.x = clamp((ev.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2), -1, 1); a.y = clamp((ev.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2), -1, 1); vai(); });
+    palco.addEventListener("pointerleave", function(){ a.x = 0; a.y = 0; vai(); });
+  })();
+
+  /* ---------- títulos: separa as palavras para a entrada em sequência ---------- */
+  document.querySelectorAll(".hero h1, .rv h2").forEach(function(h){
+    var k = 0, nos = [], w = document.createTreeWalker(h, NodeFilter.SHOW_TEXT, null), no;
+    while ((no = w.nextNode())) nos.push(no);
+    nos.forEach(function(t){
+      var frag = document.createDocumentFragment();
+      t.nodeValue.split(/(\s+)/).forEach(function(parte){
+        if (!parte) return;
+        if (/^\s+$/.test(parte)) { frag.appendChild(document.createTextNode(" ")); return; }
+        var sp = document.createElement("span"); sp.className = "pal"; sp.style.setProperty("--k", k++); sp.textContent = parte; frag.appendChild(sp);
+      });
+      t.parentNode.replaceChild(frag, t);
+    });
   });
 
-  /* ===== Card Fan Carousel (View 3D - Leque em Arco) ===== */
-  function initCardFanCarousel(){
-    var container = document.getElementById("card-fan-carousel");
-    if(!container) return;
+  metodoPronto = true; pede();
 
-    var deck = document.getElementById("card-fan-deck");
-    var cards = Array.from(deck.querySelectorAll(".fan-card"));
-    var btnPrev = document.getElementById("fan-btn-prev");
-    var btnNext = document.getElementById("fan-btn-next");
-    var dotsContainer = document.getElementById("fan-dots");
-    var badgeEl = document.getElementById("fan-caption-badge");
-    var titleEl = document.getElementById("fan-caption-title");
-    var descEl = document.getElementById("fan-caption-desc");
-    var captionEl = document.getElementById("fan-caption");
+  /* ---------- entradas suaves ---------- */
+  var rvs = [].slice.call(document.querySelectorAll(".rv"));
+  if ("IntersectionObserver" in window && !REDUZ) {
+    var io = new IntersectionObserver(function(es){
+      var vis = es.filter(function(x){ return x.isIntersecting; }).map(function(x){ return x.target; });
+      vis.forEach(function(el, i){ el.style.setProperty("--d", Math.min(i, 5) * 70 + "ms"); el.classList.add("in"); io.unobserve(el); });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.1 });
+    rvs.forEach(function(el){ io.observe(el); });
+  } else { rvs.forEach(function(el){ el.classList.add("in"); }); }
 
-    var total = cards.length;
-    var activeIndex = 0;
-    var isHovered = false;
-
-    dotsContainer.innerHTML = "";
-    cards.forEach(function(_, idx){
-      var dot = document.createElement("button");
-      dot.className = "fan-dot" + (idx === 0 ? " fan-dot--active" : "");
-      dot.type = "button";
-      dot.setAttribute("aria-label", "Ir para tela " + (idx + 1));
-      dot.addEventListener("click", function(){ goTo(idx); });
-      dotsContainer.appendChild(dot);
-    });
-
-    var dots = Array.from(dotsContainer.querySelectorAll(".fan-dot"));
-
-    function update(){
-      var isMobile = window.innerWidth < 640;
-      var baseSpread = isMobile ? 42 : 95;
-      var hoverSpread = isMobile ? 58 : 155;
-      var spread = isHovered ? hoverSpread : baseSpread;
-      var maxVisible = isMobile ? 2 : 3;
-
-      cards.forEach(function(card, idx){
-        var diff = idx - activeIndex;
-        if(diff > total / 2) diff -= total;
-        if(diff < -total / 2) diff += total;
-
-        var absDiff = Math.abs(diff);
-
-        if(absDiff > maxVisible){
-          card.style.opacity = "0";
-          card.style.visibility = "hidden";
-          card.style.pointerEvents = "none";
-          card.style.transform = "translate3d(" + (diff > 0 ? (isMobile ? 120 : 320) : (isMobile ? -120 : -320)) + "px, 120px, 0) scale(0.6) rotate(" + (diff > 0 ? 35 : -35) + "deg)";
-          card.classList.remove("fan-card--active");
-          return;
-        }
-
-        card.style.visibility = "visible";
-        card.style.pointerEvents = "auto";
-        card.style.zIndex = 100 - absDiff * 10;
-
-        var tx = diff * spread;
-        var ty = Math.pow(absDiff, 1.45) * (isMobile ? 14 : 20);
-        var rot = diff * (isMobile ? 6.5 : 8.5);
-        var scale = diff === 0 ? 1.05 : Math.max(0.72, 1 - absDiff * 0.08);
-        var opacity = diff === 0 ? 1 : Math.max(0.35, 1 - absDiff * 0.22);
-
-        card.style.opacity = opacity;
-        card.style.transform = "translate3d(" + tx + "px, " + ty + "px, 0) scale(" + scale + ") rotate(" + rot + "deg)";
-
-        if(diff === 0){
-          card.classList.add("fan-card--active");
-        } else {
-          card.classList.remove("fan-card--active");
-        }
-      });
-
-      dots.forEach(function(dot, idx){
-        dot.classList.toggle("fan-dot--active", idx === activeIndex);
-      });
-
-      var activeCard = cards[activeIndex];
-      if(activeCard && captionEl){
-        captionEl.style.opacity = "0";
-        captionEl.style.transform = "translateY(6px)";
-        setTimeout(function(){
-          if(badgeEl) badgeEl.textContent = activeCard.getAttribute("data-badge") || "";
-          if(titleEl) titleEl.textContent = activeCard.getAttribute("data-title") || "";
-          if(descEl) descEl.textContent = activeCard.getAttribute("data-desc") || "";
-          captionEl.style.opacity = "1";
-          captionEl.style.transform = "translateY(0)";
-        }, 150);
-      }
-    }
-
-    function goTo(index){
-      activeIndex = (index + total) % total;
-      update();
-    }
-
-    function next(){ goTo(activeIndex + 1); }
-    function prev(){ goTo(activeIndex - 1); }
-
-    if(btnNext) btnNext.addEventListener("click", next);
-    if(btnPrev) btnPrev.addEventListener("click", prev);
-
-    cards.forEach(function(card, idx){
-      card.addEventListener("click", function(){
-        if(idx !== activeIndex) goTo(idx);
-      });
-    });
-
-    deck.addEventListener("mouseenter", function(){
-      isHovered = true;
-      update();
-    });
-    deck.addEventListener("mouseleave", function(){
-      isHovered = false;
-      update();
-    });
-
-    var touchStartX = 0;
-    deck.addEventListener("touchstart", function(e){
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-    deck.addEventListener("touchend", function(e){
-      var touchEndX = e.changedTouches[0].clientX;
-      var diffX = touchEndX - touchStartX;
-      if(Math.abs(diffX) > 35){
-        if(diffX < 0) next();
-        else prev();
-      }
-    }, { passive: true });
-
-    window.addEventListener("resize", function(){
-      requestAnimationFrame(update);
-    });
-
-    update();
-  }
-  initCardFanCarousel();
-
-  /* fotos do case e do fundador: arquivos em img/ com o nome do slot */
-  var ALT={"acqua-01":"Acqua Duas Praias, fachada","acqua-02":"Acqua Duas Praias, vista","acqua-03":"Acqua Duas Praias, lazer","fundador":"Diogo, fundador da Nest","logo-vargas":"Vargas Construtora"};
+  /* ---------- imagens dos espaços: basta colocar o arquivo em img/ com o nome do espaço ---------- */
+  var ALT = { "acqua-01": "Acqua Duas Praias", "fundador": "Diogo, fundador da Nest" };
   document.querySelectorAll("[data-slot]").forEach(function(el){
-    if(el.querySelector("img")) return;
-    var nome=el.getAttribute("data-slot"), logo=nome.indexOf("logo")===0;
-    var img=new Image(); img.alt=ALT[nome]||""; img.loading="lazy";
-    img.onload=function(){
-      if(logo){el.textContent="";el.style.border="0";img.style.cssText="max-width:100%;max-height:100%;object-fit:contain;object-position:center;margin:0 auto;display:block;";el.appendChild(img);}
-      else{var v=el.querySelector(".vazio");if(v)v.remove();el.insertBefore(img,el.firstChild);}
-    };
-    img.src="img/"+nome+"."+(logo?"png":"jpg");
+    var nome = el.getAttribute("data-slot"), img = new Image();
+    img.alt = ALT[nome] || ""; img.decoding = "async";
+    img.onload = function(){ var z = el.querySelector(".vazio"); if (z) z.remove(); var s = el.querySelector("svg"); if (s) s.remove(); el.insertBefore(img, el.firstChild); };
+    img.src = "img/" + nome + ".jpg";
   });
 })();
 </script>
